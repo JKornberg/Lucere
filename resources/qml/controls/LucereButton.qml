@@ -16,8 +16,7 @@ Button {
         anchors.verticalCenter: parent.verticalCenter
         text: buttonText
         font.family: "Segoe UI"
-        font.pixelSize: 16
-        font.weight: Font.Regular
+        font.pixelSize: 15
         color: "white"
     }
     
