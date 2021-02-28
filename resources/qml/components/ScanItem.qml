@@ -85,7 +85,7 @@ Rectangle {
         }
     }
 
-    // User
+    // Scan User
     Rectangle {
         x: 10
         y: 55
@@ -119,7 +119,7 @@ Rectangle {
         }
     }
 
-    // Wavelength
+    // Scan Wavelength
     Rectangle {
         x: 10
         y: 75
@@ -153,6 +153,7 @@ Rectangle {
         }
     }
 
+    // Scan View Button
     Controls.LucereButton {
         x: 10
         y: 120
