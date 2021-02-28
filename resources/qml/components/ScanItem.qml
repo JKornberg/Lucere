@@ -162,4 +162,25 @@ Rectangle {
         buttonText: "View"
         buttonColor: AppColors.lightGray
     }
+
+    // Scan Context Menu
+    Rectangle {
+        id: scanContextMenu
+        implicitWidth: 30
+        implicitHeight: 50
+        anchors {
+            right: parent.right
+            bottom: parent.bottom
+        }
+        color: "transparent"
+
+        // Context Menu Icon
+        Image {
+            x: 10
+            anchors {
+                verticalCenter: parent.verticalCenter
+            }
+            source: "../../icons/dot-menu.svg"
+        }
+    }
 }
