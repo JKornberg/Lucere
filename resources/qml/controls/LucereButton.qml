@@ -6,7 +6,7 @@ Button {
     id: lucereButton
 
     // Define button color property
-    property var buttonColor: "#000000"
+    property var buttonColor: "#dddddd"
 
     // Define button text property
     property var buttonText: "Lucere Button"
