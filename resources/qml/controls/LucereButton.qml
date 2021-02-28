@@ -12,8 +12,10 @@ Button {
     property var buttonText: "Lucere Button"
 
     Text {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
+        }
         text: buttonText
         font.family: "Segoe UI"
         font.pixelSize: 15
