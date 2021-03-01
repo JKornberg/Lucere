@@ -103,7 +103,7 @@ LucereWindow {
 
             placeholderText: "Select User..."
             placeholderColor: AppColors.lightGray
-            optionColor: AppColors.darkGray
+            optionColor: AppColors.lightGray
             borderColor: AppColors.borderGray
             contents: ["Atticus Steinmetz", "Sadie Crawford"]
         }
@@ -114,6 +114,7 @@ LucereWindow {
             x: 447
             y: 279
             placeholderText: "******"
+            color: AppColors.lightGray
             borderColor: AppColors.borderGray
         }
 
