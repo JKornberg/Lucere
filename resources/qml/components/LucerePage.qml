@@ -9,8 +9,8 @@ Rectangle {
     Rectangle {
         x: 10
         y: 10
-        width: 710
-        height: 460
+        implicitWidth: 710
+        implicitHeight: 460
         radius: 5
         color: "white"
         border.width: 1
