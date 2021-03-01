@@ -1,6 +1,6 @@
-import QtQuick 2.13
-import QtQuick.Window 2.13
-import QtQuick.Controls 2.15
+import QtQuick 2.8
+import QtQuick.Window 2.8
+import QtQuick.Controls 2.8
 import QtQuick.Controls.Styles 1.4
 import "../components"
 import "../controls"
@@ -109,12 +109,10 @@ LucereWindow {
         }
 
         // PIN Text Input Field
-        LucerePinTextField {
+        LucerePasswordField {
             id: pinTxtField
             x: 447
             y: 279
-            width: 76
-            height: 37
             placeholderText: "******"
             borderColor: AppColors.borderGray
         }
@@ -151,9 +149,3 @@ LucereWindow {
         }
     }
 }
-
-/*##^##
-Designer {
-    D{i:0;autoSize:true;height:480;width:640}
-}
-##^##*/

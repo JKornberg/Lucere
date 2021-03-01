@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.15
+import QtQuick 2.8
+import QtQuick.Controls 2.8
 import QtQuick.Controls.Styles 1.4
 
 ComboBox {
@@ -20,8 +20,8 @@ ComboBox {
     // Define contents property
     property var contents: ["item1", "item2", "item3"]
 
-    implicitWidth: 229
-    implicitHeight: 37
+    implicitWidth: 226
+    implicitHeight: 38
     model: contents
 
     // Selection text
@@ -32,17 +32,17 @@ ComboBox {
     background: Rectangle {
         width: parent.width
         height: parent.height
-        color: white
+        color: "white"
         radius: 5
         border.color: borderColor
     }
 
     // Stylization of main rectangle's text
     contentItem: Text{
-        text: nameSelect.displayText
-        color: nameSelect.currentIndex == -1 ? placeholderColor: optionColor
+        text: displayText
+        color: currentIndex == -1 ? placeholderColor: optionColor
         verticalAlignment: Text.AlignVCenter
-        leftPadding: 13
+        leftPadding: 10
     }
 
     // Dropdown contents
@@ -51,6 +51,7 @@ ComboBox {
         contentItem: Text {
             text: modelData
             font.family: "Segoe UI"
+            font.pixelSize: 16
             color: optionColor
         }
     }
