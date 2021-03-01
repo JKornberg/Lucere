@@ -6,7 +6,7 @@ TextField {
     // Define border color property
     property var borderColor: "#000000"
 
-    implicitWidth: 76
+    implicitWidth: 74
     implicitHeight: 38
     placeholderText: "Placeholder"
     font.family: "Segoe UI"
