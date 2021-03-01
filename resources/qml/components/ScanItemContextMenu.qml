@@ -51,7 +51,7 @@ Rectangle {
             anchors {
                 verticalCenter: parent.verticalCenter
             }
-            source: "../../icons/dot-menu.svg"
+            source: "../../icons/context-menu.svg"
         }
     }
 }
