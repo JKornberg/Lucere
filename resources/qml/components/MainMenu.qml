@@ -13,18 +13,18 @@ Rectangle {
     // Define menu states
     states: [
         State {
-            name: "hideMenu"
-            PropertyChanges {
-                target: menuWrapper
-                width: 70
-            }
-        },
-
-        State {
             name: "showMenu"
             PropertyChanges {
                 target: menuWrapper
                 width: 230
+            }
+        },
+
+        State {
+            name: "hideMenu"
+            PropertyChanges {
+                target: menuWrapper
+                width: 70
             }
         }
     ]
