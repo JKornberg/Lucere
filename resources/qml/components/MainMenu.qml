@@ -134,7 +134,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Menu Panel"
             }
         }
@@ -157,7 +157,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Home"
             }
         }
@@ -180,7 +180,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Capture"
             }
         }
@@ -203,7 +203,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Scan History"
             }
         }
@@ -226,7 +226,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Analysis"
             }
         }
@@ -249,7 +249,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Capture Options"
             }
         }
@@ -272,7 +272,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "App Settings"
             }
         }
@@ -300,7 +300,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuText {
+                MenuLabel {
                     text: "Exit"
                 }
             }

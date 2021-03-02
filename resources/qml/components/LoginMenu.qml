@@ -117,7 +117,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Menu Panel"
             }
         }
@@ -140,7 +140,7 @@ Rectangle {
             }
 
             // Title
-            MenuText {
+            MenuLabel {
                 text: "Login"
             }
         }
@@ -168,7 +168,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuText {
+                MenuLabel {
                     text: "Exit"
                 }
             }
