@@ -41,15 +41,35 @@ Rectangle {
         implicitHeight: 60
         y: mainMenu.y + implicitHeight * 0
         onClicked: {
-            // Expand Menu
+            // Animate Image
+            menuIcon.rotation == 0 ? (rotateIconOpen.running = true) : (rotateIconClose.running = true)
         }
 
         Image {
+            id: menuIcon
             anchors {
                 verticalCenter: parent.verticalCenter
                 horizontalCenter: parent.horizontalCenter
             }
             source: "../../icons/expand-menu.svg"
+
+            RotationAnimator {
+                id: rotateIconOpen
+                target: menuIcon
+                from: 0
+                to: 180
+                duration: 500
+                running: false
+            }
+
+            RotationAnimator {
+                id: rotateIconClose
+                target: menuIcon
+                from: 180
+                to: 0
+                duration: 500
+                running: false
+            }
         }
     }
 
