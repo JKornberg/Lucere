@@ -1,6 +1,7 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
+import "../styles/Functions.js" as Functions
 
 DelayButton {
     id: lucereDelayButton
@@ -12,7 +13,7 @@ DelayButton {
     property var buttonText: "Delay Button"
 
     // Define button delay property
-    property var buttonDelay: 2000
+    property var buttonDelay: 4000
 
     delay: buttonDelay
 
@@ -29,12 +30,13 @@ DelayButton {
         id: rectDelay
         implicitWidth: 80
         implicitHeight: 30
-        color: lucereDelayButton.down ? Qt.darker(buttonColor, 1.1) : buttonColor
+        color: buttonColor
         radius: 5
 
         Canvas {
             id: canvas
             anchors.fill: parent
+            clip: true
 
             Connections {
                 target: lucereDelayButton
@@ -42,13 +44,15 @@ DelayButton {
             }
 
             onPaint: {
-                // Rectangle variables
+                // Construct round rectangle and clip
                 var ctx = getContext("2d")
                 var rectWidth = lucereDelayButton.progress * rectDelay.width
-                var rectRadius = 5
+
+                Functions.roundRect(ctx, 0, 0, rectDelay.width, rectDelay.height, 10);
+                ctx.clip()
 
                 ctx.clearRect(0, 0, rectDelay.width, rectDelay.height)
-                ctx.fillStyle = Qt.darker(buttonColor, 1.2) 
+                ctx.fillStyle = Qt.darker(buttonColor, 1.1) 
                 ctx.fillRect(0, 0, rectWidth, rectDelay.height)
             }
         }

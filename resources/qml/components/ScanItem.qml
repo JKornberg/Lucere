@@ -155,12 +155,25 @@ Rectangle {
 
     // Scan View Button
     Controls.LucereButton {
+        id: viewScan
         x: 10
         y: 120
         width: 80
         height: 30
         buttonText: "View"
         buttonColor: AppColors.lightGray
+    }
+
+    // Scan Delete Button
+    Controls.LucereDelayButton {
+        id: deleteScan
+        x: 100
+        y: 120
+        width: 80
+        height: 30
+        buttonText: "Delete"
+        buttonColor: AppColors.red
+        buttonDelay: 2000
     }
 
     // Scan Context Menu
