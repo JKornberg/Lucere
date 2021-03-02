@@ -19,6 +19,7 @@ Rectangle {
 
     // Expand Menu Item
     MouseArea {
+        id: menuAction
         implicitWidth: 70
         implicitHeight: 60
         y: mainMenu.y + implicitHeight * 0
@@ -41,6 +42,7 @@ Rectangle {
                 from: 0
                 to: 180
                 duration: 500
+                easing.type: Easing.InOutQuad
                 running: false
             }
 
@@ -50,6 +52,7 @@ Rectangle {
                 from: 180
                 to: 0
                 duration: 500
+                easing.type: Easing.InOutQuad
                 running: false
             }
         }
