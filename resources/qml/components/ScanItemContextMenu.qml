@@ -3,10 +3,21 @@ import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    id: scanContextMenu
     implicitWidth: 220
     implicitHeight: 50
+    y: 0
     color: AppColors.borderGray
     radius: 5
+
+    NumberAnimation {
+        id: hideContextMenu
+        target: scanContextMenu
+        property: "y"
+        to: y + 50
+        duration: 500
+        easing.type: Easing.OutBack
+    }
 
     // Compare Button
     Controls.LucereButton {
@@ -34,9 +45,9 @@ Rectangle {
         buttonColor: AppColors.red
     }
 
-    // Scan Context Menu
+    // Scan Context Mouse Area
     Rectangle {
-        id: scanContextMenu
+        id: scanContextAction
         implicitWidth: 30
         implicitHeight: 50
         anchors {
@@ -52,6 +63,14 @@ Rectangle {
                 verticalCenter: parent.verticalCenter
             }
             source: "../../icons/context-menu.svg"
+        }
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                hideContextMenu.running = true
+            }
         }
     }
 }

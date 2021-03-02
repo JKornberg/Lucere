@@ -3,10 +3,20 @@ import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    id: scanItem
     implicitWidth: 220
     implicitHeight: 160
     radius: 5
     color: AppColors.componentGray
+
+    NumberAnimation {
+        id: showContextMenu
+        target: contextMenu
+        property: "y"
+        to: 110
+        duration: 500
+        easing.type: Easing.OutBack
+    }
 
     // Scan Title
     Rectangle {
@@ -164,18 +174,6 @@ Rectangle {
         buttonColor: AppColors.lightGray
     }
 
-    // Scan Delete Button
-    Controls.LucereDelayButton {
-        id: deleteScan
-        x: 100
-        y: 120
-        width: 80
-        height: 30
-        buttonText: "Delete"
-        buttonColor: AppColors.red
-        buttonDelay: 2000
-    }
-
     // Scan Context Menu
     Rectangle {
         id: scanContextMenu
@@ -195,5 +193,19 @@ Rectangle {
             }
             source: "../../icons/context-menu.svg"
         }
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                showContextMenu.running = true
+            }
+        }
+    }
+
+    // Scan Item Context Menu
+    ScanItemContextMenu {
+        id: contextMenu
+        y: 160
     }
 }
