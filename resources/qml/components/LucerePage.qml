@@ -16,8 +16,4 @@ Rectangle {
         border.width: 1
         border.color: AppColors.borderGray
     }
-
-    MainMenu {
-        
-    }
 }
