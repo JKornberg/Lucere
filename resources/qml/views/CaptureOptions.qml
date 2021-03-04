@@ -21,7 +21,7 @@ Rectangle {
     color: AppColors.darkGray
 
     Rectangle {
-        id: captureOptionsWrapper
+        id: wrapper
         anchors {
             horizontalCenter: parent.horizontalCenter
         }
@@ -56,7 +56,7 @@ Rectangle {
             }
 
             Rectangle {
-                width: captureOptionsWrapper.width
+                width: wrapper.width
                 height: 20
                 color: "transparent"
 
