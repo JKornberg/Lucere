@@ -3,10 +3,11 @@ import QtQml.Models 2.8
 import "../controls" as Controls
 import "../components" as Components
 import "../styles/AppColors.js" as AppColors
+import "../styles/Functions.js" as Functions
 
 Rectangle {
     // Define properties
-    property var maxNumScans: 0
+    property var scanRunTime: Functions.secondsToTime(captureInterval.sliderValue * numberOfScans.sliderValue)
 
     implicitWidth: 200
     implicitHeight: 480
@@ -29,18 +30,21 @@ Rectangle {
                 x: 0
                 text: "Setup Multi-Scan:"
             }
-            
+
             Controls.CaptureSettingSlider {
-                optionTitle: "Shutter Speed (ms)"
-                sliderValue: 80
+                id: numberOfScans
+                optionTitle: "How many scans?"
+                sliderFrom: 0
+                sliderTo: 20
+                stepSize: 1
             }
 
             Controls.CaptureSettingSlider {
-                optionTitle: "Total Capture Time (s)"
-            }
-
-            Controls.CaptureSettingSlider {
-                optionTitle: "Capture Interval"
+                id: captureInterval
+                optionTitle: "Scan Interval (s)"
+                sliderFrom: (shutterSpeed.sliderValue / 1000).toFixed(0)
+                sliderTo: 240
+                stepSize: 1
             }
 
             Rectangle {
@@ -50,8 +54,8 @@ Rectangle {
 
                 Text {
                     anchors.bottom: parent.bottom
-                    text: "Possible Scans:"
-                    font.family: "Segoe UI Bold"
+                    text: "Total Run Time:"
+                    font.family: "Segoe UI"
                     font.pixelSize: 14
                     color: "white"
                 }
@@ -59,8 +63,8 @@ Rectangle {
                 Text {
                     anchors.right: parent.right
                     anchors.bottom: parent.bottom
-                    text: maxNumScans
-                    font.family: "Segoe UI Bold"
+                    text: scanRunTime
+                    font.family: "Segoe UI Black"
                     font.pixelSize: 14
                     color: "white"
                 }
@@ -69,6 +73,14 @@ Rectangle {
             Components.PageTitle {
                 x: 0
                 text: "Camera Controls:"
+            }
+
+            Controls.CaptureSettingSlider {
+                id: shutterSpeed
+                optionTitle: "Shutter Speed (ms)"
+                sliderFrom: 0
+                sliderTo: 5000
+                stepSize: 50
             }
 
             Controls.CaptureSettingSlider {

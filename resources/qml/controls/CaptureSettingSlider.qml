@@ -5,7 +5,6 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Define properties
     property alias optionTitle: optionTitle.text
-    property var optionValue: 5000
     property alias sliderValue: slider.value
     property alias sliderFrom: slider.from
     property alias sliderTo: slider.to
@@ -25,7 +24,7 @@ Rectangle {
 
     Text {
         anchors.right: parent.right
-        text: optionValue
+        text: slider.value
         font.family: "Segoe UI Semibold"
         font.pixelSize: 14
         color: "white"
@@ -37,8 +36,8 @@ Rectangle {
         y: 25
         width: 170
         height: 20
-        value: 10
-        from: 1
+        value: 0
+        from: 0
         to: 100
         stepSize: 5
         snapMode: Slider.SnapAlways

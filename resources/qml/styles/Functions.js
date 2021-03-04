@@ -1,6 +1,5 @@
 // Canvas Round Corner Rectangle
-function roundRect(ctx, x, y, w, h, radius)
-{
+function roundRect(ctx, x, y, w, h, radius) {
   var r = x + w;
   var b = y + h;
   ctx.beginPath();
@@ -17,4 +16,12 @@ function roundRect(ctx, x, y, w, h, radius)
   ctx.lineTo(x, y+radius);
   ctx.quadraticCurveTo(x, y, x+radius, y);
   ctx.fill();
+}
+
+// Convert seconds to time format mm:ss
+function secondsToTime(s) {
+  var date = new Date(null);
+  date.setSeconds(s);
+  var result = date.toISOString().substr(14, 5);
+  return result
 }
