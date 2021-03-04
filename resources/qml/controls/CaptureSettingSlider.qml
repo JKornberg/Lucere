@@ -4,10 +4,10 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Define properties
-    property alias optionTitle: optionTitle.text
-    property alias sliderValue: slider.value
-    property alias sliderFrom: slider.from
-    property alias sliderTo: slider.to
+    property alias title: optionTitle.text
+    property alias value: slider.value
+    property alias from: slider.from
+    property alias to: slider.to
     property alias stepSize: slider.stepSize
 
     implicitWidth: 160
@@ -64,7 +64,7 @@ Rectangle {
             implicitWidth: 20
             implicitHeight: 20
             radius: 10
-            color: "white"
+            color: slider.enabled == true ? "white" : AppColors.lightGray
         }
     }
 }

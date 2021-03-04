@@ -7,7 +7,14 @@ import "../styles/Functions.js" as Functions
 
 Rectangle {
     // Define properties
-    property var scanRunTime: Functions.secondsToTime(captureInterval.sliderValue * numberOfScans.sliderValue)
+    property var scanRunTime: Functions.secondsToTime(captureInterval.value * numberOfScans.value)
+    property alias numberOfScans: numberOfScans.value
+    property alias captureInterval: captureInterval.value
+    property alias shutterSpeed: shutterSpeed.value
+    property alias brightness: brightness.value
+    property alias contrast: contrast.value
+    property alias sharpness: sharpness.value
+    property alias iso: iso.value
 
     implicitWidth: 200
     implicitHeight: 480
@@ -33,18 +40,19 @@ Rectangle {
 
             Controls.CaptureSettingSlider {
                 id: numberOfScans
-                optionTitle: "How many scans?"
-                sliderFrom: 0
-                sliderTo: 20
+                title: "How many scans?"
+                from: 1
+                to: 30
                 stepSize: 1
             }
 
             Controls.CaptureSettingSlider {
                 id: captureInterval
-                optionTitle: "Scan Interval (s)"
-                sliderFrom: (shutterSpeed.sliderValue / 1000).toFixed(0)
-                sliderTo: 240
+                title: "Scan Interval (s)"
+                from: (shutterSpeed.value / 1000).toFixed(0)
+                to: 240
                 stepSize: 1
+                enabled: numberOfScans.value == 1 ? false : true
             }
 
             Rectangle {
@@ -77,26 +85,46 @@ Rectangle {
 
             Controls.CaptureSettingSlider {
                 id: shutterSpeed
-                optionTitle: "Shutter Speed (ms)"
-                sliderFrom: 0
-                sliderTo: 5000
-                stepSize: 50
+                title: "Shutter Speed (ms)"
+                from: 0
+                to: 20000
+                stepSize: 100
             }
 
             Controls.CaptureSettingSlider {
-                optionTitle: "Brightness"
+                id: brightness
+                title: "Brightness"
+                from: 0
+                to: 100
+                stepSize: 1
+                value: 50
             }
 
             Controls.CaptureSettingSlider {
-                optionTitle: "Contrast"
+                id: contrast
+                title: "Contrast"
+                from: -100
+                to: 100
+                stepSize: 10
+                value: 0
             }
 
             Controls.CaptureSettingSlider {
-                optionTitle: "Sharpness"
+                id: sharpness
+                title: "Sharpness"
+                from: -100
+                to: 100
+                stepSize: 10
+                value: 0
             }
 
             Controls.CaptureSettingSlider {
-                optionTitle: "Exposure"
+                id: iso
+                title: "ISO"
+                from: 100
+                to: 800
+                stepSize: 10
+                value: 100
             }
 
             // Buttons
