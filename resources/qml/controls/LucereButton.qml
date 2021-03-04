@@ -6,17 +6,18 @@ Button {
     id: lucereButton
 
     // Define button color property
-    property var buttonColor: "#dddddd"
+    property var buttonColor: "#777777"
 
     // Define button text property
-    property var buttonText: "Lucere Button"
+    property alias buttonText: buttonText.text
 
     Text {
+        id: buttonText
         anchors {
             horizontalCenter: parent.horizontalCenter
             verticalCenter: parent.verticalCenter
         }
-        text: buttonText
+        text: "Lucere Button"
         font.family: "Segoe UI"
         font.pixelSize: 15
         color: "white"
