@@ -1,5 +1,4 @@
 import QtQuick 2.8
-import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
