@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import "../controls" as Controls
+import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
@@ -8,6 +9,7 @@ Rectangle {
     implicitHeight: 160
     radius: 5
     color: AppColors.componentGray
+    clip: true
 
     NumberAnimation {
         id: showContextMenu
@@ -204,7 +206,7 @@ Rectangle {
     }
 
     // Scan Item Context Menu
-    ScanItemContextMenu {
+    Components.ScanItemContextMenu {
         id: contextMenu
         y: 160
     }

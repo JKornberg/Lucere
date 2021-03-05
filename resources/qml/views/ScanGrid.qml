@@ -1,15 +1,20 @@
 import QtQuick 2.8
 import QtQml.Models 2.8
-import "../controls" as Controls
 import "../components" as Components
-import "../styles/AppColors.js" as AppColors
-import "../styles/Functions.js" as Functions
 
 Rectangle {
-    implicitWidth: 690
+    implicitWidth: 700
     implicitHeight: 348
 
-    ListModel {
-        
+    GridView {
+        id: scanGridView
+        anchors.fill: parent
+        cellWidth: 233
+        cellHeight: 180
+
+        model: Components.ScanModel {}
+        delegate: Item {
+            ScanItem {}
+        }
     }
 }
