@@ -1,4 +1,5 @@
 import QtQuick 2.8
+import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
@@ -7,35 +8,6 @@ Rectangle {
     implicitHeight: 380
     color: AppColors.darkGray
     clip: true
-
-    ListModel {
-        id: scanModel
-        ListElement {
-            scanID: "000006"
-            scanDate: "02/02/2021"
-            scanWave: "750"
-        }
-        ListElement {
-            scanID: "000006"
-            scanDate: "02/02/2021"
-            scanWave: "750"
-        }
-        ListElement {
-            scanID: "000006"
-            scanDate: "02/02/2021"
-            scanWave: "750"
-        }
-        ListElement {
-            scanID: "000006"
-            scanDate: "02/02/2021"
-            scanWave: "750"
-        }
-        ListElement {
-            scanID: "000006"
-            scanDate: "02/02/2021"
-            scanWave: "750"
-        }
-    }
 
     Component {
         id: scanDelegate
@@ -82,7 +54,7 @@ Rectangle {
         width: parent.width
         height: parent.height
         
-        model: scanModel
+        model: Components.ScanModel {}
         delegate: scanDelegate
         focus: true
         highlightMoveDuration: 300
