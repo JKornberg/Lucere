@@ -1,35 +1,30 @@
 import QtQuick 2.8
-import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls 2.8
 
 Button {
     id: lucereButton
+    implicitWidth: 150
+    implicitHeight: 38
+    text: qsTr("Lucere Button")
 
     // Define button color property
-    property var buttonColor: "#777777"
+    property var buttonColor: "#cccccc"
+    property alias buttonText: lucereButton.text
 
-    // Define button text property
-    property alias buttonText: buttonText.text
-
-    Text {
-        id: buttonText
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
-        text: "Lucere Button"
+    contentItem: Text {
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        text: lucereButton.text
         font.family: "Segoe UI"
         font.pixelSize: 15
         color: "white"
     }
     
-    style: ButtonStyle {
-        background: Rectangle {
-            smooth: true
-            implicitWidth: 150
-            implicitHeight: 38
-            radius: 5
-            color: lucereButton.pressed ? Qt.darker(buttonColor, 1.1) : buttonColor
-        }
+    background: Rectangle {
+        smooth: true
+        implicitWidth: 150
+        implicitHeight: 38
+        radius: 5
+        color: lucereButton.down ? Qt.darker(buttonColor, 1.1) : buttonColor
     }
 }
