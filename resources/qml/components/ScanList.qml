@@ -40,17 +40,35 @@ Rectangle {
 
     Component {
         id: scanDelegate
-        Row {
+        
+        Rectangle {
             width: wrapper.width
             height: 80
+            color: "transparent"
 
             Column {
                 leftPadding: 20
                 topPadding: 10
                 bottomPadding: 10
-                ScanSelectionRow {text: 'ID: ' + scanID}
-                ScanSelectionRow {text: 'Date: ' + scanDate}
-                ScanSelectionRow {text: 'Wavelength: ' + scanWave + " nm"}
+
+                Text {
+                    text: "ID: " + scanID
+                    font.family: "Segoe UI"
+                    font.pixelSize: 14
+                    color: "white"               
+                }
+                Text {
+                    text: 'Date: ' + scanDate
+                    font.family: "Segoe UI"
+                    font.pixelSize: 14
+                    color: "white"               
+                }
+                Text {
+                    text: 'Wavelength: ' + scanWave + " nm"
+                    font.family: "Segoe UI"
+                    font.pixelSize: 14
+                    color: "white"               
+                }
             }
 
             MouseArea {
