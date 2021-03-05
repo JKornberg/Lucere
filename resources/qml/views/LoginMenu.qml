@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Controls 1.4
+import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 // Wrap Menu in Transparent Rectangle
@@ -117,7 +118,7 @@ Rectangle {
             }
 
             // Title
-            MenuLabel {
+            Components.MenuLabel {
                 text: "Menu Panel"
             }
         }
@@ -140,7 +141,7 @@ Rectangle {
             }
 
             // Title
-            MenuLabel {
+            Components.MenuLabel {
                 text: "Login"
             }
         }
@@ -168,7 +169,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Exit"
                 }
             }
