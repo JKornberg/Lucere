@@ -1,0 +1,54 @@
+import QtQuick 2.8
+import QtQuick.Controls 2.8
+
+RadioDelegate {
+    // Define custom properties
+    property var textColor: "#000000"
+    property var rectColor: "#000000"
+    property var circleColor: "#000000"
+
+    id: radio
+    text: "Text"
+    implicitWidth: 162
+    implicitHeight: 30
+
+    // Button Text
+    contentItem: Text {
+        text: radio.text
+        font.family: "Segoe UI Light"
+        font.pixelSize: 14
+        color: radio.down ? Qt.darker(parent.textColor, 1.1) : parent.textColor
+        verticalAlignment: Text.AlignVCenter
+    }
+
+    // Radio Circle
+    indicator: Rectangle {
+        width: 20
+        height: 20
+        x: 132
+        y: parent.height / 2.0 - 10.0
+        radius: 11
+        color: "transparent"
+        border.width: 2
+        border.color: radio.down ? Qt.darker(parent.circleColor, 1.1) : parent.circleColor
+
+        Rectangle {
+            width: 10
+            height: 10
+            x: 5
+            y: 5
+            radius: 7
+            color: radio.down ? Qt.darker(parent.parent.circleColor, 1.1) : parent.parent.circleColor
+            visible: radio.checked
+        }
+    }
+
+    // Background Rectangle
+    background: Rectangle {
+        implicitWidth: 162
+        implicitHeight: 30
+        radius: 5
+        opacity: 0.05
+        color: radio.down ? Qt.darker(parent.rectColor, 1.1) : parent.rectColor
+    }
+}
