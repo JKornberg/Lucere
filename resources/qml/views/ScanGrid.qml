@@ -1,10 +1,15 @@
 import QtQuick 2.8
-import QtQml.Models 2.8
+import QtQuick.Controls 2.8
 import "../components" as Components
+import "../controls" as Controls
 
 Rectangle {
     implicitWidth: 700
     implicitHeight: 348
+
+    ButtonGroup {
+        id: buttonGroup
+    }
 
     GridView {
         id: scanGridView
@@ -14,7 +19,7 @@ Rectangle {
 
         model: Components.ScanModel {}
         delegate: Item {
-            ScanItem {}
+            ScanItem {}      
         }
     }
 }
