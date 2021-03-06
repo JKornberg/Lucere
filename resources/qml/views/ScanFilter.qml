@@ -5,51 +5,91 @@ import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
-    implicitWidth: 200
-    implicitHeight: 480
+    width: 200
+    height: 480
     color: AppColors.darkGray
 
-    // Title
-    Text {
-        x: parent.x + 20
-        y: parent.y + 10
-        text: "SORT & FILTER"
-        font.family: "Segoe UI Semibold"
-        font.pixelSize: 16
-        color: AppColors.borderGray
-    }
+    // Wrapper
+    Rectangle {
+        id: wrapper
+        width: 200
+        height: 400
+        color: "transparent"
 
-    // Sort By
-    Text {
-        x: parent.x + 20
-        y: parent.y + 46
-        text: "Sort By:"
-        font.family: "Segoe UI Semibold"
-        font.pixelSize: 16
-        color: AppColors.lightGray
-    }
+        // Title
+        Text {
+            x: wrapper.x + 20
+            y: wrapper.y + 10
+            text: "SORT & FILTER"
+            font.family: "Segoe UI Semibold"
+            font.pixelSize: 16
+            color: AppColors.borderGray
+        }
 
-    // Sort By Options
-    
-    ButtonGroup {
-        id: radios
-    }
+        // Sort By
+        Text {
+            x: wrapper.x + 20
+            y: wrapper.y + 46
+            text: "Sort By:"
+            font.family: "Segoe UI Semibold"
+            font.pixelSize: 16
+            color: AppColors.lightGray
+        }
 
-    ListView {
-        width: 162
-        height: 110
-        x: parent.x + 18
-        y: parent.y + 77
-        spacing: 10
-        
-        model: ["Date", "Wavelength", "Number of Scans"]
+        // Sort By Options
+        ButtonGroup {
+            id: radios
+        }
 
-        delegate : Controls.LucereRadioButton {
-            text: modelData
+        ListView {
+            width: 162
+            height: 110
+            x: wrapper.x + 20
+            y: wrapper.y + 77
+            spacing: 10
+            interactive: false
+            
+            model: ["Date", "Wavelength", "Number of Scans"]
+
+            delegate : Controls.LucereRadioButton {
+                text: modelData
+                textColor: "#ffffff"
+                rectColor: AppColors.borderGray
+                circleColor: AppColors.lightGray
+                checked: index == 0
+                ButtonGroup.group: radios
+            }
+        }
+
+        // Filter Options
+        Text {
+            x: wrapper.x + 20
+            y: wrapper.y + 208
+            text: "Filter Options:"
+            font.family: "Segoe UI Semibold"
+            font.pixelSize: 16
+            color: AppColors.lightGray
+        }
+
+        Controls.LucereSwitch {
+            x: wrapper.x + 20
+            y: wrapper.y + 239
+            text: "View All Scans"
             textColor: "#ffffff"
             rectColor: AppColors.borderGray
-            circleColor: AppColors.lightGray
-            ButtonGroup.group: radios
+            circleColor: AppColors.borderGray
+            toggleButtonColor: AppColors.lightGray
+            toggleColor: AppColors.purple
         }
+    }
+
+    // Apply & Close Button
+    Controls.LucereButton {
+        width: 162
+        height: 36
+        x: wrapper.x + 20
+        y: wrapper.y + 424
+        buttonColor: AppColors.purple
+        buttonText: "Apply & Close"
     }
 }

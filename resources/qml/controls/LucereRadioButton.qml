@@ -40,7 +40,7 @@ RadioDelegate {
             height: 10
             x: 5
             y: 5
-            radius: 7
+            radius: 6
             color: radio.down ? Qt.darker(parent.parent.circleColor, 1.1) : parent.parent.circleColor
             visible: radio.checked
         }
