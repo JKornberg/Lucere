@@ -4,13 +4,9 @@ import "../styles/AppColors.js" as AppColors
 
 RadioButton {
     id: lucereSelectButton
-    implicitWidth: 150
-    implicitHeight: 38
+    implicitWidth: 100
+    implicitHeight: 30
     text: checked ? qsTr("Selected") : qsTr("Select")
-
-    // Define button color property
-    property var buttonColor: "#cccccc"
-    property alias buttonText: lucereSelectButton.text
 
     indicator: Rectangle {
         smooth: true

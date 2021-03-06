@@ -12,24 +12,24 @@ ListModel {
         scanID: "000006"
         scanDate: "02/02/2021"
         user: "Atticus Steinmetz"
-        scanWave: "750"
+        scanWave: "760"
     }
     ListElement {
         scanID: "000006"
         scanDate: "02/02/2021"
         user: "Atticus Steinmetz"
-        scanWave: "750"
+        scanWave: "745"
     }
     ListElement {
         scanID: "000006"
         scanDate: "02/02/2021"
         user: "Atticus Steinmetz"
-        scanWave: "750"
+        scanWave: "780"
     }
     ListElement {
         scanID: "000006"
         scanDate: "02/02/2021"
         user: "Atticus Steinmetz"
-        scanWave: "750"
+        scanWave: "720"
     }
 }

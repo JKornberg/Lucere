@@ -185,7 +185,7 @@ Rectangle {
             right: parent.right
             bottom: parent.bottom
         }
-        color: "transparent"
+        color: "red"
 
         // Context Menu Icon
         Image {
