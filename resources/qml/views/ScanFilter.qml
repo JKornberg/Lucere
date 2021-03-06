@@ -33,11 +33,9 @@ Rectangle {
     
     ButtonGroup {
         id: radios
-        buttons: sortBy.children
     }
 
     ListView {
-        id: sortBy
         width: 162
         height: 110
         x: parent.x + 18

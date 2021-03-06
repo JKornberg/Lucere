@@ -2,12 +2,15 @@ import QtQuick 2.8
 import QtQuick.Controls 2.8
 
 RadioDelegate {
+    id: radio
+
     // Define custom properties
     property var textColor: "#000000"
     property var rectColor: "#000000"
     property var circleColor: "#000000"
-
-    id: radio
+    property alias buttonWidth: radio.implicitWidth
+    property alias buttonHeight: radio.implicitHeight
+    
     text: "Text"
     implicitWidth: 162
     implicitHeight: 30
@@ -25,7 +28,7 @@ RadioDelegate {
     indicator: Rectangle {
         width: 20
         height: 20
-        x: 132
+        x: parent.width - 30
         y: parent.height / 2.0 - 10.0
         radius: 11
         color: "transparent"
@@ -45,8 +48,8 @@ RadioDelegate {
 
     // Background Rectangle
     background: Rectangle {
-        implicitWidth: 162
-        implicitHeight: 30
+        implicitWidth: buttonWidth
+        implicitHeight: buttonHeight
         radius: 5
         opacity: 0.05
         color: radio.down ? Qt.darker(parent.rectColor, 1.1) : parent.rectColor
