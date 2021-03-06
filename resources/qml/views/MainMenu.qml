@@ -141,7 +141,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Menu Panel"
                 }
             }
@@ -165,7 +165,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Home"
                 }
             }
@@ -189,7 +189,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Capture"
                 }
             }
@@ -213,7 +213,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Scan History"
                 }
             }
@@ -237,7 +237,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Analysis"
                 }
             }
@@ -261,7 +261,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "Capture Options"
                 }
             }
@@ -289,7 +289,7 @@ Rectangle {
                 }
 
                 // Title
-                MenuLabel {
+                Components.MenuLabel {
                     text: "More..."
                 }
             }
@@ -317,7 +317,7 @@ Rectangle {
                     }
 
                     // Title
-                    MenuLabel {
+                    Components.MenuLabel {
                         text: "Exit"
                     }
                 }
