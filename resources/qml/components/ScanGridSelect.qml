@@ -2,6 +2,7 @@ import QtQuick 2.8
 import QtQuick.Controls 2.8
 import "../components" as Components
 import "../controls" as Controls
+import "../models" as Models
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
@@ -85,7 +86,7 @@ Rectangle {
         cellWidth: 233
         cellHeight: 165
 
-        model: Components.ScanModel {}
+        model: Models.ScanModel {}
         delegate: scanDelegate
     }
 }

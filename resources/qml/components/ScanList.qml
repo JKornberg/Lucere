@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import "../components" as Components
+import "../models" as Models
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
@@ -54,7 +55,7 @@ Rectangle {
         width: parent.width
         height: parent.height
         
-        model: Components.ScanModel {}
+        model: Models.ScanModel {}
         delegate: scanDelegate
         focus: true
         highlightMoveDuration: 300
