@@ -122,7 +122,7 @@ Rectangle {
                 anchors.left: parent.left
                 text: note
                 font.family: "Segoe UI"
-                font.pixelSize: 12
+                font.pixelSize: 14
                 color: "white"
                 wrapMode: Text.WordWrap
             }

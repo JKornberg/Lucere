@@ -13,7 +13,7 @@ Rectangle {
         anchors.fill: parent
         text: (title + " " + detail)
         font.family: "Segoe UI"
-        font.pixelSize: 12
+        font.pixelSize: 14
         color: "white"
     }
 }
