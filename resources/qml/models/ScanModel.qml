@@ -8,7 +8,7 @@ ListModel {
         user: "Atticus Steinmetz"
         scanWave: 750
         lightDetected: true
-        notes: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        notes: "No scan notes"
     }
     ListElement {
         scanID: "000006"
@@ -16,7 +16,7 @@ ListModel {
         user: "Atticus Steinmetz"
         scanWave: 760
         lightDetected: true
-        notes: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        notes: "No scan notes"
     }
     ListElement {
         scanID: "000006"
@@ -24,7 +24,7 @@ ListModel {
         user: "Atticus Steinmetz"
         scanWave: 745
         lightDetected: true
-        notes: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        notes: "No scan notes"
     }
     ListElement {
         scanID: "000006"
@@ -32,7 +32,7 @@ ListModel {
         user: "Atticus Steinmetz"
         scanWave: 780
         lightDetected: true
-        notes: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        notes: "No scan notes"
     }
     ListElement {
         scanID: "000006"
@@ -40,6 +40,6 @@ ListModel {
         user: "Atticus Steinmetz"
         scanWave: 720
         lightDetected: true
-        notes: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        notes: "No scan notes"
     }
 }
