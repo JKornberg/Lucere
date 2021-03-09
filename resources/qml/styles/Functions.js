@@ -22,6 +22,6 @@ function roundRect(ctx, x, y, w, h, radius) {
 function secondsToTime(s) {
   var date = new Date(null);
   date.setSeconds(s);
-  var result = date.toISOString().substr(14, 5);
+  var result = date.toISOString().substr(12, 7);
   return result
 }

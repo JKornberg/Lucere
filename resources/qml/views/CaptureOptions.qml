@@ -7,7 +7,10 @@ import "../styles/Functions.js" as Functions
 
 Rectangle {
     // Define properties
-    property var scanRunTime: Functions.secondsToTime(captureInterval.value * numberOfScans.value)
+    property var scanRunTime:
+        captureInterval.enabled ? 
+        Functions.secondsToTime((captureInterval.value + shutterSpeed.value / 1000) * numberOfScans.value) : 
+        Functions.secondsToTime((shutterSpeed.value / 1000) * numberOfScans.value)
     property alias numberOfScans: numberOfScans.value
     property alias captureInterval: captureInterval.value
     property alias shutterSpeed: shutterSpeed.value
