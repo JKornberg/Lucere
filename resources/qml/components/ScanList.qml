@@ -55,16 +55,16 @@ Rectangle {
         width: parent.width
         height: parent.height
         
-        model: Models.ScanModel {}
+        model: scanModel
         delegate: scanDelegate
         focus: true
         highlightMoveDuration: 300
 
         highlight: Rectangle {
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
+            // anchors {
+            //     left: parent.left
+            //     right: parent.right
+            // }
             color: AppColors.red
         }
     }
