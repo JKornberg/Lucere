@@ -2,10 +2,11 @@ from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant
 
 class Scan(object):
 
-    def __init__(self, scanID, scanDate, scanWave):
+    def __init__(self, scanID, scanDate, scanWave, scanUser):
         self._scanID = scanID
         self._scanDate = scanDate
         self._scanWave = scanWave
+        self._scanUser = scanUser
 
     def scanID(self):
         return self._scanID
@@ -15,6 +16,9 @@ class Scan(object):
     
     def scanWave(self):
         return self._scanWave
+    
+    def scanUser(self):
+        return self._scanUser
 
 
 class ScanModel(QAbstractListModel):
@@ -22,8 +26,9 @@ class ScanModel(QAbstractListModel):
     IdRole = Qt.UserRole + 1
     DateRole = Qt.UserRole + 2
     WaveRole = Qt.UserRole + 3
+    ScanRole = Qt.UserRole + 4
 
-    _roles = {IdRole: b"scanID", DateRole: b"scanDate", WaveRole: b"scanWave"}
+    _roles = {IdRole: b"scanID", DateRole: b"scanDate", WaveRole: b"scanWave", ScanRole: b"scanUser"}
 
     def __init__(self, parent=None):
         super(ScanModel, self).__init__(parent)
@@ -52,6 +57,9 @@ class ScanModel(QAbstractListModel):
         
         if role == self.WaveRole:
             return scanDetail.scanWave()
+        
+        if role == self.ScanRole:
+            return scanDetail.scanUser()
 
         return QVariant()
 

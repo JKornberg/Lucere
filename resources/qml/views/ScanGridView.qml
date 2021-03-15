@@ -66,7 +66,7 @@ Rectangle {
 
                 // User
                 Text {
-                    text: 'User: ' + user
+                    text: 'User: ' + scanUser
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray              
@@ -143,7 +143,7 @@ Rectangle {
         cellWidth: 233
         cellHeight: 165
 
-        model: Models.ScanModel {}
+        model: scanModel
         delegate: scanDelegate
     }
 }
