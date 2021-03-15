@@ -32,5 +32,14 @@ LucerePage {
         y: parent.height - height - 20
         buttonText: "Sort & Filter Options"
         buttonColor: AppColors.purple
+
+        onClicked: {
+            slider.x = 530
+        }
+    }
+
+    // Slider
+    ScanFilter {
+        id: slider
     }
 }

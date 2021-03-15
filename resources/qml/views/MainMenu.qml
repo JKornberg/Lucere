@@ -46,7 +46,7 @@ Rectangle {
                 NumberAnimation {
                     duration: 500
                     property: "width"
-                    easing.type: Easing.InOutQuad
+                    easing.type: Easing.OutBack
                 }
             },
 
@@ -55,7 +55,7 @@ Rectangle {
                 NumberAnimation {
                     duration: 500
                     property: "width"
-                    easing.type: Easing.InOutQuad
+                    easing.type: Easing.OutBack
                 }
             }
         ]

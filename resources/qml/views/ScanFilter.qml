@@ -5,9 +5,18 @@ import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
-    width: 200
+    id: slider
+    x: 730
+    width: 250
     height: 480
     color: AppColors.darkGray
+
+    Behavior on x {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     // Wrapper
     Rectangle {
@@ -91,5 +100,9 @@ Rectangle {
         y: wrapper.y + 424
         buttonColor: AppColors.purple
         buttonText: "Apply & Close"
+
+        onClicked: {
+            slider.x = 730
+        }
     }
 }
