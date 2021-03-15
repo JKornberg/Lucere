@@ -5,7 +5,8 @@ import sys
 
 
 # Import Classes
-from classes.ScanList import Scan, ScanModel
+from classes.Scan import Scan
+from classes.ScanModel import ScanModel
 
 
 if __name__ == '__main__':
