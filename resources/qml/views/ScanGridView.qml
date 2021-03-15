@@ -8,7 +8,8 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     id: wrapper
     implicitWidth: 700
-    implicitHeight: 348
+    implicitHeight: 356
+    clip: true
 
     // Radio Button Group
     ButtonGroup {
@@ -143,7 +144,8 @@ Rectangle {
         cellWidth: 233
         cellHeight: 165
 
-        model: scanModel
+        // model: scanModel
+        model: Models.ScanModel {}
         delegate: scanDelegate
     }
 }
