@@ -24,7 +24,7 @@ LucerePage {
     InfoLine {
         x: 20
         y: parent.height - 40
-        notice: "Use camera controls to adjust capture settings"
+        notice: "Use <b>Capture Settings</b> to set specific scan options"
     }
 
     LucereDelayButton {
@@ -41,7 +41,7 @@ LucerePage {
         x: parent.width - width * 2 - 30
         y: parent.height - height - 20
         width: 180
-        buttonText: "Capture Options"
+        buttonText: "Capture Settings"
         buttonColor: AppColors.lightGray
 
         onClicked: {
