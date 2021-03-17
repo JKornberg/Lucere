@@ -6,6 +6,7 @@ import "../styles/AppColors.js" as AppColors
 import "../styles/Functions.js" as Functions
 
 Rectangle {
+    id: slider
     // Define properties
     property var scanRunTime:
         captureInterval.enabled ? 
@@ -19,19 +20,32 @@ Rectangle {
     property alias sharpness: sharpness.value
     property alias iso: iso.value
 
-    implicitWidth: 200
+    implicitWidth: 250
     implicitHeight: 480
+    x: 730
     color: AppColors.darkGray
+
+    Behavior on x {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     Rectangle {
         id: wrapper
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-        }
+        x: 20
         y: 10
         width: 160
         height: parent.height - 20
         color: "transparent"
+
+        Behavior on x {
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutBack
+            }
+        }
 
         ObjectModel {
             id: itemModel
@@ -135,6 +149,9 @@ Rectangle {
                 buttonText: "Apply"
                 buttonColor: AppColors.lightGray
                 width: 160
+                onClicked: {
+                    slider.x = 730
+                }
             }
 
             Controls.LucereButton {
