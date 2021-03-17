@@ -18,7 +18,7 @@ Rectangle {
             id: camera
 
             // Set resolution
-            // viewfinder.resolution: "1920x1080"
+            viewfinder.resolution: "1920x1080"
 
             // Show the preview in an Image
             imageCapture {
