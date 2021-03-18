@@ -31,8 +31,13 @@ Rectangle {
         // Receive focus and capture key events when visible
         VideoOutput {
             source: camera
-            anchors.fill: parent        
+            anchors.fill: parent
             focus : visible
+
+            MouseArea {
+                anchors.fill: parent;
+                onClicked: camera.imageCapture.capture()
+            }
         }
 
         Image {

@@ -14,7 +14,7 @@ from classes.ImageModel import ImageModel
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
 
-    # Add some items to the scan list
+    # TEST: Add some items to the scan list
     model = ScanModel()
     model.add(Scan(100001, "02/02/2020", 750, "Atticus Steinmetz"))
     model.add(Scan(100002, "02/02/2020", 755, "Atticus Steinmetz"))
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     model.add(Scan(100006, "02/02/2020", 754, "Atticus Steinmetz"))
     model.add(Scan(100007, "02/02/2020", 752, "Atticus Steinmetz"))
 
-    # Add some images to display in swipe view
+    # TEST: Add some images to display in swipe view
     swipeImage = ImageModel()
     swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
     swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
