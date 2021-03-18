@@ -7,6 +7,8 @@ import sys
 # Import Classes
 from classes.Scan import Scan
 from classes.ScanModel import ScanModel
+from classes.CaptureImage import CaptureImage
+from classes.ImageModel import ImageModel
 
 
 if __name__ == '__main__':
@@ -22,12 +24,19 @@ if __name__ == '__main__':
     model.add(Scan(100006, "02/02/2020", 754, "Atticus Steinmetz"))
     model.add(Scan(100007, "02/02/2020", 752, "Atticus Steinmetz"))
 
+    # Add some images to display in swipe view
+    swipeImage = ImageModel()
+    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
+
     view = QQuickView()
     view.setResizeMode(QQuickView.SizeRootObjectToView)
     ctxt = view.rootContext()
     ctxt.setContextProperty('scanModel', model)
+    ctxt.setContextProperty('imageModel', swipeImage)
 
-    view.setSource(QUrl('resources/qml/views/ScanGridView.qml'))
+    view.setSource(QUrl('resources/qml/pages/CaptureComplete.qml'))
     view.show()
 
     sys.exit(app.exec_())

@@ -36,8 +36,8 @@ Rectangle {
         }
 
         Image {
-            anchors.fill: parent
             id: preview
+            anchors.fill: parent
         }
     }    
 }
