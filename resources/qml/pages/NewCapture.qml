@@ -1,6 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
-import QtQuick.Controls 2.8
+import QtQuick.Controls 2.4
 import "../components"
 import "../controls"
 import "../views"
@@ -19,6 +19,17 @@ LucerePage {
         id: cameraPreview
         x: 20
         y: 60
+
+        // Camera Settings
+        shutterSpeed: slider.shutterSpeedValue
+        brightness: slider.brightnessValue * 0.01
+        contrast: slider.contrastValue * 0.01
+        sharpness: slider.sharpnessValue * 0.01
+        iso: slider.isoValue
+
+        // Component.onCompleted: {
+        //     console.debug(cameraPreview.brightness)
+        // }
     }
 
     InfoLine {

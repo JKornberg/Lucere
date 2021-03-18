@@ -1,8 +1,16 @@
 import QtQuick 2.8
 import QtMultimedia 5.8
+import "../views"
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Define property variables (aliases cannot be use as they will generate segmentation fault)
+    property real shutterSpeed: 0.0
+    property real brightness: 0.0
+    property real contrast: 0.0
+    property real sharpness: 0.0
+    property int iso: 100
+
     id: wrapper
     implicitWidth: 690
     implicitHeight: 350
@@ -19,6 +27,13 @@ Rectangle {
 
             // Set resolution
             viewfinder.resolution: "1920x1080"
+
+            // Set Camera Controls
+            exposure.manualShutterSpeed: shutterSpeed
+            imageProcessing.brightness: brightness
+            imageProcessing.contrast: contrast
+            imageProcessing.sharpeningLevel: sharpness
+            exposure.manualIso: iso
 
             // Show the preview in an Image
             imageCapture {
@@ -44,5 +59,5 @@ Rectangle {
             id: preview
             anchors.fill: parent
         }
-    }    
+    }
 }

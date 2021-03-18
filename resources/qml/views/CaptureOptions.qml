@@ -12,13 +12,13 @@ Rectangle {
         captureInterval.enabled ? 
         Functions.secondsToTime((captureInterval.value + shutterSpeed.value / 1000) * numberOfScans.value) : 
         Functions.secondsToTime((shutterSpeed.value / 1000) * numberOfScans.value)
-    property alias numberOfScans: numberOfScans.value
-    property alias captureInterval: captureInterval.value
-    property alias shutterSpeed: shutterSpeed.value
-    property alias brightness: brightness.value
-    property alias contrast: contrast.value
-    property alias sharpness: sharpness.value
-    property alias iso: iso.value
+    property alias numberOfScansValue: numberOfScans.value
+    property alias captureIntervalValue: captureInterval.value
+    property alias shutterSpeedValue: shutterSpeed.value
+    property alias brightnessValue: brightness.value
+    property alias contrastValue: contrast.value
+    property alias sharpnessValue: sharpness.value
+    property alias isoValue: iso.value
 
     implicitWidth: 250
     implicitHeight: 480
@@ -111,10 +111,10 @@ Rectangle {
             Controls.CaptureSettingSlider {
                 id: brightness
                 title: "Brightness"
-                from: 0
+                from: -100
                 to: 100
-                stepSize: 1
-                value: 50
+                stepSize: 10
+                value: 0
             }
 
             Controls.CaptureSettingSlider {

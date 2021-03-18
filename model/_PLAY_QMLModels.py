@@ -36,7 +36,7 @@ if __name__ == '__main__':
     ctxt.setContextProperty('scanModel', model)
     ctxt.setContextProperty('imageModel', swipeImage)
 
-    view.setSource(QUrl('resources/qml/pages/CaptureComplete.qml'))
+    view.setSource(QUrl('resources/qml/pages/NewCapture.qml'))
     view.show()
 
     sys.exit(app.exec_())
