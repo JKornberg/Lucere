@@ -1,10 +1,17 @@
 import QtQuick 2.8
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.4
 import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 // Menu Container
 Rectangle {
+    // Define mouse area aliases
+    property alias homeButton: homeButton
+    property alias scanButton: scanButton
+    property alias historyButton: historyButton
+    property alias exitButton: exitButton
+
+    id: menu
     implicitWidth: 140
     implicitHeight: 480
     color: "transparent"
@@ -148,6 +155,7 @@ Rectangle {
 
             // Menu Home
             MouseArea {
+                id: homeButton
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 1
@@ -172,6 +180,7 @@ Rectangle {
 
             // Menu Scan
             MouseArea {
+                id: scanButton
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 2
@@ -196,6 +205,7 @@ Rectangle {
 
             // Menu History
             MouseArea {
+                id: historyButton
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 3
@@ -220,6 +230,7 @@ Rectangle {
 
             // Menu Analysis
             MouseArea {
+                id: analysisButton
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 4
@@ -244,6 +255,7 @@ Rectangle {
 
             // Menu Scan Settings
             MouseArea {
+                id: settingsButton
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 5
@@ -299,14 +311,11 @@ Rectangle {
                 implicitWidth: 230
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 7
-                color: exitClick.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
+                color: exitButton.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
 
                 MouseArea {
-                    id: exitClick
+                    id: exitButton
                     anchors.fill: parent
-                    onClicked: {
-                        // Exit App
-                    }
 
                     Image {
                         anchors {
