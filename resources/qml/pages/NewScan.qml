@@ -39,6 +39,7 @@ LucerePage {
     }
 
     LucereDelayButton {
+        id: captureButton
         x: parent.width - width - 20
         y: parent.height - height - 20
         width: 180
@@ -49,6 +50,7 @@ LucerePage {
     }
 
     LucereButton {
+        id: scanOptionsButton
         x: parent.width - width * 2 - 30
         y: parent.height - height - 20
         width: 180

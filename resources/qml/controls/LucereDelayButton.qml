@@ -40,7 +40,9 @@ DelayButton {
 
             Connections {
                 target: lucereDelayButton
-                onProgressChanged: canvas.requestPaint()
+                function onProgressChanged() {
+                    canvas.requestPaint()
+                }
             }
 
             onPaint: {
