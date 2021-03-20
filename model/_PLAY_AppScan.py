@@ -6,9 +6,9 @@ import sys, os, time
 
 # Demo signal method
 class Foo(QObject):
-    @pyqtSlot(str)
-    def outputStr(self, s):
-        print(s)
+    @pyqtSlot()
+    def outputStr(self):
+        print("Python Function Executed!")
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
@@ -19,11 +19,10 @@ if __name__ == '__main__':
     test = Foo()
 
     # Define context properties
-    page = "/home/bubu/Dev/Lucere/resources/qml/pages/Login.qml"
+
     # pages.append("/home/bubu/Dev/Lucere/resources/qml/pages/ScanHistory.qml")
 
     ctx = engine.rootContext()
-    ctx.setContextProperty("pageUrl", page)
     ctx.setContextProperty("test", test)
 
     # mainMenu = QQmlComponent(engine)

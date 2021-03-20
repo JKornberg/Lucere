@@ -28,7 +28,9 @@ Window {
         }
 
         scanButton.onClicked: {
-            test.outputStr("bubu")
+            // Execute a Pyton Function
+            test.outputStr()
+            
             stackLoader.clear()
             stackLoader.push("../pages/NewScan.qml")
         }
