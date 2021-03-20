@@ -11,7 +11,6 @@ Rectangle {
     property alias historyButton: historyButton
     property alias exitButton: exitButton
 
-    id: menu
     implicitWidth: 140
     implicitHeight: 480
     color: "transparent"

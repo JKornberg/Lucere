@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
+import QtQuick.Controls 2.4
 import "../views"
 import "../components"
 import "../pages"
@@ -13,26 +14,28 @@ Window {
     visible: true
     // visibility: "FullScreen"
 
-    // Page Loader
-    PageLoader {
-        id: pageLoader
-        asynchronous: true
-        source: "../pages/Login.qml"
+    StackLoader {
+        id: stackLoader
+        initialItem: "../pages/Login.qml"
     }
 
     MainMenu {
         id: mainMenu
 
         homeButton.onClicked: {
-            pageLoader.source = "../pages/Login.qml"
+            stackLoader.clear()
+            stackLoader.push("../pages/Login.qml")
         }
 
         scanButton.onClicked: {
-            pageLoader.source = "../pages/NewScan.qml"
+            test.outputStr("bubu")
+            stackLoader.clear()
+            stackLoader.push("../pages/NewScan.qml")
         }
 
         historyButton.onClicked: {
-            pageLoader.source = "../pages/ScanHistory.qml"
+            stackLoader.clear()
+            stackLoader.push("../pages/ScanHistory.qml")
         }
 
         exitButton.onClicked: {

@@ -2,7 +2,7 @@ from PyQt5.QtCore import QUrl, QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine
-import sys, os
+import sys, os, time
 
 # Demo signal method
 class Foo(QObject):
