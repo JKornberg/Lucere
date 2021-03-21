@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick 2.8
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {

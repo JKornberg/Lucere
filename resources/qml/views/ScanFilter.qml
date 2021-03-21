@@ -1,5 +1,5 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
+import QtQuick.Controls 2.4
 import "../controls" as Controls
 import "../components" as Components
 import "../styles/AppColors.js" as AppColors
