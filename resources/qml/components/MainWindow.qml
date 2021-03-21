@@ -17,6 +17,13 @@ Window {
     StackLoader {
         id: stackLoader
         initialItem: "../pages/Login.qml"
+
+        ScanHistory {
+            id: scanHistoryPage
+            onScanViewButtonPressed: {
+                // Action
+            }
+        }
     }
 
     MainMenu {
@@ -29,7 +36,7 @@ Window {
 
         scanButton.onClicked: {
             // Execute a Pyton Function
-            test.outputStr()
+            // test.outputStr()
             
             stackLoader.clear()
             stackLoader.push("../pages/NewScan.qml")
@@ -37,7 +44,7 @@ Window {
 
         historyButton.onClicked: {
             stackLoader.clear()
-            stackLoader.push("../pages/ScanHistory.qml")
+            stackLoader.push(scanHistoryPage)
         }
 
         exitButton.onClicked: {

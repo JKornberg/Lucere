@@ -6,15 +6,13 @@ import "../models" as Models
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Signals
+    signal viewButtonPressed
+
     id: wrapper
     implicitWidth: 700
     implicitHeight: 356
     clip: true
-
-    // Radio Button Group
-    ButtonGroup {
-        id: radioGroup
-    }
 
     Component {
         id: scanDelegate
@@ -91,13 +89,18 @@ Rectangle {
 
                 // Scan View Button
                 Controls.LucereButton {
-                    id: viewScan
+                    id: scanViewButton
                     anchors.verticalCenter: parent.verticalCenter
                     x: 10
                     width: 80
                     height: 30
                     buttonText: "View"
                     buttonColor: AppColors.lightGray
+
+                    onClicked: {
+                        scanGridView.currentIndex = model.index
+                        viewButtonPressed()
+                    }
                 }
 
                 // Scan Context Menu
