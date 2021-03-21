@@ -6,8 +6,10 @@ import "../controls"
 import "../views"
 import "../styles/AppColors.js" as AppColors
 
-// Lucere Login Page
 LucerePage {
+    // Button Signals
+    signal scanViewButtonPressed
+
     id: scanHistoryPage
     clip: true
 
@@ -17,6 +19,9 @@ LucerePage {
 
     ScanGridView {
         id: scanGridView
+        onViewButtonPressed: {
+            scanViewButtonPressed()
+        }
         x: 20
         y: 60
     }
