@@ -1,12 +1,12 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
 import QtQuick.Controls 2.4
-import "../components"
-import "../controls"
+import "../components" as Components
+import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 // Lucere Login Page
-LucerePage {
+Components.LucerePage {
     id: loginPage
 
     // Logo Image
@@ -79,7 +79,7 @@ LucerePage {
         }
 
         // Select User ComboBox
-        LucereComboBox {
+        Components.LucereComboBox {
             id: nameSelect
             y:name.height + 5
             placeholderText: "Select User..."
@@ -90,7 +90,7 @@ LucerePage {
         }
 
         // PIN Text Input Field
-        LucerePasswordField {
+        Components.LucerePasswordField {
             id: pinTxtField
             x: nameSelect.width + 10
             y: name.height + 5
@@ -100,7 +100,7 @@ LucerePage {
         }
 
         // Exit Button
-        LucereButton {
+        Controls.LucereButton {
             id: exitBtn
             y: nameSelect.y + nameSelect.height + 10
             buttonColor: AppColors.lightGray
@@ -108,7 +108,7 @@ LucerePage {
         }
 
         // Login Button
-        LucereButton {
+        Controls.LucereButton {
             id: loginBtn
             x: exitBtn.width + 10
             y: nameSelect.y + nameSelect.height + 10
@@ -132,7 +132,7 @@ LucerePage {
     }
 
     // Line Separator
-    Separator {
+    Components.Separator {
         id: line
         anchors {
             horizontalCenter: parent.horizontalCenter
