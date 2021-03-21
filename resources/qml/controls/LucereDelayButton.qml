@@ -6,13 +6,13 @@ DelayButton {
     id: lucereDelayButton
     
     // Define button color property
-    property var buttonColor: "#CCCCCC"
+    property string buttonColor: "#CCCCCC"
 
     // Define button text property
-    property var buttonText: "Delay Button"
+    property string buttonText: "Delay Button"
 
     // Define button delay property
-    property var buttonDelay: 4000
+    property int buttonDelay: 4000
 
     delay: buttonDelay
 

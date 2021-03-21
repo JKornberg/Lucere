@@ -4,7 +4,7 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Define text property
-    property var message: "Message from Python..."
+    property string message: "Message from Python..."
 
     implicitWidth: 800
     implicitHeight: 480

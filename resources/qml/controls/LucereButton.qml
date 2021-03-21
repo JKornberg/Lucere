@@ -8,7 +8,7 @@ Button {
     text: qsTr("Lucere Button")
 
     // Define button color property
-    property var buttonColor: "#cccccc"
+    property string buttonColor: "#cccccc"
     property alias buttonText: lucereButton.text
 
     contentItem: Text {

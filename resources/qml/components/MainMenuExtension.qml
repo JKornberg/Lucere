@@ -10,8 +10,8 @@ Rectangle {
     color: AppColors.optionsGray
 
     // Define open and close state properties
-    property var showMenu: "showMenu"
-    property var hideMenu: "hideMenu"
+    property string showMenu: "showMenu"
+    property string hideMenu: "hideMenu"
 
     // Define extended menu states
     states: [

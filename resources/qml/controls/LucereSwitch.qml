@@ -5,11 +5,11 @@ SwitchDelegate {
     id: toggle
 
     // Define custom properties
-    property var textColor: "#000000"
-    property var rectColor: "#000000"
-    property var circleColor: "#000000"
-    property var toggleButtonColor: "#000000"
-    property var toggleColor: "green"
+    property string textColor: "#000000"
+    property string rectColor: "#000000"
+    property string circleColor: "#000000"
+    property string toggleButtonColor: "#000000"
+    property string toggleColor: "green"
     property alias buttonWidth: toggle.implicitWidth
     property alias buttonHeight: toggle.implicitHeight
     
