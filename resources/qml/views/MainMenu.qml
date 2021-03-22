@@ -5,6 +5,13 @@ import "../styles/AppColors.js" as AppColors
 
 // Menu Container
 Rectangle {
+    // Properties
+    property alias homeButton: homeButton
+    property alias scanButton: scanButton
+    property alias historyButton: historyButton
+    property alias analysisButton: analysisButton
+    property alias settingsButton: settingsButton
+    property alias exitButton: exitButton
 
     implicitWidth: 140
     implicitHeight: 480
@@ -104,12 +111,7 @@ Rectangle {
                     menuIcon.rotation == 0 ? (rotateIconOpen.running = true) : (rotateIconClose.running = true)
 
                     // Expand or Collapse Menu
-                    if (menuWrapper.state == "hideMenu") {
-                        menuWrapper.state = "showMenu"
-                    }
-                    else {
-                        menuWrapper.state = "hideMenu"
-                    }
+                    menuWrapper.state === "hideMenu" ? menuWrapper.state = "showMenu" : menuWrapper.state = "hideMenu"
                 }
 
                 Image {
