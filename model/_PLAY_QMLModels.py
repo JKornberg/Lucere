@@ -26,9 +26,9 @@ if __name__ == '__main__':
 
     # TEST: Add some images to display in swipe view
     swipeImage = ImageModel()
-    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
-    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
-    swipeImage.add(CaptureImage("https://picsum.photos/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1006/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1001/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1018/1920/1080"))
 
     view = QQuickView()
     view.setResizeMode(QQuickView.SizeRootObjectToView)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     ctxt.setContextProperty('scanModel', model)
     ctxt.setContextProperty('imageModel', swipeImage)
 
-    view.setSource(QUrl('resources/qml/pages/NewScan.qml'))
+    view.setSource(QUrl('resources/qml/pages/ScanDetails.qml'))
     view.show()
 
     sys.exit(app.exec_())

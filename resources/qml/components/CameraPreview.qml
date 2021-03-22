@@ -60,7 +60,7 @@ Rectangle {
             anchors.fill: parent
         }
 
-        // Show progress while loading images
+        // Show progress while loading camera object
         BusyIndicator {
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -68,7 +68,6 @@ Rectangle {
             }
             width: 50
             height: 50
-            y: 20
             palette.dark: "white"
 
             running: camera.cameraStatus === Camera.StartingStatus
