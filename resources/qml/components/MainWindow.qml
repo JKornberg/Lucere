@@ -31,7 +31,7 @@ Window {
             // test.outputStr()
             
             pageLoader.source = "../pages/NewScan.qml"
-            asynchronous: true
+            pageLoader.asynchronous = true
         }
 
         historyButton.onClicked: {

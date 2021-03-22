@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtMultimedia 5.8
+import QtQuick.Controls 2.4
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
@@ -57,6 +58,20 @@ Rectangle {
         Image {
             id: preview
             anchors.fill: parent
+        }
+
+        // Show progress while loading images
+        BusyIndicator {
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
+            width: 50
+            height: 50
+            y: 20
+            palette.dark: "white"
+
+            running: camera.cameraStatus === Camera.StartingStatus
         }
     }
 }
