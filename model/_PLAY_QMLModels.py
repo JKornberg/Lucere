@@ -26,9 +26,12 @@ if __name__ == '__main__':
 
     # TEST: Add some images to display in swipe view
     swipeImage = ImageModel()
-    swipeImage.add(CaptureImage("https://picsum.photos/id/1006/1920/1080"))
-    swipeImage.add(CaptureImage("https://picsum.photos/id/1001/1920/1080"))
-    swipeImage.add(CaptureImage("https://picsum.photos/id/1018/1920/1080"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1006/3840/2160"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1001/3840/2160"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1018/3840/2160"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1031/3840/2160"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1020/3840/2160"))
+    swipeImage.add(CaptureImage("https://picsum.photos/id/1066/3840/2160"))
 
     view = QQuickView()
     view.setResizeMode(QQuickView.SizeRootObjectToView)

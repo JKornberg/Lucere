@@ -6,6 +6,7 @@ import "../components" as Components
 import "../pages" as Pages
 
 Window {
+    id: mainWindow
     title: qsTr("Lucere Labs")
     minimumWidth: 800
     minimumHeight: 480
@@ -36,10 +37,12 @@ Window {
 
         historyButton.onClicked: {
             pageLoader.source = "../pages/ScanHistory.qml"
+            pageLoader.asynchronous = true
         }
 
         exitButton.onClicked: {
-            // To be implemented: exit app
+            // Do work at exit then close
+            mainWindow.close()
         }
     }
 }

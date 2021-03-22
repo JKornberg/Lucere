@@ -10,7 +10,7 @@ Rectangle {
     clip: true
 
     Rectangle {
-        id: cameraWrapper
+        id: captures
         anchors.fill: parent
         color: AppColors.lightGray
 
@@ -25,6 +25,7 @@ Rectangle {
                 model: imageModel
                 delegate: Image {
                     source: Qt.resolvedUrl(captureImage)
+                    Component.onCompleted: busyIndicator.running = false
                 }
             }
         }
@@ -37,6 +38,20 @@ Rectangle {
 
             anchors.bottom: view.bottom
             anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        // Show progress while loading images
+        BusyIndicator {
+            id: busyIndicator
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
+            width: 50
+            height: 50
+            palette.dark: "white"
+
+            running: true
         }
     }   
 }
