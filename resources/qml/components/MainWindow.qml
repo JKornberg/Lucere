@@ -14,37 +14,27 @@ Window {
     visible: true
     // visibility: "FullScreen"
 
-    StackLoader {
-        id: stackLoader
-        initialItem: "../pages/Login.qml"
-
-        ScanHistory {
-            id: scanHistoryPage
-            onScanViewButtonPressed: {
-                // Action
-            }
-        }
+    PageLoader {
+        id: pageLoader
+        source: "../pages/Login.qml"
     }
 
     MainMenu {
         id: mainMenu
 
         homeButton.onClicked: {
-            stackLoader.clear()
-            stackLoader.push("../pages/Login.qml")
+            pageLoader.source = "../pages/Login.qml"
         }
 
         scanButton.onClicked: {
             // Execute a Pyton Function
             // test.outputStr()
             
-            stackLoader.clear()
-            stackLoader.push("../pages/NewScan.qml")
+            pageLoader.source = "../pages/NewScan.qml"
         }
 
         historyButton.onClicked: {
-            stackLoader.clear()
-            stackLoader.push(scanHistoryPage)
+            pageLoader.source = "../pages/ScanHistory.qml"
         }
 
         exitButton.onClicked: {

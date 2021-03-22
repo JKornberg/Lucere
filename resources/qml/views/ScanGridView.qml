@@ -8,6 +8,8 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Signals
     signal viewButtonPressed
+    property alias scanGridView: scanGridView
+    property StackView historyStack: StackView.view
 
     id: wrapper
     implicitWidth: 700

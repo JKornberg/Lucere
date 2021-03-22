@@ -6,13 +6,25 @@ import "../models" as Models
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Properties
+    property int index: -1
+
     // Get Models
     Models.CaptureModel { id: captureModel }
     Models.ScanModel { id: scanModel }
 
-    implicitWidth: 200
+    id: slider
+    x: 730
+    implicitWidth: 250
     implicitHeight: 480
     color: AppColors.darkGray
+
+    Behavior on x {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     ObjectModel {
         id: contents
@@ -28,43 +40,43 @@ Rectangle {
                 text: "Capture Details:"
             }
             Text {
-                text: "Number of Scans: " + captureModel.get(0).scanCount
+                text: "Number of Scans: " + captureModel.get(index).scanCount
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Capture Interval: " + captureModel.get(0).captureInterval
+                text: "Capture Interval: " + captureModel.get(index).captureInterval
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Shutter Speed: " + captureModel.get(0).shutterSpeed
+                text: "Shutter Speed: " + captureModel.get(index).shutterSpeed
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Brightness: " + captureModel.get(0).brightness
+                text: "Brightness: " + captureModel.get(index).brightness
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Contrast: " + captureModel.get(0).contrast
+                text: "Contrast: " + captureModel.get(index).contrast
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Sharpness: " + captureModel.get(0).sharpness
+                text: "Sharpness: " + captureModel.get(index).sharpness
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "ISO: " + captureModel.get(0).iso
+                text: "ISO: " + captureModel.get(index).iso
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
@@ -78,31 +90,31 @@ Rectangle {
                 text: "Scan Details:"
             }
             Text {
-                text: "ID: " + scanModel.get(0).scanID
+                text: "ID: " + scanModel.get(index).scanID
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Date: " + scanModel.get(0).scanDate
+                text: "Date: " + scanModel.get(index).scanDate
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "User: " + scanModel.get(0).user
+                text: "User: " + scanModel.get(index).user
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Light Detected: " + scanModel.get(0).lightDetected
+                text: "Light Detected: " + scanModel.get(index).lightDetected
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Wavelength: " + scanModel.get(0).scanWave
+                text: "Wavelength: " + scanModel.get(index).scanWave
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -118,7 +130,7 @@ Rectangle {
             TextEdit {
                 width: 160
                 bottomPadding: 10
-                text: scanModel.get(0).notes
+                text: scanModel.get(index).notes
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -140,6 +152,10 @@ Rectangle {
                     buttonText: "Close"
                     buttonColor: AppColors.lightGray
                     width: 160
+
+                    onClicked: {
+                        slider.x = 730
+                    }
                 }
             }
         }
