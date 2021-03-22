@@ -1,21 +1,21 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
 import QtQuick.Controls 2.4
-import "../components"
-import "../controls"
-import "../views"
+import "../components" as Components
+import "../controls" as Controls
+import "../views" as Views
 import "../styles/AppColors.js" as AppColors
 
-// Lucere Login Page
-LucerePage {
+// Capture Page
+Components.LucerePage {
     id: newCapturePage
     clip: true
 
-    PageTitle {
+    Components.PageTitle {
         text: "New Capture"
     }
 
-    CameraPreview {
+    Components.CameraPreview {
         id: cameraPreview
         x: 20
         y: 60
@@ -32,13 +32,13 @@ LucerePage {
         // }
     }
 
-    InfoLine {
+    Components.InfoLine {
         x: 20
         y: parent.height - 40
         notice: "Use <b>Capture Settings</b> to set specific scan options"
     }
 
-    LucereDelayButton {
+    Controls.LucereDelayButton {
         id: captureButton
         x: parent.width - width - 20
         y: parent.height - height - 20
@@ -49,7 +49,7 @@ LucerePage {
         buttonColor: AppColors.purple
     }
 
-    LucereButton {
+    Controls.LucereButton {
         id: scanOptionsButton
         x: parent.width - width * 2 - 30
         y: parent.height - height - 20
@@ -63,7 +63,7 @@ LucerePage {
     }
 
     // Slider
-    CaptureOptions {
+    Views.CaptureOptions {
         id: slider
     }
 }

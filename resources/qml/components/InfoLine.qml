@@ -3,7 +3,7 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Define notice property
-    property var notice: "Notice..."
+    property string notice: "Notice..."
 
     implicitWidth: 100
     implicitHeight: 20

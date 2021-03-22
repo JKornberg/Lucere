@@ -1,5 +1,5 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
+import QtQuick.Controls 2.4
 
 Button {
     id: lucereButton
@@ -8,7 +8,7 @@ Button {
     text: qsTr("Lucere Button")
 
     // Define button color property
-    property var buttonColor: "#cccccc"
+    property string buttonColor: "#cccccc"
     property alias buttonText: lucereButton.text
 
     contentItem: Text {

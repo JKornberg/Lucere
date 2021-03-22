@@ -1,13 +1,13 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
+import QtQuick.Controls 2.4
 
 RadioDelegate {
     id: radio
 
     // Define custom properties
-    property var textColor: "#000000"
-    property var rectColor: "#000000"
-    property var circleColor: "#000000"
+    property string textColor: "#000000"
+    property string rectColor: "#000000"
+    property string circleColor: "#000000"
     property alias buttonWidth: radio.implicitWidth
     property alias buttonHeight: radio.implicitHeight
     

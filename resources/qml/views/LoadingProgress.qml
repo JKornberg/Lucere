@@ -1,10 +1,10 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
+import QtQuick.Controls 2.4
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Define text property
-    property var message: "Message from Python..."
+    property string message: "Message from Python..."
 
     implicitWidth: 800
     implicitHeight: 480

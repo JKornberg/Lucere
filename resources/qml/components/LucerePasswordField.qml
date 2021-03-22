@@ -1,10 +1,9 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls 2.4
 
 TextField {
     // Define border color property
-    property var borderColor: "#000000"
+    property string borderColor: "#000000"
 
     implicitWidth: 74
     implicitHeight: 38

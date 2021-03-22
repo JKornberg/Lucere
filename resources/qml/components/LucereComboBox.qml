@@ -1,15 +1,14 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.8
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls 2.4
 
 ComboBox {
     id: combo
 
     // Define properties
-    property var placeholderText: "Placeholder"
-    property var placeholderColor: "#000000"
-    property var optionColor: "#000000"
-    property var borderColor: "#000000"
+    property string placeholderText: "Placeholder"
+    property string placeholderColor: "#000000"
+    property string optionColor: "#000000"
+    property string borderColor: "#000000"
     property var contents: ["item1", "item2", "item3"]
 
     implicitWidth: 226

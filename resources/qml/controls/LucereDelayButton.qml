@@ -1,19 +1,18 @@
 import QtQuick 2.8
-import QtQuick.Controls 2.2
-import QtQuick.Controls.Styles 1.4
+import QtQuick.Controls 2.4
 import "../styles/Functions.js" as Functions
 
 DelayButton {
     id: lucereDelayButton
     
     // Define button color property
-    property var buttonColor: "#CCCCCC"
+    property string buttonColor: "#CCCCCC"
 
     // Define button text property
-    property var buttonText: "Delay Button"
+    property string buttonText: "Delay Button"
 
     // Define button delay property
-    property var buttonDelay: 4000
+    property int buttonDelay: 4000
 
     delay: buttonDelay
 

@@ -1,6 +1,5 @@
 import QtQuick 2.8
 import QtMultimedia 5.8
-import "../views"
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {

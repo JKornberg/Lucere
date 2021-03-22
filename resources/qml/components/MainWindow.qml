@@ -1,9 +1,9 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
 import QtQuick.Controls 2.4
-import "../views"
-import "../components"
-import "../pages"
+import "../views" as Views
+import "../components" as Components
+import "../pages" as Pages
 
 Window {
     title: qsTr("Lucere Labs")
@@ -19,7 +19,7 @@ Window {
         source: "../pages/Login.qml"
     }
 
-    MainMenu {
+    Views.MainMenu {
         id: mainMenu
 
         homeButton.onClicked: {

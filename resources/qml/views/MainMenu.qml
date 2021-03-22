@@ -5,11 +5,6 @@ import "../styles/AppColors.js" as AppColors
 
 // Menu Container
 Rectangle {
-    // Define mouse area aliases
-    property alias homeButton: homeButton
-    property alias scanButton: scanButton
-    property alias historyButton: historyButton
-    property alias exitButton: exitButton
 
     implicitWidth: 140
     implicitHeight: 480
