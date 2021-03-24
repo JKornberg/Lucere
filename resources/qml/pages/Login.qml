@@ -114,6 +114,7 @@ Components.LucerePage {
             y: nameSelect.y + nameSelect.height + 10
             buttonColor: AppColors.purple
             buttonText: "Login"
+            onClicked: login.login(nameSelect.currentText, pinTxtField.text)
         }
     }
 
