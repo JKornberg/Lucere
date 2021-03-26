@@ -13,10 +13,10 @@ class ScanModel(QAbstractListModel):
         super().__init__(parent)
 
         self.scanList = [
-            {'scanID': '000001'},
-            {'scanID': '000002'},
-            {'scanID': '000003'},
-            {'scanID': '000004'},
+            {'scanID': 100001},
+            {'scanID': 100002},
+            {'scanID': 100003},
+            {'scanID': 100004},
         ]
 
     def add(self, item):
@@ -35,7 +35,7 @@ class ScanModel(QAbstractListModel):
     def addScans(self):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.scanList.append(
-            {'scanID': '000005'}
+            {'scanID': 100005}
         )
         self.endInsertRows()
     

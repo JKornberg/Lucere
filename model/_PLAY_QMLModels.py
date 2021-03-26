@@ -6,15 +6,13 @@ import sys, time
 
 
 # Import Classes
-from classes.Scan import Scan
 from classes.ScanModel import ScanModel
-from classes.CaptureImage import CaptureImage
 from classes.ImageModel import ImageModel
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
 
-    # TEST different class structure
+    # TEST - Instantiate Scan data model
     model = ScanModel()
 
     # qmlRegisterType(ScanModel, 'Scan', 1, 0, 'ScanModel')
@@ -24,7 +22,7 @@ if __name__ == '__main__':
     ctxt = view.rootContext()
     ctxt.setContextProperty('scanModel', model)
 
-    view.setSource(QUrl('resources/qml/pages/ScanHistory.qml'))
+    view.setSource(QUrl('resources/qml/components/MainWindow.qml'))
     view.show()
 
     sys.exit(app.exec_())
