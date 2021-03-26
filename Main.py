@@ -1,14 +1,18 @@
 from PyQt5.QtCore import QUrl, QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtQuick import QQuickView
-from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine
-from _PLAY_QMLModels import ScanModel
-import sys, os, time
+from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlContext
+
+# Classes
+from model.classes.ScanModel import ScanModel
+from model.classes.ImageModel import ImageModel
+
+import sys
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
 
-    # TEST - Instantiate Scan data model
+    # Instantiate Data Models
     scanModel = ScanModel()
 
     engine = QQmlApplicationEngine()
