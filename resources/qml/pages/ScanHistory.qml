@@ -23,9 +23,15 @@ StackView {
 
         ScanGridView {
             id: scanView
+
+            // Set data model
+            scanGridView.model: scanModel
+            
             onViewButtonPressed: {
                 historyStack.push (
-                    Qt.createComponent("ScanDetails.qml").createObject(historyStack, {"index" : scanGridView.currentIndex})
+                    Qt.createComponent("ScanDetails.qml").createObject(historyStack, {
+                        "scanIndex": scanView.scanIndex
+                    })
                 )
             }
             x: 20
@@ -45,6 +51,7 @@ StackView {
             buttonColor: AppColors.purple
 
             onClicked: {
+                scanModel.addScans()
                 slider.x = 530
             }
         }

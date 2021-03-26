@@ -3,6 +3,9 @@ import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Properties
+    property alias deleteButton: deleteButton
+
     id: scanContextMenu
     implicitWidth: 220
     implicitHeight: 50
@@ -10,13 +13,11 @@ Rectangle {
     color: AppColors.borderGray
     radius: 5
 
-    NumberAnimation {
-        id: hideContextMenu
-        target: scanContextMenu
-        property: "y"
-        to: y + 50
-        duration: 500
-        easing.type: Easing.OutBack
+    Behavior on y {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
     }
 
     // Compare Button
@@ -69,7 +70,7 @@ Rectangle {
             anchors.fill: parent
 
             onClicked: {
-                hideContextMenu.running = true
+                scanContextMenu.y = 50
             }
         }
     }

@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant
+from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant, pyqtSlot, QObject
 
 class ScanModel(QAbstractListModel):
 
@@ -10,37 +10,51 @@ class ScanModel(QAbstractListModel):
     _roles = {IdRole: b"scanID", DateRole: b"scanDate", WaveRole: b"scanWave", ScanRole: b"scanUser"}
 
     def __init__(self, parent=None):
-        super(ScanModel, self).__init__(parent)
+        super().__init__(parent)
 
-        self.scanList = []
+        self.scanList = [
+            {'scanID': '000001'},
+            {'scanID': '000002'},
+            {'scanID': '000003'},
+            {'scanID': '000004'},
+        ]
 
     def add(self, item):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.scanList.append(item)
         self.endInsertRows()
 
+    @pyqtSlot(int)
+    def removeScan(self, index):
+        scan = self.scanList[index]
+        self.beginRemoveRows(QModelIndex(), index, index)
+        self.scanList.remove(scan)
+        self.endRemoveRows()
+    
+    @pyqtSlot()
+    def addScans(self):
+        self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
+        self.scanList.append(
+            {'scanID': '000005'}
+        )
+        self.endInsertRows()
+    
+    @pyqtSlot(int, result=QVariant)
+    def get(self, index):
+        if 0 <= index < self.rowCount():
+            return self.scanList[index]
+
     def rowCount(self, parent=QModelIndex()):
         return len(self.scanList)
 
     def data(self, index, role=Qt.DisplayRole):
         try:
-            scanDetail = self.scanList[index.row()]
+            scanDetails = self.scanList[index.row()]
         except IndexError:
             return QVariant()
 
-        if role == self.IdRole:
-            return scanDetail.scanID()
-
-        if role == self.DateRole:
-            return scanDetail.scanDate()
-        
-        if role == self.WaveRole:
-            return scanDetail.scanWave()
-        
-        if role == self.ScanRole:
-            return scanDetail.scanUser()
-
-        return QVariant()
+        if role == ScanModel.IdRole:
+            return self.scanList[index.row()]["scanID"]
 
     def roleNames(self):
         return self._roles

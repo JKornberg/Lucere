@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtQuick.Controls 2.4
+import QtQml.Models 2.8
 import "../components" as Components
 import "../controls" as Controls
 import "../models" as Models
@@ -8,6 +9,7 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Signals
     signal viewButtonPressed
+    property int scanIndex: -1
     property alias scanGridView: scanGridView
     property StackView historyStack: StackView.view
 
@@ -100,7 +102,7 @@ Rectangle {
                     buttonColor: AppColors.lightGray
 
                     onClicked: {
-                        scanGridView.currentIndex = model.index
+                        scanIndex = index
                         viewButtonPressed()
                     }
                 }
@@ -129,7 +131,7 @@ Rectangle {
                         anchors.fill: parent
 
                         onClicked: {
-                            showContextMenu.running = true
+                            contextMenu.y = 0
                         }
                     }
                 }
@@ -138,6 +140,15 @@ Rectangle {
                 Components.ScanItemContextMenu {
                     id: contextMenu
                     y: height
+
+                    deleteButton.onClicked: {
+                        console.log(scanID)
+                    }
+
+                    deleteButton.onActivated: {
+                        contextMenu.y = 50
+                        scanModel.removeScan(index)
+                    }
                 }
             }
         }
@@ -145,12 +156,9 @@ Rectangle {
 
     GridView {
         id: scanGridView
+        delegate: scanDelegate
         anchors.fill: parent
         cellWidth: 233
         cellHeight: 165
-
-        // model: scanModel
-        model: Models.ScanModel {}
-        delegate: scanDelegate
     }
 }

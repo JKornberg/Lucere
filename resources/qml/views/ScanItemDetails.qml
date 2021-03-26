@@ -9,10 +9,6 @@ Rectangle {
     // Properties
     property int index: -1
 
-    // Get Models
-    Models.CaptureModel { id: captureModel }
-    Models.ScanModel { id: scanModel }
-
     id: slider
     x: 730
     implicitWidth: 250
@@ -40,43 +36,43 @@ Rectangle {
                 text: "Capture Details:"
             }
             Text {
-                text: "Number of Scans: " + captureModel.get(index).scanCount
+                text: "Number of Scans: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Capture Interval: " + captureModel.get(index).captureInterval
+                text: "Capture Interval: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Shutter Speed: " + captureModel.get(index).shutterSpeed
+                text: "Shutter Speed: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Brightness: " + captureModel.get(index).brightness
+                text: "Brightness: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Contrast: " + captureModel.get(index).contrast
+                text: "Contrast: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Sharpness: " + captureModel.get(index).sharpness
+                text: "Sharpness: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "ISO: " + captureModel.get(index).iso
+                text: "ISO: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
@@ -90,31 +86,31 @@ Rectangle {
                 text: "Scan Details:"
             }
             Text {
-                text: "ID: " + scanModel.get(index).scanID
+                text: "ID: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Date: " + scanModel.get(index).scanDate
+                text: "Date: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "User: " + scanModel.get(index).user
+                text: "User: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Light Detected: " + scanModel.get(index).lightDetected
+                text: "Light Detected: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Wavelength: " + scanModel.get(index).scanWave
+                text: "Wavelength: "
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -130,7 +126,7 @@ Rectangle {
             TextEdit {
                 width: 160
                 bottomPadding: 10
-                text: scanModel.get(index).notes
+                text: "No notes..."
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -154,6 +150,8 @@ Rectangle {
                     width: 160
 
                     onClicked: {
+                        console.log(scanIndex)
+                        // console.log(scanModel.get(2)["scanID"])
                         slider.x = 730
                     }
                 }
