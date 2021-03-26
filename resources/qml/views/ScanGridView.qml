@@ -51,7 +51,7 @@ Rectangle {
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             x: parent.width + 5
-                            text: "ID: " + scanID
+                            text: "ID: " + id
                             font.family: "Segoe UI Semibold"
                             font.pixelSize: 16
                             color: AppColors.darkGray
@@ -61,7 +61,7 @@ Rectangle {
 
                 // Scan Date
                 Text {
-                    text: 'Date: ' + scanDate
+                    text: 'Date: ' + date
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray              
@@ -69,7 +69,7 @@ Rectangle {
 
                 // User
                 Text {
-                    text: 'User: ' + scanUser
+                    text: 'User: ' + user
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray              
@@ -77,7 +77,7 @@ Rectangle {
 
                 // Scan Wavelength
                 Text {
-                    text: 'Wavelength: ' + scanWave + " nm"
+                    text: 'Wavelength: ' + wavelength + " nm"
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray

@@ -86,31 +86,31 @@ Rectangle {
                 text: "Scan Details:"
             }
             Text {
-                text: "ID: " + scanModel.get(globalIndex)["scanID"]
+                text: "ID: " + scanModel.get(globalIndex)["id"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Date: "
+                text: "Date: " + scanModel.get(globalIndex)["date"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "User: "
+                text: "User: " + scanModel.get(globalIndex)["user"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Light Detected: "
+                text: "Light Detected: " + scanModel.get(globalIndex)["detected"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Wavelength: "
+                text: "Wavelength: " + scanModel.get(globalIndex)["wavelength"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"

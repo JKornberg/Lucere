@@ -9,14 +9,14 @@ if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
 
     # TEST - Instantiate Scan data model
-    model = ScanModel()
+    scanModel = ScanModel()
 
     engine = QQmlApplicationEngine()
     engine.load(QUrl('/home/bubu/Dev/Lucere/resources/qml/components/MainWindow.qml'))
 
     # Define context properties
     ctx = engine.rootContext()
-    ctx.setContextProperty('scanModel', model)
+    ctx.setContextProperty('scanModel', scanModel)
 
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())
