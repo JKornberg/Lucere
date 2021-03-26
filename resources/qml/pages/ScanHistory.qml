@@ -29,9 +29,7 @@ StackView {
             
             onViewButtonPressed: {
                 historyStack.push (
-                    Qt.createComponent("ScanDetails.qml").createObject(historyStack, {
-                        "scanIndex": scanView.scanIndex
-                    })
+                    Qt.createComponent("ScanDetails.qml").createObject(historyStack)
                 )
             }
             x: 20

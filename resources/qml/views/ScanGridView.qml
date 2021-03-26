@@ -9,7 +9,7 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Signals
     signal viewButtonPressed
-    property int scanIndex: -1
+    // property int scanIndex: -1
     property alias scanGridView: scanGridView
     property StackView historyStack: StackView.view
 
@@ -102,7 +102,7 @@ Rectangle {
                     buttonColor: AppColors.lightGray
 
                     onClicked: {
-                        scanIndex = index
+                        globalIndex = index
                         viewButtonPressed()
                     }
                 }

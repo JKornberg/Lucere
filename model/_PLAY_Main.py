@@ -18,22 +18,5 @@ if __name__ == '__main__':
     ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', model)
 
-    # mainMenu = QQmlComponent(engine)
-    # mainMenu.loadUrl(QUrl('/home/bubu/Dev/Lucere/resources/qml/views/MainMenu.qml'))
-
-    # for error in mainMenu.errors():
-    #     print(error.toString())
-
-    # root = engine.rootObjects()[0].children()[0]
-
-    # Create Page Loader
-    # pageLoader = loader.create()
-    # # pageLoader.setProperty("x", 70)
-    # pageLoader.setParentItem(root)
-
-    # # Create Main Menu
-    # menu = mainMenu.create()
-    # menu.setParentItem(root)
-
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())

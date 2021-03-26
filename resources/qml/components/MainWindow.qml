@@ -6,6 +6,9 @@ import "../components" as Components
 import "../pages" as Pages
 
 Window {
+    // Define global properties
+    property int globalIndex: -1
+
     id: mainWindow
     title: qsTr("Lucere Labs")
     minimumWidth: 800

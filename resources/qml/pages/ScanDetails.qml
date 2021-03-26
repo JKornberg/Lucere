@@ -8,7 +8,7 @@ import "../styles/AppColors.js" as AppColors
 LucerePage {
     // Properties
     property StackView historyStack: StackView.view
-    property int scanIndex: -1
+    // property int scanIndex: -1
 
     id: scanDetailsPage
     clip: true
@@ -53,6 +53,5 @@ LucerePage {
 
     ScanItemDetails {
         id: slider
-        index: scanIndex
     }
 }

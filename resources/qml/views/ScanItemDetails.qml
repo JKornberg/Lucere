@@ -7,7 +7,7 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Properties
-    property int index: -1
+    // property int index: -1
 
     id: slider
     x: 730
@@ -86,7 +86,7 @@ Rectangle {
                 text: "Scan Details:"
             }
             Text {
-                text: "ID: "
+                text: "ID: " + scanModel.get(globalIndex)["scanID"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -150,8 +150,6 @@ Rectangle {
                     width: 160
 
                     onClicked: {
-                        console.log(scanIndex)
-                        // console.log(scanModel.get(2)["scanID"])
                         slider.x = 730
                     }
                 }
