@@ -13,7 +13,7 @@ Rectangle {
     property alias settingsButton: settingsButton
     property alias exitButton: exitButton
 
-    implicitWidth: 140
+    implicitWidth: 70
     implicitHeight: 480
     color: "transparent"
 
@@ -156,7 +156,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 1
                 onClicked: {
-                    mainMenuExtension.state = mainMenuExtension.hideMenu
+                    
                     menuHighlight.y = y
                 }
 
@@ -181,7 +181,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 2
                 onClicked: {
-                    mainMenuExtension.state = mainMenuExtension.hideMenu
+                    
                     menuHighlight.y = y
                 }
 
@@ -206,7 +206,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 3
                 onClicked: {
-                    mainMenuExtension.state = mainMenuExtension.hideMenu
+                    
                     menuHighlight.y = y
                 }
 
@@ -231,7 +231,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 4
                 onClicked: {
-                    mainMenuExtension.state = mainMenuExtension.hideMenu
+                    
                     menuHighlight.y = y
                 }
 
@@ -256,7 +256,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 5
                 onClicked: {
-                    mainMenuExtension.state = mainMenuExtension.hideMenu
+                    
                     menuHighlight.y = y
                 }
 
@@ -280,12 +280,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 6
                 onClicked: {
-                    if (mainMenuExtension.state == mainMenuExtension.hideMenu) {
-                        mainMenuExtension.state = mainMenuExtension.showMenu
-                    }
-                    else {
-                        mainMenuExtension.state = mainMenuExtension.hideMenu
-                    }
+                    mainMenuExtension.x = 0
                 }
 
                 Image {
@@ -332,7 +327,7 @@ Rectangle {
 
     Components.MainMenuExtension {
         id: mainMenuExtension
-        x: -140
-        y: 360
+        x: -230
+        y: 300
     }
 }
