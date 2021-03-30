@@ -110,7 +110,7 @@ Rectangle {
         buttonText: "Apply & Close"
 
         onClicked: {
-            scanModel.sortBy(radioText)
+            radioText == "" ? scanModel.sortBy('date') : scanModel.sortBy(radioText)
             slider.x = 730
         }
     }
