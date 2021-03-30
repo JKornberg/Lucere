@@ -156,7 +156,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 1
                 onClicked: {
-                    
+                    mainMenuExtension.x = -230
                     menuHighlight.y = y
                 }
 
@@ -181,7 +181,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 2
                 onClicked: {
-                    
+                    mainMenuExtension.x = -230
                     menuHighlight.y = y
                 }
 
@@ -206,7 +206,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 3
                 onClicked: {
-                    
+                    mainMenuExtension.x = -230
                     menuHighlight.y = y
                 }
 
@@ -231,7 +231,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 4
                 onClicked: {
-                    
+                    mainMenuExtension.x = -230
                     menuHighlight.y = y
                 }
 
@@ -256,7 +256,7 @@ Rectangle {
                 implicitHeight: 60
                 y: mainMenu.y + implicitHeight * 5
                 onClicked: {
-                    
+                    mainMenuExtension.x = -230
                     menuHighlight.y = y
                 }
 
