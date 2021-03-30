@@ -36,43 +36,43 @@ Rectangle {
                 text: "Capture Details:"
             }
             Text {
-                text: "Number of Scans: "
+                text: "Number of Captures: " + scanModel.get(globalIndex)["capture count"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Capture Interval: "
+                text: "Capture Interval: " + scanModel.get(globalIndex)["capture interval"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Shutter Speed: "
+                text: "Shutter Speed: " + scanModel.get(globalIndex)["shutter speed"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Brightness: "
+                text: "Brightness: " + scanModel.get(globalIndex)["brightness"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Contrast: "
+                text: "Contrast: " + scanModel.get(globalIndex)["contrast"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Sharpness: "
+                text: "Sharpness: " + scanModel.get(globalIndex)["sharpness"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "ISO: "
+                text: "ISO: " + scanModel.get(globalIndex)["iso"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
@@ -126,10 +126,10 @@ Rectangle {
             TextEdit {
                 width: 160
                 bottomPadding: 10
-                text: "No notes..."
+                text: scanModel.get(globalIndex)["notes"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
-                color: "white"
+                color: "#F8E4A3"
                 selectByMouse: true
                 selectionColor: AppColors.lightGray
                 wrapMode: Text.WordWrap
@@ -138,6 +138,8 @@ Rectangle {
             // Buttons
             Column {
                 spacing: 10
+                bottomPadding: 10
+                
                 Controls.LucereButton {
                     buttonText: "Update Notes"
                     buttonColor: AppColors.purple

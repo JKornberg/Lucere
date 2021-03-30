@@ -52,12 +52,12 @@ Rectangle {
 
             Components.PageTitle {
                 x: 0
-                text: "Setup Multi-Scan:"
+                text: "Multi-Capture:"
             }
 
             Controls.CaptureSettingSlider {
                 id: numberOfScans
-                title: "How many scans?"
+                title: "How many captures?"
                 from: 1
                 to: 30
                 stepSize: 1
@@ -65,7 +65,7 @@ Rectangle {
 
             Controls.CaptureSettingSlider {
                 id: captureInterval
-                title: "Scan Interval (s)"
+                title: "Capture Interval (s)"
                 from: (shutterSpeed.value / 1000).toFixed(0)
                 to: 240
                 stepSize: 1

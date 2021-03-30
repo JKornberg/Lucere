@@ -9,8 +9,32 @@ class ScanModel(QAbstractListModel):
     User = Qt.UserRole + 4
     Detected = Qt.UserRole + 5
     NumberOfCaptures = Qt.UserRole + 6
+    CaptureInterval = Qt.UserRole + 7
+    ShutterSpeed = Qt.UserRole + 8
+    TotalRunTime = Qt.UserRole + 9
+    Brightness = Qt.UserRole + 10
+    Contrast = Qt.UserRole + 11
+    Sharpness = Qt.UserRole + 12
+    Iso = Qt.UserRole + 13
+    Notes = Qt.UserRole + 14
 
-    _roles = {ID: b"id", Date: b"date", WaveLength: b"wavelength", User: b"user", Detected: b"detected", NumberOfCaptures: b"capture count"}
+    # Assign Qt roles for attributes
+    _roles = {
+        ID: b"id",
+        Date: b"date",
+        WaveLength: b"wavelength",
+        User: b"user",
+        Detected: b"detected",
+        NumberOfCaptures: b"capture count",
+        CaptureInterval: b"capture interval",
+        ShutterSpeed: b"shutter speed",
+        TotalRunTime: b"total run time",
+        Brightness: b"brigthness",
+        Contrast: b"contrast",
+        Sharpness: b"sharpness",
+        Iso: b"iso",
+        Notes: b"notes"
+    }
 
     # Initialize class
     def __init__(self, parent=None):
@@ -18,10 +42,22 @@ class ScanModel(QAbstractListModel):
 
         # Add some dummy data
         self.scanList = [
-            {'id': 100001, 'date': '02/02/2021', 'wavelength': 551, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 3},
-            {'id': 100002, 'date': '02/03/2021', 'wavelength': 546, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 4},
-            {'id': 100003, 'date': '02/05/2021', 'wavelength': 550, 'user': 'Atticus Steinmetz', 'detected': False, 'capture count': 6},
-            {'id': 100004, 'date': '02/04/2021', 'wavelength': 552, 'user': 'Atticus Steinmetz', 'detected': False, 'capture count': 1}
+            {
+                'id': 100001,
+                'date': '02/02/2021',
+                'wavelength': 551,
+                'user':'Atticus Steinmetz',
+                'detected': True,
+                'capture count': 3,
+                'capture interval': 20,
+                'shutter speed': 5000,
+                'total run time': 400,
+                'brightness': 50,
+                'contrast': 0,
+                'sharpness': 10,
+                'iso': 100,
+                'notes': 'This scan has some notes stored. Wavelength detection is best with these configurations.'
+            }
         ]
 
         # Default sort by date
@@ -53,7 +89,7 @@ class ScanModel(QAbstractListModel):
     def addScans(self):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.scanList.append(
-            {'id': 100005, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 3}
+            # Test add one scan
         )
         self.endInsertRows()
     
@@ -86,6 +122,22 @@ class ScanModel(QAbstractListModel):
             return self.scanList[index.row()]["detected"]
         if role == ScanModel.NumberOfCaptures:
             return self.scanList[index.row()]["capture count"]
+        if role == ScanModel.CaptureInterval:
+            return self.scanList[index.row()]["capture interval"]
+        if role == ScanModel.ShutterSpeed:
+            return self.scanList[index.row()]["shutter speed"]
+        if role == ScanModel.TotalRunTime:
+            return self.scanList[index.row()]["total run time"]
+        if role == ScanModel.Brightness:
+            return self.scanList[index.row()]["brightness"]
+        if role == ScanModel.Contrast:
+            return self.scanList[index.row()]["contrast"]
+        if role == ScanModel.Sharpness:
+            return self.scanList[index.row()]["sharpness"]
+        if role == ScanModel.Iso:
+            return self.scanList[index.row()]["iso"]
+        if role == ScanModel.Notes:
+            return self.scanList[index.row()]["notes"]
 
     def roleNames(self):
         return self._roles
