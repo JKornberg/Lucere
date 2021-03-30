@@ -1,9 +1,9 @@
 import QtQuick 2.8
 import QtQuick.Window 2.8
 import QtQuick.Controls 2.4
-import "../components"
-import "../controls"
-import "../views"
+import "../components" as Components
+import "../controls" as Controls
+import "../views" as Views
 import "../styles/AppColors.js" as AppColors
 
 StackView {
@@ -13,15 +13,15 @@ StackView {
 
     initialItem: scanHistoryPage
 
-    LucerePage {
+    Components.LucerePage {
         id: scanHistoryPage
         clip: true
 
-        PageTitle {
+        Components.PageTitle {
             text: "Scan History"
         }
 
-        ScanGridView {
+        Views.ScanGridView {
             id: scanView
 
             // Set data model
@@ -36,13 +36,13 @@ StackView {
             y: 60
         }
 
-        InfoLine {
+        Components.InfoLine {
             x: 20
             y: parent.height - 40
             notice: "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
         }
 
-        LucereButton {
+        Controls.LucereButton {
             x: parent.width - width - 20
             y: parent.height - height - 20
             buttonText: "Sort & Filter Options"
@@ -55,7 +55,7 @@ StackView {
         }
 
         // Slider
-        ScanFilter {
+        Views.ScanFilter {
             id: slider
         }
     }
