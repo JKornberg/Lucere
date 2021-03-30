@@ -49,7 +49,7 @@ StackView {
             buttonColor: AppColors.purple
 
             onClicked: {
-                scanModel.addScans()
+                // scanModel.addScans()
                 slider.x = 530
             }
         }

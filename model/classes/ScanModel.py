@@ -8,8 +8,9 @@ class ScanModel(QAbstractListModel):
     WaveLength = Qt.UserRole + 3
     User = Qt.UserRole + 4
     Detected = Qt.UserRole + 5
+    NumberOfCaptures = Qt.UserRole + 6
 
-    _roles = {ID: b"id", Date: b"date", WaveLength: b"wavelength", User: b"user", Detected: b"detected"}
+    _roles = {ID: b"id", Date: b"date", WaveLength: b"wavelength", User: b"user", Detected: b"detected", NumberOfCaptures: b"capture count"}
 
     # Initialize class
     def __init__(self, parent=None):
@@ -17,11 +18,21 @@ class ScanModel(QAbstractListModel):
 
         # Add some dummy data
         self.scanList = [
-            {'id': 100001, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': True},
-            {'id': 100002, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': True},
-            {'id': 100003, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': False},
-            {'id': 100004, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': False}
+            {'id': 100001, 'date': '02/02/2021', 'wavelength': 551, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 3},
+            {'id': 100002, 'date': '02/03/2021', 'wavelength': 546, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 4},
+            {'id': 100003, 'date': '02/05/2021', 'wavelength': 550, 'user': 'Atticus Steinmetz', 'detected': False, 'capture count': 6},
+            {'id': 100004, 'date': '02/04/2021', 'wavelength': 552, 'user': 'Atticus Steinmetz', 'detected': False, 'capture count': 1}
         ]
+
+        # Default sort by date
+        self.sortBy('date')
+
+    # List Sorting
+    @pyqtSlot(str)
+    def sortBy(self, sortAttribute):
+        self.beginResetModel()
+        self.scanList.sort(key=lambda x:x[sortAttribute.lower()], reverse=True)
+        self.endResetModel()
 
     # Adds a new item to the class
     def add(self, item):
@@ -42,7 +53,7 @@ class ScanModel(QAbstractListModel):
     def addScans(self):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.scanList.append(
-            {'id': 100005, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': True}
+            {'id': 100005, 'date': '02/02/2021', 'wavelength': 750, 'user': 'Atticus Steinmetz', 'detected': True, 'capture count': 3}
         )
         self.endInsertRows()
     
@@ -73,6 +84,8 @@ class ScanModel(QAbstractListModel):
             return self.scanList[index.row()]["user"]
         if role == ScanModel.Detected:
             return self.scanList[index.row()]["detected"]
+        if role == ScanModel.NumberOfCaptures:
+            return self.scanList[index.row()]["capture count"]
 
     def roleNames(self):
         return self._roles

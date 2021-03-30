@@ -5,6 +5,9 @@ import "../components" as Components
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Properties
+    property string radioText: ""
+
     id: slider
     x: 730
     width: 250
@@ -48,9 +51,13 @@ Rectangle {
         // Sort By Options
         ButtonGroup {
             id: radios
+            onClicked: {
+                radioText = button.text
+            }
         }
 
         ListView {
+            id: radioList
             width: 162
             height: 110
             x: wrapper.x + 20
@@ -58,9 +65,10 @@ Rectangle {
             spacing: 10
             interactive: false
             
-            model: ["Date", "Wavelength", "Number of Scans"]
+            model: ["Date", "Wavelength", "Capture Count"]
 
             delegate : Controls.LucereRadioButton {
+                id: radioButton
                 text: modelData
                 textColor: "#ffffff"
                 rectColor: AppColors.borderGray
@@ -102,6 +110,7 @@ Rectangle {
         buttonText: "Apply & Close"
 
         onClicked: {
+            scanModel.sortBy(radioText)
             slider.x = 730
         }
     }
