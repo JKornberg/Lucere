@@ -10,8 +10,13 @@ from model.classes.SortProxyModel import SortProxyModel
 
 import sys
 
+# Define shutdown for cleanup
+def shutdown():
+    del globals()["engine"]
+
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
+    app.aboutToQuit.connect(shutdown)
 
     # Instantiate Data Models
     scanModel = ScanModel()

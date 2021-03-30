@@ -45,7 +45,7 @@ class ScanModel(QAbstractListModel):
             {
                 'id': 100001,
                 'date': '02/02/2021',
-                'wavelength': 551,
+                'wavelength': 550,
                 'user':'Atticus Steinmetz',
                 'detected': True,
                 'capture count': 3,
@@ -57,7 +57,56 @@ class ScanModel(QAbstractListModel):
                 'sharpness': 10,
                 'iso': 100,
                 'notes': 'This scan has some notes stored. Wavelength detection is best with these configurations.'
-            }
+            },
+            {
+                'id': 100002,
+                'date': '02/03/2021',
+                'wavelength': 540,
+                'user':'Atticus Steinmetz',
+                'detected': True,
+                'capture count': 5,
+                'capture interval': 20,
+                'shutter speed': 3000,
+                'total run time': 400,
+                'brightness': 50,
+                'contrast': 0,
+                'sharpness': 10,
+                'iso': 100,
+                'notes': 'No notes.'
+            },
+            {
+                'id': 100003,
+                'date': '02/04/2021',
+                'wavelength': 556,
+                'user':'Atticus Steinmetz',
+                'detected': True,
+                'capture count': 4,
+                'capture interval': 20,
+                'shutter speed': 5000,
+                'total run time': 400,
+                'brightness': 50,
+                'contrast': 0,
+                'sharpness': 10,
+                'iso': 100,
+                'notes': 'Notes related to this scan object are stored here.'
+            },
+            {
+                'id': 100004,
+                'date': '02/05/2021',
+                'wavelength': 560,
+                'user':'Atticus Steinmetz',
+                'detected': False,
+                'capture count': 6,
+                'capture interval': 20,
+                'shutter speed': 10000,
+                'total run time': 400,
+                'brightness': 50,
+                'contrast': 0,
+                'sharpness': 10,
+                'iso': 100,
+                'notes': 'Wavelength detection doesn\'t work with these settings.'
+            },
+
         ]
 
         # Default sort by date
