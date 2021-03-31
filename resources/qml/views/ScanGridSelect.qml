@@ -33,7 +33,7 @@ Rectangle {
 
             Column {
                 leftPadding: 10
-                topPadding: 15
+                topPadding: 10
 
                 // Scan ID
                 Row {
@@ -77,8 +77,9 @@ Rectangle {
                 }
 
                 Row {
-                    topPadding: 10
+                    topPadding: 15
                     Controls.LucereButtonSelect {
+                        checked: index == 0
                         ButtonGroup.group: radioGroup
                     }
                 }
