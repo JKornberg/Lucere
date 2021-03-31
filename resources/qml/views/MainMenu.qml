@@ -17,7 +17,7 @@ Rectangle {
 
     implicitWidth: 70
     implicitHeight: 480
-    color: "transparent"
+    color: AppColors.darkGray
 
     Component {
         id: menuDelegate
