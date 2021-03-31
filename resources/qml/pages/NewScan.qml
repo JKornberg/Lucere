@@ -12,7 +12,7 @@ Components.LucerePage {
     clip: true
 
     Components.PageTitle {
-        text: "New Capture"
+        text: "New Scan"
     }
 
     Components.CameraPreview {
