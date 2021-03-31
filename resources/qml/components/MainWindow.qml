@@ -89,7 +89,7 @@ Window {
             homeButton.onClicked: {
                 pageLoader.sourceComponent = loginPage
             }
-
+            
             exitButton.onClicked: {
                 // Do work at exit then close
                 mainWindow.close()
