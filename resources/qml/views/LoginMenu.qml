@@ -5,6 +5,9 @@ import "../styles/AppColors.js" as AppColors
 
 // Wrap Menu in Transparent Rectangle
 Rectangle {
+    property alias homeButton: homeButton
+    property alias exitButton: exitButton
+
     id: menuWrapper
     implicitWidth: 70
     implicitHeight: 480
@@ -125,6 +128,7 @@ Rectangle {
 
         // Menu Home
         MouseArea {
+            id: homeButton
             implicitWidth: 230
             implicitHeight: 60
             y: mainMenu.y + implicitHeight * 1
@@ -151,10 +155,10 @@ Rectangle {
             implicitWidth: 230
             implicitHeight: 60
             y: mainMenu.y + implicitHeight * 7
-            color: exitClick.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
+            color: exitButton.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
 
             MouseArea {
-                id: exitClick
+                id: exitButton
                 anchors.fill: parent
                 onClicked: {
                     // Exit App

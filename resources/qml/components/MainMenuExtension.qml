@@ -6,10 +6,10 @@ import "../components" as Components
 // Auxiliary menu slides from left
 Rectangle {
     id: mainMenuExtension
-    implicitWidth: 230
+    implicitWidth: 250
     implicitHeight: 120
     color: AppColors.optionsGray
-    x: -230
+    x: -250
 
     // Animation
     Behavior on x {
@@ -22,13 +22,13 @@ Rectangle {
 
     // App Settings
     MouseArea {
-        width: 230
+        width: 250
         height: 60
         onClicked: {
             // Open Settings Page
 
             // Close menu
-            mainMenuExtension.x = -230
+            mainMenuExtension.x = -250
         }
 
         Rectangle {
@@ -52,7 +52,7 @@ Rectangle {
 
     // App Export
     MouseArea {
-        width: 230
+        width: 250
         height: 60
         y: 60
 
@@ -60,7 +60,7 @@ Rectangle {
             // Open Settings Page
 
             // Close menu
-            mainMenuExtension.x = -230
+            mainMenuExtension.x = -250
         }
 
         Rectangle {

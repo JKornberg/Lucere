@@ -8,17 +8,17 @@ import "../styles/AppColors.js" as AppColors
 // Lucere Login Page
 Components.LucerePage {
     // Properties
-    property alias loginButton: loginButton
-
-    id: loginPage
+    property alias switchUserButton: switchUserButton
+    
+    id: homePage
 
     // Logo Image
     Image {
         id: lucereLogo
         anchors {
-            horizontalCenter: loginPage.horizontalCenter
+            horizontalCenter: parent.horizontalCenter
         }
-        y: loginPage.y + 80
+        y: homePage.y + 80
 
         source: "../../img/lucere-logo.png"
     }
@@ -29,7 +29,7 @@ Components.LucerePage {
         y: 160
         anchors.horizontalCenter: parent.horizontalCenter
         height: 32
-        text: "Welcome"
+        text: "Welcome, " + "Atticus Steinmetz"
         font.family: "Segoe UI"
         font.weight: Font.Light
         font.pixelSize: 24
@@ -48,78 +48,36 @@ Components.LucerePage {
         font.pixelSize: 12
     }
 
+    Image {
+        id: lucereHexagon
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+        }
+        y: date.y + 60
+        source: "../../icons/lucere-hexagon.svg"
+    }
+
     Rectangle {
         width: 310
         height: 108
         anchors {
             horizontalCenter: parent.horizontalCenter
         }
-        y: date.y + date.height + 60
-
-        // Name Label
-        Text {
-            id: name
-            x: 5
-            width: 30
-            height: 16
-            text: "Name"
-            font.family: "Segoe UI"
-            font.weight: Font.Light
-            font.pixelSize: 12
-            horizontalAlignment: Text.AlignHCenter
-        }
-
-        // PIN Label
-        Text {
-            id: pin
-            x: nameSelect.width + 15
-            height: 16
-            text: "PIN"
-            font.family: "Segoe UI"
-            font.weight: Font.Light
-            font.pixelSize: 12
-            horizontalAlignment: Text.AlignHCenters
-        }
-
-        // Select User ComboBox
-        Components.LucereComboBox {
-            id: nameSelect
-            y:name.height + 5
-            placeholderText: "Select User..."
-            placeholderColor: AppColors.lightGray
-            optionColor: AppColors.lightGray
-            borderColor: AppColors.borderGray
-            contents: ["Atticus Steinmetz", "Sadie Crawford"]
-        }
-
-        // PIN Text Input Field
-        Components.LucerePasswordField {
-            id: pinTxtField
-            x: nameSelect.width + 10
-            y: name.height + 5
-            placeholderText: "******"
-            color: AppColors.lightGray
-            borderColor: AppColors.borderGray
-        }
+        y: lucereHexagon.y + lucereHexagon.height + 40
 
         // Exit Button
         Controls.LucereButton {
             id: exitButton
-            y: nameSelect.y + nameSelect.height + 10
             buttonColor: AppColors.lightGray
             buttonText: "Exit"
         }
 
-        // Login Button
+        // Switch User Button
         Controls.LucereButton {
-            id: loginButton
+            id: switchUserButton
             x: exitButton.width + 10
-            y: nameSelect.y + nameSelect.height + 10
             buttonColor: AppColors.purple
-            buttonText: "Login"
-            onClicked: {
-                // login.login(nameSelect.currentText, pinTxtField.text);
-            }
+            buttonText: "Switch User"
         }
     }
 

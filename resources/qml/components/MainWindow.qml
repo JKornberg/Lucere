@@ -8,6 +8,7 @@ import "../pages" as Pages
 Window {
     // Define global properties
     property int globalIndex: -1
+    property bool authenticated: false
 
     id: mainWindow
     title: qsTr("Lucere Labs")
@@ -18,34 +19,81 @@ Window {
     visible: true
     // visibility: "FullScreen"
 
-    PageLoader {
+    // Create a page loader
+    Loader {
         id: pageLoader
-        source: "../pages/Login.qml"
+        x: 70
+        sourceComponent: loginPage
     }
 
-    Views.MainMenu {
-        id: mainMenu
+    // Create a menu loader
+    Loader {
+        id: menuLoader
+        sourceComponent: loginMenuComponent
+    }
 
-        homeButton.onClicked: {
-            pageLoader.source = "../pages/Login.qml"
+    // Instantiate Login Page
+    Component {
+        id: loginPage
+        Pages.Login {
+            loginButton.onClicked: {
+                menuLoader.sourceComponent = homeMenuComponent
+                pageLoader.sourceComponent = homePage
+            }
         }
+    }
 
-        scanButton.onClicked: {
-            // Execute a Pyton Function
-            // test.outputStr()
-            
-            pageLoader.source = "../pages/NewScan.qml"
-            pageLoader.asynchronous = true
+    // Instantiate Home Page
+    Component {
+        id: homePage
+        Pages.Home {
+            switchUserButton.onClicked: {
+                menuLoader.sourceComponent = loginMenuComponent
+                pageLoader.sourceComponent = loginPage
+            }
         }
+    }
 
-        historyButton.onClicked: {
-            pageLoader.source = "../pages/ScanHistory.qml"
-            pageLoader.asynchronous = true
+    // Instantiate Menus
+    Component {
+        id: homeMenuComponent
+        Views.MainMenu {
+            id: mainMenu
+            onHomeButtonPressed: {            
+                pageLoader.sourceComponent = homePage
+                pageLoader.asynchronous = true
+            }
+
+            onScanButtonPressed: {            
+                pageLoader.source = "../pages/NewScan.qml"
+                pageLoader.asynchronous = true
+            }
+
+            onHistoryButtonPressed: {
+                pageLoader.source = "../pages/ScanHistory.qml"
+                pageLoader.asynchronous = true
+            }
+
+            onExitButtonPressed: {
+                // Do work at exit then close
+                mainWindow.close()
+            }
         }
+    }
 
-        exitButton.onClicked: {
-            // Do work at exit then close
-            mainWindow.close()
+    Component {
+        id: loginMenuComponent
+        Views.LoginMenu {
+            id: loginMenu
+
+            homeButton.onClicked: {
+                pageLoader.sourceComponent = loginPage
+            }
+
+            exitButton.onClicked: {
+                // Do work at exit then close
+                mainWindow.close()
+            }
         }
     }
 }
