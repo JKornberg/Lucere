@@ -40,6 +40,11 @@ Window {
                 menuLoader.sourceComponent = homeMenuComponent
                 pageLoader.sourceComponent = homePage
             }
+
+            onExitButtonPressed: {
+                // Do work at exit then close
+                mainWindow.close()
+            }
         }
     }
 
@@ -50,6 +55,11 @@ Window {
             onSwitchUserButtonPressed: {
                 menuLoader.sourceComponent = loginMenuComponent
                 pageLoader.sourceComponent = loginPage
+            }
+
+            onExitButtonPressed: {
+                // Do work at exit then close
+                mainWindow.close()
             }
         }
     }

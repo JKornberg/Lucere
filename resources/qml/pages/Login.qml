@@ -110,7 +110,7 @@ Components.LucerePage {
             buttonColor: AppColors.lightGray
             buttonText: "Exit"
             onClicked: {
-                loginButtonPressed()
+                exitButtonPressed()
             }
         }
 
