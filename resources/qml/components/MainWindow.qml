@@ -95,6 +95,11 @@ Window {
                 pageLoader.asynchronous = true
             }
 
+            onExportButtonPressed: {
+                pageLoader.source = "../pages/ScanExport.qml"
+                pageLoader.asynchronous = true
+            }
+
             onExitButtonPressed: {
                 // Do work at exit then close
                 mainWindow.close()

@@ -6,9 +6,15 @@ import "../models" as Models
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
+    // Signals
+    signal selectButtonPressed
+    // property int scanIndex: -1
+    property alias scanGridSelect: scanGridSelect
+
     id: wrapper
     implicitWidth: 700
-    implicitHeight: 348
+    implicitHeight: 356
+    clip: true
 
     // Radio Button Group
     ButtonGroup {
@@ -38,7 +44,7 @@ Rectangle {
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             x: parent.width + 5
-                            text: "ID: " + scanID
+                            text: "ID: " + id
                             font.family: "Segoe UI Semibold"
                             font.pixelSize: 16
                             color: AppColors.darkGray
@@ -48,7 +54,7 @@ Rectangle {
 
                 // Scan Date
                 Text {
-                    text: 'Date: ' + scanDate
+                    text: 'Date: ' + date
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray              
@@ -64,7 +70,7 @@ Rectangle {
 
                 // Scan Wavelength
                 Text {
-                    text: 'Wavelength: ' + scanWave + " nm"
+                    text: 'Wavelength: ' + wavelength + " nm"
                     font.family: "Segoe UI Semilight"
                     font.pixelSize: 14
                     color: AppColors.lightGray
@@ -81,12 +87,10 @@ Rectangle {
     }
 
     GridView {
-        id: scanGridView
+        id: scanGridSelect
+        delegate: scanDelegate
         anchors.fill: parent
         cellWidth: 233
         cellHeight: 165
-
-        model: Models.ScanModel {}
-        delegate: scanDelegate
     }
 }
