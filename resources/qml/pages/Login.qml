@@ -55,7 +55,7 @@ Components.LucerePage {
         anchors {
             horizontalCenter: parent.horizontalCenter
         }
-        y: date.y + date.height + 60
+        y: date.y + date.height + 77
 
         // Name Label
         Text {
