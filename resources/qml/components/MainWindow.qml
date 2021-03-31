@@ -9,6 +9,7 @@ Window {
     // Define global properties
     property int globalIndex: -1
     property bool authenticated: false
+    property bool admin: false // change to be dependent on user logging in
 
     id: mainWindow
     title: qsTr("Lucere Labs")
@@ -86,6 +87,11 @@ Window {
 
             onOptionsButtonPressed: {
                 pageLoader.source = "../pages/CaptureOptions.qml"
+                pageLoader.asynchronous = true
+            }
+
+            onSettingsButtonPressed: {
+                pageLoader.source = "../pages/AppSettings.qml"
                 pageLoader.asynchronous = true
             }
 
