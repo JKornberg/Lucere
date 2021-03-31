@@ -369,7 +369,8 @@ Rectangle {
     }
 
     ListView {
-        width: 230
+        id: menuScroll
+        width: 70
         height: 480
         delegate: menuDelegate
         model: 1
