@@ -7,8 +7,9 @@ import "../styles/AppColors.js" as AppColors
 
 // Lucere Login Page
 Components.LucerePage {
-    // Properties
-    property alias loginButton: loginButton
+    // Signals
+    signal loginButtonPressed
+    signal exitButtonPressed
 
     id: loginPage
 
@@ -108,6 +109,9 @@ Components.LucerePage {
             y: nameSelect.y + nameSelect.height + 10
             buttonColor: AppColors.lightGray
             buttonText: "Exit"
+            onClicked: {
+                loginButtonPressed()
+            }
         }
 
         // Login Button
@@ -118,6 +122,7 @@ Components.LucerePage {
             buttonColor: AppColors.purple
             buttonText: "Login"
             onClicked: {
+                loginButtonPressed()
                 // login.login(nameSelect.currentText, pinTxtField.text);
             }
         }

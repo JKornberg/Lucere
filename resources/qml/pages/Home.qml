@@ -7,8 +7,9 @@ import "../styles/AppColors.js" as AppColors
 
 // Lucere Login Page
 Components.LucerePage {
-    // Properties
-    property alias switchUserButton: switchUserButton
+    // Signals
+    signal switchUserButtonPressed
+    signal exitButtonPressed
     
     id: homePage
 
@@ -70,6 +71,9 @@ Components.LucerePage {
             id: exitButton
             buttonColor: AppColors.lightGray
             buttonText: "Exit"
+            onClicked: {
+                exitButtonPressed()
+            }
         }
 
         // Switch User Button
@@ -78,6 +82,9 @@ Components.LucerePage {
             x: exitButton.width + 10
             buttonColor: AppColors.purple
             buttonText: "Switch User"
+            onClicked: {
+                switchUserButtonPressed()
+            }
         }
     }
 

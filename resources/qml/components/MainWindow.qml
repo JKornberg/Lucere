@@ -36,7 +36,7 @@ Window {
     Component {
         id: loginPage
         Pages.Login {
-            loginButton.onClicked: {
+            onLoginButtonPressed: {
                 menuLoader.sourceComponent = homeMenuComponent
                 pageLoader.sourceComponent = homePage
             }
@@ -47,7 +47,7 @@ Window {
     Component {
         id: homePage
         Pages.Home {
-            switchUserButton.onClicked: {
+            onSwitchUserButtonPressed: {
                 menuLoader.sourceComponent = loginMenuComponent
                 pageLoader.sourceComponent = loginPage
             }
@@ -74,6 +74,11 @@ Window {
                 pageLoader.asynchronous = true
             }
 
+            onOptionsButtonPressed: {
+                pageLoader.source = "../pages/CaptureOptions.qml"
+                pageLoader.asynchronous = true
+            }
+
             onExitButtonPressed: {
                 // Do work at exit then close
                 mainWindow.close()
@@ -86,11 +91,11 @@ Window {
         Views.LoginMenu {
             id: loginMenu
 
-            homeButton.onClicked: {
+            onHomeButtonPressed: {
                 pageLoader.sourceComponent = loginPage
             }
-            
-            exitButton.onClicked: {
+
+            onExitButtonPressed: {
                 // Do work at exit then close
                 mainWindow.close()
             }

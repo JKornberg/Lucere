@@ -5,8 +5,9 @@ import "../styles/AppColors.js" as AppColors
 
 // Wrap Menu in Transparent Rectangle
 Rectangle {
-    property alias homeButton: homeButton
-    property alias exitButton: exitButton
+    // Signals
+    signal homeButtonPressed
+    signal exitButtonPressed
 
     id: menuWrapper
     implicitWidth: 70
@@ -133,7 +134,7 @@ Rectangle {
             implicitHeight: 60
             y: mainMenu.y + implicitHeight * 1
             onClicked: {
-                menuHighlight.y = y
+                homeButtonPressed()
             }
 
             Image {
@@ -161,7 +162,7 @@ Rectangle {
                 id: exitButton
                 anchors.fill: parent
                 onClicked: {
-                    // Exit App
+                    exitButtonPressed()
                 }
 
                 Image {
