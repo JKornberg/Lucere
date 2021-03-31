@@ -43,6 +43,11 @@ Window {
             pageLoader.asynchronous = true
         }
 
+        settingsButton.onClicked: {
+            pageLoader.source = "../pages/CaptureOptions.qml"
+            pageLoader.asynchronous = true
+        }
+
         exitButton.onClicked: {
             // Do work at exit then close
             mainWindow.close()
