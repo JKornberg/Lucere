@@ -8,12 +8,15 @@ Rectangle {
     property int intervalCounter: 5
     property int resetIntervalCounter: 5
     property int captureCounter: 1
-    property int captureCount: 5
+    property int captureCount: 1
+    property alias captureCountLabel: captureCountLabel.text
 
-    implicitWidth: 690
-    implicitHeight: 350
-    color: AppColors.darkGray
-    opacity: 0.8
+    // Signals
+    signal timerComplete
+
+    implicitWidth: 160
+    implicitHeight: 240
+    color: "transparent"
 
     Rectangle {
         anchors {
@@ -23,6 +26,7 @@ Rectangle {
         height: 240
         radius: 10
         color: "white"
+        opacity: 0.8
 
         // Capture Indicator
         Text {
@@ -78,7 +82,7 @@ Rectangle {
             width: 40
             height: 40
             y: footerLine.y + 10
-            palette.dark: AppColors.lightGray
+            palette.dark: AppColors.darkGray
         }
 
         // Scanning in progress
@@ -91,25 +95,6 @@ Rectangle {
             font.family: "Segoe UI"
             font.pixelSize: 12
             color: AppColors.darkGray
-        }
-
-        // Scan Timer
-        Timer {
-            interval: 1000; running: true; repeat: true
-            onTriggered: {
-                if(captureCounter == captureCount && intervalCounter == 0) {
-                    captureCountLabel.text = "Complete"
-                    stop()
-                }
-                else if(intervalCounter == 0) {
-                    captureCounter += 1
-                    intervalCounter = resetIntervalCounter
-                    restart()
-                }
-                else {
-                    intervalCounter -= 1
-                }
-            }
         }
     }
 }

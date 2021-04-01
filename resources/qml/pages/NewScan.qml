@@ -6,64 +6,115 @@ import "../controls" as Controls
 import "../views" as Views
 import "../styles/AppColors.js" as AppColors
 
-// Capture Page
-Components.LucerePage {
-    id: newCapturePage
-    clip: true
+StackView {
+    id: newScanStack
+    width: 730
+    height: 480
 
-    Components.PageTitle {
-        text: "New Scan"
-    }
+    initialItem: newCapturePage
 
-    Components.CameraPreview {
-        id: cameraPreview
-        x: 20
-        y: 60
+    // Capture Page
+    Components.LucerePage {
+        id: newCapturePage
+        clip: true
 
-        // Camera Settings
-        shutterSpeed: slider.shutterSpeedValue
-        brightness: slider.brightnessValue * 0.01
-        contrast: slider.contrastValue * 0.01
-        sharpness: slider.sharpnessValue * 0.01
-        iso: slider.isoValue
-
-        // Component.onCompleted: {
-        //     console.debug(cameraPreview.brightness)
-        // }
-    }
-
-    Components.InfoLine {
-        x: 20
-        y: parent.height - 40
-        notice: "Use <b>Capture Settings</b> to set specific scan options"
-    }
-
-    Controls.LucereDelayButton {
-        id: captureButton
-        x: parent.width - width - 20
-        y: parent.height - height - 20
-        width: 180
-        height: 38
-        buttonText: "Start Capture"
-        buttonDelay: 2000
-        buttonColor: AppColors.purple
-    }
-
-    Controls.LucereButton {
-        id: scanOptionsButton
-        x: parent.width - width * 2 - 30
-        y: parent.height - height - 20
-        width: 180
-        buttonText: "Capture Settings"
-        buttonColor: AppColors.lightGray
-
-        onClicked: {
-            slider.x = 530
+        Components.PageTitle {
+            text: "New Scan"
         }
-    }
 
-    // Slider
-    Views.CaptureOptions {
-        id: slider
+        Components.CameraPreview {
+            id: cameraPreview
+            x: 20
+            y: 60
+
+            // Camera Settings
+            shutterSpeed: slider.shutterSpeedValue
+            brightness: slider.brightnessValue * 0.01
+            contrast: slider.contrastValue * 0.01
+            sharpness: slider.sharpnessValue * 0.01
+            iso: slider.isoValue
+        }
+
+        Components.InfoLine {
+            x: 20
+            y: parent.height - 40
+            notice: "Use <b>Capture Settings</b> to set specific scan options"
+        }
+
+        Controls.LucereDelayButton {
+            id: captureButton
+            x: parent.width - width - 20
+            y: parent.height - height - 20
+            width: 180
+            height: 38
+            buttonText: "Start Capture"
+            buttonDelay: 2000
+            buttonColor: AppColors.purple
+            onActivated: {
+                timeLoader.sourceComponent = scanTimerComponent
+            }
+        }
+
+        Controls.LucereButton {
+            id: scanOptionsButton
+            x: parent.width - width * 2 - 30
+            y: parent.height - height - 20
+            width: 180
+            buttonText: "Capture Settings"
+            buttonColor: AppColors.lightGray
+
+            onClicked: {
+                slider.x = 530
+            }
+        }
+
+        // Slider
+        Views.CaptureOptions {
+            id: slider
+        }
+
+        Component {
+            id: scanTimerComponent
+
+            Components.ScanTimer {
+                id: scanTimer
+                x: newScanStack.width / 2 - width / 2
+                y: newScanStack.height / 2 - height / 2
+
+                // Set counters from slider values
+                intervalCounter: slider.captureIntervalValue
+                resetIntervalCounter: slider.captureIntervalValue
+                captureCount: slider.numberOfScansValue
+
+                // Scan Timer
+                Timer {
+                    interval: 1000; running: true; repeat: true
+                    onTriggered: {
+                        if(captureCounter == captureCount && intervalCounter == 0) {
+                            stop()
+                            timerComplete()
+                        }
+                        else if(intervalCounter == 0) {
+                            captureCounter += 1
+                            intervalCounter = resetIntervalCounter
+                            // Take captures
+                            restart()
+                        }
+                        else {
+                            intervalCounter -= 1
+                        }
+                    }
+                }
+
+                onTimerComplete: {
+                    newScanStack.replace("CaptureComplete.qml")
+                }
+            }
+        }
+
+        // Scan Timer
+        Loader {
+            id: timeLoader
+        }
     }
 }

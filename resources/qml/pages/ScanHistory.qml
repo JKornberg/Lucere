@@ -23,17 +23,15 @@ StackView {
 
         Views.ScanGridView {
             id: scanView
+            x: 20
+            y: 60
 
             // Set data model
             scanGridView.model: scanModel
             
             onViewButtonPressed: {
-                historyStack.push (
-                    Qt.createComponent("ScanDetails.qml").createObject(historyStack)
-                )
+                historyStack.push("ScanDetails.qml")
             }
-            x: 20
-            y: 60
         }
 
         Components.InfoLine {

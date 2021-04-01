@@ -8,6 +8,9 @@ import "../styles/AppColors.js" as AppColors
 
 // Capture Complete Page
 Components.LucerePage {
+    // Properties
+    property StackView newScanStack: StackView.view
+
     id: captureCompletePage
     clip: true
 
@@ -41,5 +44,9 @@ Components.LucerePage {
         width: 180
         buttonText: "Discard"
         buttonColor: AppColors.lightGray
+
+        onClicked: {
+            newScanStack.replace("NewScan.qml", StackView.PopTransition)
+        }
     }
 }
