@@ -149,6 +149,7 @@ Rectangle {
 
                     compareButton.onClicked: {
                         compareSlider.x = 530
+                        sliderMouseArea.visible = true
                         contextMenu.y = 50
                         infoLine.notice = "Select a <b>compare scan</b> from the slide list on the right."
                     }

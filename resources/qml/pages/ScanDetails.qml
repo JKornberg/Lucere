@@ -37,6 +37,7 @@ Components.LucerePage {
 
         onClicked: {
             slider.x = 530
+            sliderMouseArea.visible = true
         }
     }
 
@@ -48,6 +49,16 @@ Components.LucerePage {
 
         onClicked: {
             historyStack.pop()
+        }
+    }
+
+    // Slider Close Mouse Area
+    Components.SliderMouseArea {
+        id: sliderMouseArea
+        visible: false
+        onClicked: {
+            slider.x == 530 ? slider.x = 730 : undefined
+            visible = false
         }
     }
 

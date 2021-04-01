@@ -50,6 +50,18 @@ StackView {
             onClicked: {
                 // scanModel.addScans()
                 filterSlider.x = 530
+                sliderMouseArea.visible = true
+            }
+        }
+
+        // Slider Close Mouse Area
+        Components.SliderMouseArea {
+            id: sliderMouseArea
+            visible: false
+            onClicked: {
+                filterSlider.x == 530 ? filterSlider.x = 730 : undefined
+                compareSlider.x == 530 ? compareSlider.x = 730 : undefined
+                visible = false
             }
         }
 

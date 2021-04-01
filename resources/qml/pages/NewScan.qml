@@ -70,6 +70,7 @@ StackView {
 
             onClicked: {
                 slider.x = 530
+                sliderMouseArea.visible = true
             }
         }
 
@@ -91,6 +92,16 @@ StackView {
                 scanOptionsButton.visible = true
                 infoLine.notice = "Use <b>Capture Settings</b> to set specific scan options"
 
+            }
+        }
+
+        // Slider Close Mouse Area
+        Components.SliderMouseArea {
+            id: sliderMouseArea
+            visible: false
+            onClicked: {
+                slider.x == 530 ? slider.x = 730 : undefined
+                visible = false
             }
         }
 
