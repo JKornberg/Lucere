@@ -7,6 +7,7 @@ Rectangle {
 
     implicitWidth: 100
     implicitHeight: 20
+    color: "transparent"
 
     Text {
         x: 30

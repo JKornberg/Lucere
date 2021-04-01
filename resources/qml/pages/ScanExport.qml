@@ -37,7 +37,7 @@ StackView {
 
         Components.InfoLine {
             x: 20
-            y: parent.height - 40
+            y: parent.height - 45
             notice: "Select the <b>scan</b> you wish to export."
         }
 

@@ -25,7 +25,7 @@ Components.LucerePage {
 
     Components.InfoLine {
         x: 20
-        y: parent.height - 40
+        y: parent.height - 45
         notice: "Use swipe to review all captures in this scan"
     }
 

@@ -36,7 +36,7 @@ StackView {
 
         Components.InfoLine {
             x: 20
-            y: parent.height - 40
+            y: parent.height - 45
             notice: "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
         }
 

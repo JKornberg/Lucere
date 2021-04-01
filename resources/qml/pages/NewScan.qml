@@ -36,8 +36,9 @@ StackView {
         }
 
         Components.InfoLine {
+            id: infoLine
             x: 20
-            y: parent.height - 40
+            y: parent.height - 45
             notice: "Use <b>Capture Settings</b> to set specific scan options"
         }
 
@@ -52,6 +53,10 @@ StackView {
             buttonColor: AppColors.purple
             onActivated: {
                 timeLoader.sourceComponent = scanTimerComponent
+                scanOptionsButton.visible = false
+                captureButton.visible = false
+                cancelButton.visible = true
+                infoLine.notice = "Capture in progress. Total number of captures: <b>" + slider.numberOfScansValue + "</b> | Capture Interval: <b>" + slider.captureIntervalValue + "</b>"
             }
         }
 
@@ -65,6 +70,27 @@ StackView {
 
             onClicked: {
                 slider.x = 530
+            }
+        }
+
+        Controls.LucereButton {
+            id: cancelButton
+            x: parent.width - width - 20
+            y: parent.height - height - 20
+            width: 180
+            height: 38
+            buttonText: "Cancel Capture"
+            buttonColor: AppColors.lightGray
+            visible: false
+
+            onClicked: {
+                // Unload timer & cleanup
+                timeLoader.sourceComponent = undefined
+                cancelButton.visible = false
+                captureButton.visible = true
+                scanOptionsButton.visible = true
+                infoLine.notice = "Use <b>Capture Settings</b> to set specific scan options"
+
             }
         }
 
