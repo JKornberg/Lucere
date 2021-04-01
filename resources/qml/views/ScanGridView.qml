@@ -9,7 +9,7 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Signals
     signal viewButtonPressed
-    signal compareButtonPressed
+    signal deleteButtonPressed
     
     property alias scanGridView: scanGridView
     property StackView historyStack: StackView.view
@@ -144,7 +144,9 @@ Rectangle {
 
                     deleteButton.onActivated: {
                         contextMenu.y = 50
-                        scanModel.removeScan(index)
+                        globalIndex = index
+                        // scanModel.removeScan(index)
+                        deleteButtonPressed()
                     }
 
                     compareButton.onClicked: {

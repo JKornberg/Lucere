@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 import "../components" as Components
 import "../controls" as Controls
 import "../views" as Views
+import "../dialogs" as Dialogs
 import "../styles/AppColors.js" as AppColors
 
 StackView {
@@ -31,6 +32,10 @@ StackView {
             
             onViewButtonPressed: {
                 historyStack.push("ScanDetails.qml")
+            }
+
+            onDeleteButtonPressed: {
+                confirmationLoader.sourceComponent = confirmationComponent
             }
         }
 
@@ -79,5 +84,29 @@ StackView {
                 infoLine.notice = "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
             }
         }
+    }
+
+    // Confirmation Message
+    Component {
+        id: confirmationComponent
+
+        Dialogs.Confirmation {
+            header.text: "Action Required"
+            body.text: "Are you sure you want to delete this can? This action <b>cannot</b> be undone."
+
+            onNoButtonPressed: {
+                confirmationLoader.sourceComponent = undefined
+            }
+
+            onYesButtonPressed: {
+                scanModel.removeScan(globalIndex)
+                confirmationLoader.sourceComponent = undefined
+            }
+        }
+    }
+
+    // Confirmation Message Loader
+    Loader {
+        id: confirmationLoader
     }
 }

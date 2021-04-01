@@ -47,6 +47,7 @@ Rectangle {
         width: 80
         height: 30
         buttonText: "Delete"
+        buttonDelay: 300
         buttonColor: AppColors.red
     }
 
