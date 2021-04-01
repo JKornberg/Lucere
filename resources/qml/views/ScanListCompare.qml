@@ -4,9 +4,21 @@ import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
-    implicitWidth: 200
+    // Signals
+    signal pickCompareButtonPressed
+
+    id: slider
+    implicitWidth: 220
     implicitHeight: 480
+    x: 730
     color: AppColors.darkGray
+
+    Behavior on x {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     Text {
         x: 20
@@ -24,11 +36,17 @@ Rectangle {
     }
 
     Controls.LucereButton {
+        id: pickCompareButton
         x: 10
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         width: 180
         buttonText: "Compare"
         buttonColor: AppColors.red
+
+        onClicked: {
+            slider.x = 730
+            pickCompareButtonPressed()
+        }
     }
 }

@@ -9,7 +9,8 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Signals
     signal viewButtonPressed
-    // property int scanIndex: -1
+    signal compareButtonPressed
+    
     property alias scanGridView: scanGridView
     property StackView historyStack: StackView.view
 
@@ -141,13 +142,15 @@ Rectangle {
                     id: contextMenu
                     y: height
 
-                    deleteButton.onClicked: {
-                        console.log(scanID)
-                    }
-
                     deleteButton.onActivated: {
                         contextMenu.y = 50
                         scanModel.removeScan(index)
+                    }
+
+                    compareButton.onClicked: {
+                        compareSlider.x = 530
+                        contextMenu.y = 50
+                        infoLine.notice = "Select a <b>compare scan</b> from the slide list on the right."
                     }
                 }
             }

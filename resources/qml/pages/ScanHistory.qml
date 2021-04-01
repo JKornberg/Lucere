@@ -35,6 +35,7 @@ StackView {
         }
 
         Components.InfoLine {
+            id: infoLine
             x: 20
             y: parent.height - 45
             notice: "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
@@ -48,13 +49,23 @@ StackView {
 
             onClicked: {
                 // scanModel.addScans()
-                slider.x = 530
+                filterSlider.x = 530
             }
         }
 
-        // Slider
+        // Filter Slider
         Views.ScanFilter {
-            id: slider
+            id: filterSlider
+        }
+
+        // Scan Picker Slider
+        Views.ScanListCompare {
+            id: compareSlider
+
+            onPickCompareButtonPressed: {
+                console.log("Big compare button pressed")
+                infoLine.notice = "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
+            }
         }
     }
 }

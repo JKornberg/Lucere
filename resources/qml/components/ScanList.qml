@@ -5,7 +5,7 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     id: wrapper
-    implicitWidth: 200
+    implicitWidth: 220
     implicitHeight: 380
     color: AppColors.darkGray
     clip: true
@@ -24,19 +24,19 @@ Rectangle {
                 bottomPadding: 10
 
                 Text {
-                    text: "ID: " + scanID
+                    text: "ID: " + id
                     font.family: "Segoe UI"
                     font.pixelSize: 14
                     color: "white"               
                 }
                 Text {
-                    text: 'Date: ' + scanDate
+                    text: 'Date: ' + date
                     font.family: "Segoe UI"
                     font.pixelSize: 14
                     color: "white"               
                 }
                 Text {
-                    text: 'Wavelength: ' + scanWave + " nm"
+                    text: 'Wavelength: ' + wavelength + " nm"
                     font.family: "Segoe UI"
                     font.pixelSize: 14
                     color: "white"               

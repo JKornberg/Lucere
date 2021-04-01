@@ -5,6 +5,10 @@ import "../styles/AppColors.js" as AppColors
 Rectangle {
     // Properties
     property alias deleteButton: deleteButton
+    property alias compareButton: compareButton
+
+    // Signals
+    signal compareButtonPressed
 
     id: scanContextMenu
     implicitWidth: 220
