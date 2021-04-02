@@ -8,13 +8,14 @@ import "../styles/AppColors.js" as AppColors
 
 // Admin Settings Page
 Components.LucerePage {
+    // Properties
+    property bool admin: false
+
     id: captureSettingsPage
     clip: true
     
     // Visibility Container
     Rectangle {
-        visible: admin
-        
         // Admin Settings Page Title
         Components.PageTitle {
             text: "Admin Settings"
@@ -393,6 +394,7 @@ Components.LucerePage {
             buttonColor: AppColors.red
             buttonText: "Delete User"
             buttonDelay: 5000
+            enabled: admin
         }
 
         // Save User Button
