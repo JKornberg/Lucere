@@ -53,6 +53,10 @@ Rectangle {
         }
     }
 
+    Component.onCompleted: {
+        globalCompareIndex = scanListView.currentIndex
+    }
+
     ListView {
         id: scanListView
         width: parent.width
@@ -64,10 +68,6 @@ Rectangle {
         highlightMoveDuration: 300
 
         highlight: Rectangle {
-            // anchors {
-            //     left: parent.left
-            //     right: parent.right
-            // }
             color: AppColors.red
         }
     }

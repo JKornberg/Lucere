@@ -66,6 +66,7 @@ StackView {
             onClicked: {
                 filterSlider.x == 530 ? filterSlider.x = 730 : undefined
                 compareSlider.x == 530 ? compareSlider.x = 730 : undefined
+                infoLine.notice = "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
                 visible = false
             }
         }
