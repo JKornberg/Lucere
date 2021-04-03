@@ -6,7 +6,6 @@ from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlCo
 # Classes
 from model.classes.ScanModel import ScanModel
 from model.classes.ImageModel import ImageModel
-from model.classes.SortProxyModel import SortProxyModel
 
 import sys
 
