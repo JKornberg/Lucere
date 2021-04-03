@@ -10,14 +10,14 @@ Rectangle {
 
     Image {
         id: svgImage
-        y: parent.height / 2 - subtitleText.height / 2
+        anchors.verticalCenter: parent.verticalCenter
         source: '../../icons/' + svg
     }
 
     Text {
         id: subtitleText
         x: 30
-        y: svgImage.height / 2 - contentHeight / 2
+        anchors.verticalCenter: parent.verticalCenter
         text: "Sub Title"
         font.family: "Segoe UI Semibold"
         font.pixelSize: 16
