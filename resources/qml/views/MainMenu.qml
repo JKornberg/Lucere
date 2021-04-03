@@ -15,9 +15,17 @@ Rectangle {
     signal exportButtonPressed
     signal exitButtonPressed
 
+    id: root
     implicitWidth: 70
     implicitHeight: 480
     color: AppColors.darkGray
+
+    Behavior on width {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     Component {
         id: menuDelegate
@@ -30,48 +38,14 @@ Rectangle {
             color: "transparent"
             clip: true
 
-            // Define menu states
-            states: [
-                State {
-                    name: "showMenu"
-                    PropertyChanges {
-                        target: menuWrapper
-                        width: 230
-                    }
-                },
-
-                State {
-                    name: "hideMenu"
-                    PropertyChanges {
-                        target: menuWrapper
-                        width: 70
-                    }
+            // // Wrapper Animation
+            Behavior on width {
+                NumberAnimation {
+                    duration: 500
+                    easing.type: Easing.OutBack
                 }
-            ]
-
-            // Default State
-            state: "hideMenu"
-
-            // Transitions
-            transitions: [
-                Transition {
-                    to: "showMenu"
-                    NumberAnimation {
-                        duration: 500
-                        property: "width"
-                        easing.type: Easing.OutBack
-                    }
-                },
-
-                Transition {
-                    to: "hideMenu"
-                    NumberAnimation {
-                        duration: 500
-                        property: "width"
-                        easing.type: Easing.OutBack
-                    }
-                }
-            ]
+            }
+            
 
             Rectangle {
                 id: mainMenu
@@ -116,7 +90,9 @@ Rectangle {
                         menuIcon.rotation == 0 ? (rotateIconOpen.running = true) : (rotateIconClose.running = true)
 
                         // Expand or Collapse Menu
-                        menuWrapper.state === "hideMenu" ? menuWrapper.state = "showMenu" : menuWrapper.state = "hideMenu"
+                        menuWrapper.width === 70 ? 
+                        (menuWrapper.width = 230) && (menuScroll.width = 230) && (root.width = 230) :
+                        (menuWrapper.width = 70) && (menuScroll.width = 70) && (root.width = 70)
                     }
 
                     Image {
