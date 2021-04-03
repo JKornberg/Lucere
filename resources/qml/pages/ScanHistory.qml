@@ -80,8 +80,8 @@ StackView {
             id: compareSlider
 
             onPickCompareButtonPressed: {
-                console.log("Big compare button pressed")
                 infoLine.notice = "Touch View for scan details. Use <b>three-dot</b> context menu for more options."
+                historyStack.push("ScanComparison.qml")
             }
         }
     }
