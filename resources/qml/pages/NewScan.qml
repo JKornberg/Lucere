@@ -91,7 +91,6 @@ StackView {
                 captureButton.visible = true
                 scanOptionsButton.visible = true
                 infoLine.notice = "Use <b>Capture Settings</b> to set specific scan options"
-
             }
         }
 
@@ -144,7 +143,12 @@ StackView {
                 }
 
                 onTimerComplete: {
-                    newScanStack.replace("CaptureComplete.qml")
+                    newScanStack.push("CaptureComplete.qml")
+                    timeLoader.sourceComponent = undefined
+                    cancelButton.visible = false
+                    captureButton.visible = true
+                    scanOptionsButton.visible = true
+                    infoLine.notice = "Use <b>Capture Settings</b> to set specific scan options"
                 }
             }
         }
