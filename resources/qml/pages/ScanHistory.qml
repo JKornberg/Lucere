@@ -8,6 +8,9 @@ import "../dialogs" as Dialogs
 import "../styles/AppColors.js" as AppColors
 
 StackView {
+    // Properties
+    property alias scanGridView: scanView.scanGridView
+
     id: historyStack
     width: 730
     height: 480
@@ -36,6 +39,7 @@ StackView {
 
             onDeleteButtonPressed: {
                 confirmationLoader.sourceComponent = confirmationComponent
+                scanGridView.interactive = false
             }
         }
 
@@ -97,11 +101,13 @@ StackView {
 
             onNoButtonPressed: {
                 confirmationLoader.sourceComponent = undefined
+                scanGridView.interactive = true
             }
 
             onYesButtonPressed: {
                 scanModel.removeScan(globalIndex)
                 confirmationLoader.sourceComponent = undefined
+                scanGridView.interactive = true
             }
         }
     }
