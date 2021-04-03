@@ -29,12 +29,14 @@ Components.LucerePage {
         id: scanCompareLeft
         x: 20
         y: 60
+        scanIndex: globalIndex
     }
 
     Views.ScanCompareDetails {
         id: scanCompareRight
         x: parent.width / 2 + 10
         y: 60
+        scanIndex: globalCompareIndex
     }
 
     // Save Button

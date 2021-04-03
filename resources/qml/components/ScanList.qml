@@ -45,7 +45,10 @@ Rectangle {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: scanListView.currentIndex = model.index
+                onClicked: {
+                    scanListView.currentIndex = model.index
+                    globalCompareIndex = scanListView.currentIndex
+                }
             }
         }
     }

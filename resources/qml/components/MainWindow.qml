@@ -8,6 +8,7 @@ import "../pages" as Pages
 Window {
     // Define global properties
     property int globalIndex: -1
+    property int globalCompareIndex: -1
     property bool authenticated: false
     property bool admin: false // change to be dependent on user logging in
 

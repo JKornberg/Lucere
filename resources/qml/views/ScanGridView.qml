@@ -145,11 +145,11 @@ Rectangle {
                     deleteButton.onActivated: {
                         contextMenu.y = 50
                         globalIndex = index
-                        // scanModel.removeScan(index)
                         deleteButtonPressed()
                     }
 
                     compareButton.onClicked: {
+                        globalIndex = index
                         compareSlider.x = 530
                         sliderMouseArea.visible = true
                         contextMenu.y = 50

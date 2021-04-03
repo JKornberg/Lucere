@@ -11,7 +11,7 @@ class ScanModel(QAbstractListModel):
     NumberOfCaptures = Qt.UserRole + 6
     CaptureInterval = Qt.UserRole + 7
     ShutterSpeed = Qt.UserRole + 8
-    TotalRunTime = Qt.UserRole + 9
+    CaptureDuration = Qt.UserRole + 9
     Brightness = Qt.UserRole + 10
     Contrast = Qt.UserRole + 11
     Sharpness = Qt.UserRole + 12
@@ -28,7 +28,7 @@ class ScanModel(QAbstractListModel):
         NumberOfCaptures: b"capture count",
         CaptureInterval: b"capture interval",
         ShutterSpeed: b"shutter speed",
-        TotalRunTime: b"total run time",
+        CaptureDuration: b"capture duration",
         Brightness: b"brigthness",
         Contrast: b"contrast",
         Sharpness: b"sharpness",
@@ -51,7 +51,7 @@ class ScanModel(QAbstractListModel):
                 'capture count': 3,
                 'capture interval': 20,
                 'shutter speed': 5000,
-                'total run time': 400,
+                'capture duration': 10,
                 'brightness': 50,
                 'contrast': 0,
                 'sharpness': 10,
@@ -67,7 +67,7 @@ class ScanModel(QAbstractListModel):
                 'capture count': 5,
                 'capture interval': 20,
                 'shutter speed': 3000,
-                'total run time': 400,
+                'capture duration': 15,
                 'brightness': 50,
                 'contrast': 0,
                 'sharpness': 10,
@@ -83,7 +83,7 @@ class ScanModel(QAbstractListModel):
                 'capture count': 4,
                 'capture interval': 20,
                 'shutter speed': 5000,
-                'total run time': 400,
+                'capture duration': 8,
                 'brightness': 50,
                 'contrast': 0,
                 'sharpness': 10,
@@ -99,7 +99,7 @@ class ScanModel(QAbstractListModel):
                 'capture count': 6,
                 'capture interval': 20,
                 'shutter speed': 10000,
-                'total run time': 400,
+                'capture duration': 20,
                 'brightness': 50,
                 'contrast': 0,
                 'sharpness': 10,
@@ -175,8 +175,8 @@ class ScanModel(QAbstractListModel):
             return self.scanList[index.row()]["capture interval"]
         if role == ScanModel.ShutterSpeed:
             return self.scanList[index.row()]["shutter speed"]
-        if role == ScanModel.TotalRunTime:
-            return self.scanList[index.row()]["total run time"]
+        if role == ScanModel.CaptureDuration:
+            return self.scanList[index.row()]["capture duration"]
         if role == ScanModel.Brightness:
             return self.scanList[index.row()]["brightness"]
         if role == ScanModel.Contrast:
