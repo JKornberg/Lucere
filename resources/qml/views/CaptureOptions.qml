@@ -19,6 +19,8 @@ Rectangle {
     property alias contrastValue: contrast.value
     property alias sharpnessValue: sharpness.value
     property alias isoValue: iso.value
+    property alias applyButton: applyButton
+    property alias saveButton: saveButton
 
     implicitWidth: 250
     implicitHeight: 480
@@ -146,18 +148,26 @@ Rectangle {
 
             // Buttons
             Controls.LucereButton {
+                id: applyButton
                 buttonText: "Apply"
                 buttonColor: AppColors.lightGray
                 width: 160
                 onClicked: {
                     slider.x = 730
+                    sliderMouseArea.visible = false
                 }
             }
 
             Controls.LucereButton {
+                id: saveButton
                 buttonText: "Save"
                 buttonColor: AppColors.red
                 width: 160
+
+                onClicked: {
+                    slider.x = 730
+                    sliderMouseArea.visible = false
+                }
             }
         }
 

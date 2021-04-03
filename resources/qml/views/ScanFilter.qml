@@ -112,6 +112,7 @@ Rectangle {
         onClicked: {
             radioText == "" ? scanModel.sortBy('date') : scanModel.sortBy(radioText)
             slider.x = 730
+            sliderMouseArea.visible = false
         }
     }
 }

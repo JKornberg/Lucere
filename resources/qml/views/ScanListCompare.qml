@@ -46,6 +46,7 @@ Rectangle {
 
         onClicked: {
             slider.x = 730
+            sliderMouseArea.visible = false
             pickCompareButtonPressed()
         }
     }
