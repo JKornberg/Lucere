@@ -1,5 +1,3 @@
-import CaptureDetails
-import CameraDetails
 import persistent
 from datetime import datetime
 

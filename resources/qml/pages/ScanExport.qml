@@ -50,6 +50,7 @@ StackView {
 
             onClicked: {
                 scanSelected()
+                scanModel.exportScan(globalIndex)
             }
         }
     }

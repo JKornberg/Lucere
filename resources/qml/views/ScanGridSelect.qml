@@ -81,6 +81,11 @@ Rectangle {
                     Controls.LucereButtonSelect {
                         checked: index == 0
                         ButtonGroup.group: radioGroup
+
+                        onClicked: {
+                            globalIndex = index
+                            selectButtonPressed()
+                        }
                     }
                 }
             }
