@@ -20,7 +20,7 @@ if __name__ == '__main__':
     scanModel = ScanModel()
 
     engine = QQmlApplicationEngine()
-    engine.load(QUrl('/home/bubu/Dev/Lucere/resources/qml/components/MainWindow.qml'))
+    engine.load(QUrl('resources/qml/components/MainWindow.qml'))
 
     # Define context properties
     ctx = engine.rootContext()
