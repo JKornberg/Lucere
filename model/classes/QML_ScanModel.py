@@ -1,4 +1,11 @@
 from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant, pyqtSlot, QObject
+from ZODB import FileStorage, DB
+import ZODB.config
+import os
+import sys
+from model.classes.Trial import Trial
+from datetime import datetime
+import math
 
 class ScanModel(QAbstractListModel):
 
@@ -17,6 +24,7 @@ class ScanModel(QAbstractListModel):
     Sharpness = Qt.UserRole + 12
     Iso = Qt.UserRole + 13
     Notes = Qt.UserRole + 14
+    Path = Qt.UserRole + 15
 
     # Assign Qt roles for attributes
     _roles = {
@@ -33,81 +41,46 @@ class ScanModel(QAbstractListModel):
         Contrast: b"contrast",
         Sharpness: b"sharpness",
         Iso: b"iso",
-        Notes: b"notes"
+        Notes: b"notes",
+        Path: b"path"
     }
 
     # Initialize class
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        # Add some dummy data
-        self.scanList = [
-            {
-                'id': 100001,
-                'date': '02/02/2021',
-                'wavelength': 550,
-                'user':'Atticus Steinmetz',
-                'detected': True,
-                'capture count': 3,
-                'capture interval': 20,
-                'shutter speed': 5000,
-                'capture duration': 10,
-                'brightness': 50,
-                'contrast': 0,
-                'sharpness': 10,
-                'iso': 100,
-                'notes': 'This scan has some notes stored. Wavelength detection is best with these configurations.'
-            },
-            {
-                'id': 100002,
-                'date': '02/03/2021',
-                'wavelength': 540,
-                'user':'Atticus Steinmetz',
-                'detected': True,
-                'capture count': 5,
-                'capture interval': 20,
-                'shutter speed': 3000,
-                'capture duration': 15,
-                'brightness': 50,
-                'contrast': 0,
-                'sharpness': 10,
-                'iso': 100,
-                'notes': 'No notes.'
-            },
-            {
-                'id': 100003,
-                'date': '02/04/2021',
-                'wavelength': 556,
-                'user':'Atticus Steinmetz',
-                'detected': True,
-                'capture count': 4,
-                'capture interval': 20,
-                'shutter speed': 5000,
-                'capture duration': 8,
-                'brightness': 50,
-                'contrast': 0,
-                'sharpness': 10,
-                'iso': 100,
-                'notes': 'Notes related to this scan object are stored here.'
-            },
-            {
-                'id': 100004,
-                'date': '02/05/2021',
-                'wavelength': 560,
-                'user':'Atticus Steinmetz',
-                'detected': False,
-                'capture count': 6,
-                'capture interval': 20,
-                'shutter speed': 10000,
-                'capture duration': 20,
-                'brightness': 50,
-                'contrast': 0,
-                'sharpness': 10,
-                'iso': 100,
-                'notes': 'Wavelength detection doesn\'t work with these settings.'
-            },
+        # Append classes folder to PATH
+        sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
-        ]
+        # Open database
+        db = ZODB.config.databaseFromURL(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'z.conf'))
+        connection = db.open()
+        root = connection.root()
+
+        # Reads trials into Scan Model
+        self.scanList = []
+        for index in root.trials:
+            trial = root.trials[index]
+            scan = {
+                'id': trial.trialId,
+                'date': datetime.fromtimestamp(trial.dateTime).strftime("%m/%d/%Y"),
+                'wavelength': trial.result.wavelength,
+                'user': root.users[trial.userId].name,
+                'detected': trial.result.detected,
+                'capture count': math.ceil(trial.captureDetails.count),
+                'capture interval': trial.captureDetails.interval,
+                'shutter speed': trial.captureDetails.shutter_speed,
+                'capture duration': trial.captureDetails.duration,
+                'brightness': trial.cameraDetails.brightness,
+                'contrast': trial.cameraDetails.contrast,
+                'sharpness': trial.cameraDetails.sharpness,
+                'iso': trial.cameraDetails.iso,
+                'notes': trial.notes,
+                'path': trial.scanPaths
+            }
+            self.scanList.append(scan)
+
+        connection.close()
 
         # Default sort by date
         self.sortBy('date')
@@ -148,6 +121,12 @@ class ScanModel(QAbstractListModel):
         if 0 <= index < self.rowCount():
             return self.scanList[index]
 
+    # Exports scan into a PDF (TODO)
+    @pyqtSlot(int)
+    def exportScan(self, index):
+        print(self.scanList[index]['user'])
+        print('SCAN', index)
+
     # Required method for QAbstractListModel. Returns count of all items in class
     def rowCount(self, parent=QModelIndex()):
         return len(self.scanList)
@@ -187,6 +166,8 @@ class ScanModel(QAbstractListModel):
             return self.scanList[index.row()]["iso"]
         if role == ScanModel.Notes:
             return self.scanList[index.row()]["notes"]
+        if role == ScanModel.Path:
+            return self.scanList[index.row()]["path"]
 
     def roleNames(self):
         return self._roles
