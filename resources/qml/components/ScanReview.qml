@@ -22,9 +22,9 @@ Rectangle {
 
             Repeater {
                 id: repeater
-                model: 3 // TO DO: Add here image model class when implemented
+                model: imageModel // TO DO: Add here image model class when implemented
                 delegate: Image {
-                    // source: Qt.resolvedUrl(captureImage)
+                    source: Qt.resolvedUrl(images)
                     Component.onCompleted: busyIndicator.running = false
                 }
             }

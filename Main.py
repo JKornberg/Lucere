@@ -5,6 +5,7 @@ from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlCo
 
 # Classes
 from model.classes.QML_ScanModel import ScanModel
+from model.classes.QML_ImageModel import ImageModel
 
 import sys
 
@@ -18,6 +19,7 @@ if __name__ == '__main__':
 
     # Instantiate Data Models
     scanModel = ScanModel()
+    imageModel = ImageModel()
 
     engine = QQmlApplicationEngine()
     engine.load(QUrl('resources/qml/components/MainWindow.qml'))
@@ -25,6 +27,7 @@ if __name__ == '__main__':
     # Define context properties
     ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', scanModel)
+    ctx.setContextProperty('imageModel', imageModel)
 
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())

@@ -1,57 +1,64 @@
-from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant, QUrl
-from ZODB import FileStorage, DB
-import ZODB.config
-import os
-import sys
-from model.classes.Trial import Trial
-from datetime import datetime
-import math
+from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant, pyqtSlot, QObject
 
 class ImageModel(QAbstractListModel):
 
-    ImageRole = Qt.UserRole + 1
+    # Define Qt roles for attributes
+    UrlList = Qt.UserRole + 1
 
-    _roles = {ImageRole: b"captureImage"}
+    # Assign Qt roles for attributes
+    _roles = {UrlList: b"images",}
 
+    # Initialize class
     def __init__(self, parent=None):
-        super(ImageModel, self).__init__(parent)
+        super().__init__(parent)
 
-        # Append classes folder to PATH
-        sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-
-        # Open database
-        db = ZODB.config.databaseFromURL(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'z.conf'))
-        connection = db.open()
-        root = connection.root()
-
-        self.imageList = []
-        for index in root.trials:
-            trial = root.trials[index]
-            captures = {
-                # Add images here - 2d array??
+        # Reads images into Image Model
+        self.imageList = [
+            {
+                'images': list((
+                    "https://picsum.photos/id/1/1920/1080",
+                    "https://picsum.photos/id/2/1920/1080",
+                    "https://picsum.photos/id/3/1920/1080"
+                ))
+            },
+            {
+                'images': list((
+                    "https://picsum.photos/id/4/1920/1080",
+                    "https://picsum.photos/id/5/1920/1080",
+                    "https://picsum.photos/id/6/1920/1080",
+                    "https://picsum.photos/id/7/1920/1080",
+                    "https://picsum.photos/id/8/1920/1080"
+                ))
+            },
+            {
+                'images': list((
+                    "https://picsum.photos/id/9/1920/1080",
+                    "https://picsum.photos/id/10/1920/1080",
+                    "https://picsum.photos/id/11/1920/1080",
+                    "https://picsum.photos/id/12/1920/1080"
+                ))
             }
-            self.scanList.append(captures)
+        ]
 
-        connection.close()
-
+    # Adds a new item to the class
     def add(self, item):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.imageList.append(item)
         self.endInsertRows()
 
+    # Required method for QAbstractListModel. Returns count of all items in class
     def rowCount(self, parent=QModelIndex()):
         return len(self.imageList)
 
+    # Required method for QAbstractListModel. Binds Qt properties
     def data(self, index, role=Qt.DisplayRole):
         try:
-            capture = self.imageList[index.row()]
+            scanDetails = self.imageList[index.row()]
         except IndexError:
             return QVariant()
 
-        if role == self.ImageRole:
-            return capture.captureImage()
-
-        return QVariant()
+        if role == ImageModel.UrlList:
+            return self.imageList[index.row()]["images"][0]
 
     def roleNames(self):
         return self._roles
