@@ -17,7 +17,7 @@ Rectangle {
 
     id: root
     implicitWidth: 70
-    implicitHeight: 480
+    implicitHeight: 420
     color: AppColors.darkGray
 
     Behavior on width {
@@ -34,7 +34,7 @@ Rectangle {
         Rectangle {
             id: menuWrapper
             implicitWidth: 70
-            implicitHeight: 540
+            implicitHeight: 480
             color: "transparent"
             clip: true
 
@@ -91,8 +91,8 @@ Rectangle {
 
                         // Expand or Collapse Menu
                         menuWrapper.width === 70 ? 
-                        (menuWrapper.width = 230) && (menuScroll.width = 230) && (root.width = 230) :
-                        (menuWrapper.width = 70) && (menuScroll.width = 70) && (root.width = 70)
+                        (menuWrapper.width = 230) && (menuScroll.width = 230) && (root.width = 230) && (exitButtonWraper.width = 230) :
+                        (menuWrapper.width = 70) && (menuScroll.width = 70) && (root.width = 70) && (exitButtonWraper.width = 70)
                     }
 
                     Image {
@@ -311,35 +311,6 @@ Rectangle {
                         text: "Export"
                     }
                 }
-
-                // Menu Exit
-                Rectangle {
-                    implicitWidth: 250
-                    implicitHeight: 60
-                    y: mainMenu.y + implicitHeight * 8
-                    color: exitButton.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
-
-                    MouseArea {
-                        id: exitButton
-                        anchors.fill: parent
-                        onClicked: {
-                            exitButtonPressed()
-                        }
-
-                        Image {
-                            anchors {
-                            verticalCenter: parent.verticalCenter
-                            }
-                            x: 25
-                            source: "../../icons/exit-menu.svg"
-                        }
-
-                        // Title
-                        Components.MenuLabel {
-                            text: "Exit"
-                        }
-                    }
-                }
             }
         }
     }
@@ -347,8 +318,45 @@ Rectangle {
     ListView {
         id: menuScroll
         width: 70
-        height: 480
+        height: 420
         delegate: menuDelegate
         model: 1
+    }
+
+    // Menu Exit
+    Rectangle {
+        id: exitButtonWraper
+        implicitWidth: 70
+        implicitHeight: 60
+        y: 420
+        color: exitButton.pressed ? Qt.darker(AppColors.purple, 1.1) : AppColors.purple
+
+        Behavior on width {
+            NumberAnimation {
+                duration: 500
+                easing.type: Easing.OutBack
+            }
+        }
+
+        MouseArea {
+            id: exitButton
+            anchors.fill: parent
+            onClicked: {
+                exitButtonPressed()
+            }
+
+            Image {
+                anchors {
+                verticalCenter: parent.verticalCenter
+                }
+                x: 25
+                source: "../../icons/exit-menu.svg"
+            }
+
+            // Title
+            Components.MenuLabel {
+                text: "Exit"
+            }
+        }
     }
 }
