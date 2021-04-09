@@ -12,34 +12,6 @@ class ImageModel(QAbstractListModel):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        # Reads images into Image Model
-        self.imageList = [
-            {
-                'images': list((
-                    "https://picsum.photos/id/1/1920/1080",
-                    "https://picsum.photos/id/2/1920/1080",
-                    "https://picsum.photos/id/3/1920/1080"
-                ))
-            },
-            {
-                'images': list((
-                    "https://picsum.photos/id/4/1920/1080",
-                    "https://picsum.photos/id/5/1920/1080",
-                    "https://picsum.photos/id/6/1920/1080",
-                    "https://picsum.photos/id/7/1920/1080",
-                    "https://picsum.photos/id/8/1920/1080"
-                ))
-            },
-            {
-                'images': list((
-                    "https://picsum.photos/id/9/1920/1080",
-                    "https://picsum.photos/id/10/1920/1080",
-                    "https://picsum.photos/id/11/1920/1080",
-                    "https://picsum.photos/id/12/1920/1080"
-                ))
-            }
-        ]
-
     # Adds a new item to the class
     def add(self, item):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())

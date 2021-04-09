@@ -22,10 +22,12 @@ Rectangle {
 
             Repeater {
                 id: repeater
-                model: imageModel // TO DO: Add here image model class when implemented
+                model: imageModel[globalIndex] // TO DO: Add here image model class when implemented
                 delegate: Image {
-                    source: Qt.resolvedUrl(images)
-                    Component.onCompleted: busyIndicator.running = false
+                    source: modelData
+                    Component.onCompleted: {
+                        busyIndicator.running = false
+                    }
                 }
             }
         }
