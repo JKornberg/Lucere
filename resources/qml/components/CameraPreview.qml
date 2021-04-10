@@ -26,7 +26,8 @@ Rectangle {
             id: camera
 
             // Set resolution
-            viewfinder.resolution: "952x480"
+            // viewfinder.resolution: "952x480" // This if for Rpi
+            viewfinder.resolution: "1920x1080" // This is for USB cameras
 
             // Set Camera Controls
             exposure.manualShutterSpeed: shutterSpeed
