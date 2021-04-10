@@ -99,6 +99,7 @@ Window {
             onExportButtonPressed: {
                 pageLoader.source = "../pages/ScanExport.qml"
                 pageLoader.asynchronous = true
+                globalIndex = 0
             }
 
             onExitButtonPressed: {

@@ -6,6 +6,8 @@ import sys
 from model.classes.Trial import Trial
 from datetime import datetime
 import math
+from fpdf import FPDF
+from PIL import Image
 
 class ScanModel(QAbstractListModel):
 
@@ -124,8 +126,59 @@ class ScanModel(QAbstractListModel):
     # Exports scan into a PDF (TODO)
     @pyqtSlot(int)
     def exportScan(self, index):
-        print(self.scanList[index]['user'])
-        print('SCAN', index)
+        scan = self.scanList[index] # Gets scan
+
+        pdf = FPDF() # Starts pdf
+        pdf.add_page() # Creates scan details page
+        pdf.set_font('Times', 'B', size=16) # Sets title font
+        pdf.cell(10, 5, 'Scan ' + str(scan['id']), ln=1) # Creates title
+        pdf.ln(5) # Spacing
+        pdf.set_font('Times', size=12) # Sets normal font
+
+        pdf.cell(10, 5, scan['date'], ln=1) # Date
+        pdf.cell(10, 5, scan['user'], ln=1) # Technician
+        pdf.ln(5) # Spacing
+
+        pdf.set_font('Times', 'B', size=12) # Sets subtitle font
+        pdf.cell(10, 5, 'Light Detection', ln=1) # Creates subtitle
+        pdf.set_font('Times', size=12) # Sets normal font
+        if (scan['detected'] == 0): # No light detected
+            pdf.cell(10, 5, 'Light Detected: False', ln=1)
+        else: # Light detected
+            pdf.cell(10, 5, 'Light Detected: True', ln=1)
+        pdf.cell(10, 5, 'Wavelength: ' + str(scan['wavelength']), ln=1) # Wavelength
+        pdf.ln(5) # Spacing
+
+        pdf.set_font('Times', 'B', size=12) # Sets subtitle font
+        pdf.cell(10, 5, 'Capture Information', ln=1) # Creates subtitle
+        pdf.set_font('Times', size=12) # Sets normal font
+        pdf.cell(10, 5, 'Capture Count: ' + str(scan['capture count']), ln=1) # Capture count
+        pdf.cell(10, 5, 'Capture Interval: ' + str(scan['capture interval']), ln=1) # Capture interval
+        pdf.cell(10, 5, 'Shutter Speed: ' + str(scan['shutter speed']), ln=1) # Shutter speed
+        pdf.cell(10, 5, 'Capture Duration: ' + str(scan['capture duration']), ln=1) # Capture duration
+        pdf.cell(10, 5, 'Brightness: ' + str(scan['brightness']), ln=1) # Brightness
+        pdf.cell(10, 5, 'Contrast: ' + str(scan['contrast']), ln=1) # Contrast
+        pdf.cell(10, 5, 'Sharpness: ' + str(scan['sharpness']), ln=1) # Sharpness
+        pdf.cell(10, 5, 'ISO: ' + str(scan['iso']), ln=1) # ISO
+
+        pdf.ln(5) # Spacing
+        pdf.set_font('Times', 'B', size=12) # Sets subtitle font
+        pdf.cell(10, 5, 'Notes', ln=1) # Creates subtitle
+        pdf.set_font('Times', size=12) # Sets normal font
+        pdf.cell(10, 5, str(scan['notes']), ln=1) # Scan notes
+        
+        # Adds image pages
+        for path in scan['path']:
+            pdf.add_page('L') # Adds landscape page
+
+            # Creates ratio for resizing image to fit letter page
+            ratio = 2550 / 3300
+            w, h = Image.open('model/classes/' + path).size
+            w = w * ratio
+
+            pdf.image('model/classes/' + path, 0, 0, w=w*0.264583) # Adds image at correct size (in mm)
+
+        pdf.output('exports/'+str(scan['id'])+'.pdf', 'F') # Outputs pdf to exports folder
 
     # Required method for QAbstractListModel. Returns count of all items in class
     def rowCount(self, parent=QModelIndex()):
