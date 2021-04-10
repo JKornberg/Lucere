@@ -79,10 +79,8 @@ Rectangle {
                 Row {
                     topPadding: 15
                     Controls.LucereButtonSelect {
-                        checked: index == 0
-                        ButtonGroup.group: radioGroup
-
-                        onClicked: {
+                        lucereSelectButton.checked: index == 0
+                        lucereSelectButton.onClicked: {
                             globalIndex = index
                             selectButtonPressed()
                         }
