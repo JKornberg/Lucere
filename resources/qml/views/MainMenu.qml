@@ -17,8 +17,9 @@ Rectangle {
 
     id: root
     implicitWidth: 70
-    implicitHeight: 420
+    implicitHeight: 480
     color: AppColors.darkGray
+    clip: true
 
     Behavior on width {
         NumberAnimation {
