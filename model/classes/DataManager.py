@@ -19,11 +19,17 @@ class DataManager:
         sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
         # Open database
-        db = ZODB.config.databaseFromURL(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'z.conf'))
-        connection = db.open()
+        self.db = ZODB.config.databaseFromURL(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'z.conf'))
+
+        # self.LoadTrials()
+
+    # Read Data
+    def LoadTrials(self):
+        
+        # Create connection
+        connection = self.db.open()
         root = connection.root()
 
-        # Reads trials & captures into QML Models
         for index in root.trials:
             trial = root.trials[index]
             scan = {

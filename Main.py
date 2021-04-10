@@ -23,6 +23,7 @@ if __name__ == '__main__':
     captureModel = CaptureModel()
 
     dataManager = DataManager(scanModel, captureModel)
+    dataManager.LoadTrials()
 
     engine = QQmlApplicationEngine()
     engine.load(QUrl('resources/qml/components/MainWindow.qml'))
