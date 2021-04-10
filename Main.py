@@ -5,7 +5,7 @@ from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlCo
 
 # Classes
 from model.classes.QML_ScanModel import ScanModel
-from model.classes.QML_ImageModel import ImageModel
+from model.classes.QML_CaptureModel import CaptureModel
 
 import sys
 
@@ -17,38 +17,12 @@ if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
     app.aboutToQuit.connect(shutdown)
 
-    # Images tests
-    imageList = []
-    imageList.append(
-        [
-            "https://picsum.photos/id/1/1920/1080",
-            "https://picsum.photos/id/2/1920/1080",
-            "https://picsum.photos/id/3/1920/1080"
-        ]
-    )
-
-    imageList.append(
-        [
-            "https://picsum.photos/id/4/1920/1080",
-            "https://picsum.photos/id/5/1920/1080",
-            "https://picsum.photos/id/6/1920/1080",
-            "https://picsum.photos/id/7/1920/1080",
-            "https://picsum.photos/id/8/1920/1080"
-        ]
-    )
-
-    imageList.append(
-        [
-            "https://picsum.photos/id/9/1920/1080",
-            "https://picsum.photos/id/10/1920/1080",
-            "https://picsum.photos/id/11/1920/1080",
-            "https://picsum.photos/id/12/1920/1080"
-        ]
-    )
-
     # Instantiate Data Models
     scanModel = ScanModel()
-    imageModel = ImageModel()
+    captureModel = CaptureModel()
+
+    # print(captureModel.imageList[0])
+    # print(scanModel.scanList)
 
     engine = QQmlApplicationEngine()
     engine.load(QUrl('resources/qml/components/MainWindow.qml'))
@@ -56,7 +30,7 @@ if __name__ == '__main__':
     # Define context properties
     ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', scanModel)
-    ctx.setContextProperty('imageModel', imageList)
+    ctx.setContextProperty('captureModel', captureModel.imageList)
 
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())

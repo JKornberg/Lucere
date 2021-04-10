@@ -22,9 +22,9 @@ Rectangle {
 
             Repeater {
                 id: repeater
-                model: imageModel[globalIndex] // TO DO: Add here image model class when implemented
+                model: captureModel[globalIndex]
                 delegate: Image {
-                    source: modelData
+                    source: "../../../model/classes/" + modelData
                     Component.onCompleted: {
                         busyIndicator.running = false
                     }
