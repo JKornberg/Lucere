@@ -5,7 +5,6 @@ import sys
 from model.classes.Trial import Trial
 from datetime import datetime
 import math
-from PIL import Image
 
 from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel

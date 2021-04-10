@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QAbstractListModel, QModelIndex, Qt, QVariant, pyqtSlot, QObject
 from fpdf import FPDF
+from PIL import Image
 
 class ScanModel(QAbstractListModel):
 
