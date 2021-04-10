@@ -273,7 +273,6 @@ Components.LucerePage {
                 placeholderText: "Enter User"
                 font.family: "Segoe UI"
                 font.pixelSize: 16
-                placeholderTextColor: AppColors.lightGray
                 color: AppColors.lightGray
 
                 background: Rectangle {
