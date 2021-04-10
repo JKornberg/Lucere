@@ -26,7 +26,7 @@ Rectangle {
             id: camera
 
             // Set resolution
-            viewfinder.resolution: "1920x1080"
+            viewfinder.resolution: "952x480"
 
             // Set Camera Controls
             exposure.manualShutterSpeed: shutterSpeed
@@ -51,13 +51,14 @@ Rectangle {
 
             MouseArea {
                 anchors.fill: parent;
-                onClicked: camera.imageCapture.capture()
+                // onClicked: camera.imageCapture.capture()
             }
         }
 
         Image {
             id: preview
             anchors.fill: parent
+            fillMode: Image.PreserveAspectCrop
         }
 
         // Show progress while loading camera object
