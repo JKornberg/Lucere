@@ -92,7 +92,7 @@ def main(argv):
         u = generateUser(userId,names[userId], trialIds)
         users.append(u)
         for i in trialIds:
-            trials.append(generateTrial(i,userId,generateImages=False))
+            trials.append(generateTrial(i,userId,generateImages=True))
     for user in users:
         print(f'User:{user.userId},{user.name}: {user.userType}')
         print(user.trialIds)

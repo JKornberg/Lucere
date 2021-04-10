@@ -6,6 +6,7 @@ from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlCo
 # Classes
 from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
+from model.classes.DataManager import DataManager
 
 import sys
 
@@ -21,8 +22,7 @@ if __name__ == '__main__':
     scanModel = ScanModel()
     captureModel = CaptureModel()
 
-    # print(captureModel.imageList[0])
-    # print(scanModel.scanList)
+    dataManager = DataManager(scanModel, captureModel)
 
     engine = QQmlApplicationEngine()
     engine.load(QUrl('resources/qml/components/MainWindow.qml'))
