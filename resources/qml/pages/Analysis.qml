@@ -10,9 +10,11 @@ StackView {
     // Signals
     signal scanSelected
 
-    id: wrapper
+    id: analysisStack
     width: 730
     height: 480
+
+    initialItem: analysisPage
 
     Components.LucerePage {
         id: analysisPage
@@ -51,6 +53,10 @@ StackView {
 
         Views.ScanListAnalysis {
             id: slider
+
+            onRunButtonPressed: {
+                analysisStack.push("AnalysisResults.qml")
+            }
         }
     }
 }
