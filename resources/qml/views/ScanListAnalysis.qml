@@ -4,9 +4,20 @@ import "../controls" as Controls
 import "../styles/AppColors.js" as AppColors
 
 Rectangle {
-    implicitWidth: 200
+    // Signals
+    signal runButtonPressed
+
+    implicitWidth: 220
     implicitHeight: 480
+    x: 730
     color: AppColors.darkGray
+
+    Behavior on x {
+        NumberAnimation {
+            duration: 500
+            easing.type: Easing.OutBack
+        }
+    }
 
     Text {
         x: 20
@@ -31,5 +42,11 @@ Rectangle {
         buttonText: "Run"
         buttonColor: AppColors.red
         buttonDelay: 2000
+
+        onActivated: {
+            slider.x = 730
+            sliderMouseArea.visible = false
+            runButtonPressed()
+        }
     }
 }
