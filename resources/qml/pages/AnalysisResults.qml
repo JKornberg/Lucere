@@ -34,11 +34,11 @@ Components.LucerePage {
         x: parent.width - width - 20
         y: parent.height - height - 20
         width: 180
-        buttonText: "Export Results"
+        buttonText: "Export Result"
         buttonColor: AppColors.purple
 
         onClicked: {
-            // Export Results
+            // Save Image Locally
         }
     }
 
@@ -46,7 +46,7 @@ Components.LucerePage {
         x: parent.width - width * 2 - 30
         y: parent.height - height - 20
         width: 180
-        buttonText: "Close"
+        buttonText: "Discard"
         buttonColor: AppColors.lightGray
 
         onClicked: {

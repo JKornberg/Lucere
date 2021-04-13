@@ -24,7 +24,8 @@ Rectangle {
                 id: repeater
                 model: 3 //captureModel[globalIndex]
                 delegate: Image {
-                    source: view //"../../../model/classes/" + modelData
+                    source: '../../../../Play/scikit/segmentation_analysis.png' //view //"../../../model/classes/" + modelData
+                    fillMode: Image.PreserveAspectCrop
                     Component.onCompleted: {
                         busyIndicator.running = false
                     }
