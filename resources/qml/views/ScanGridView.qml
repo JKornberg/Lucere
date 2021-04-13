@@ -29,6 +29,17 @@ Rectangle {
             color: AppColors.componentGray
             clip: true
 
+            Rectangle {
+                id: analysisIcon
+                x: 190
+                y: -50
+                width: 100
+                height: 100
+                color: AppColors.borderGray
+                rotation: 45
+                transformOrigin: Item.Center
+            }
+
             // Context Menu Animation
             NumberAnimation {
                 id: showContextMenu
