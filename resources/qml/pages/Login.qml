@@ -85,12 +85,12 @@ Components.LucerePage {
         // Select User ComboBox
         Components.LucereComboBox {
             id: nameSelect
-            y:name.height + 5
+            y: name.height + 5
             placeholderText: "Select User..."
             placeholderColor: AppColors.lightGray
             optionColor: AppColors.lightGray
             borderColor: AppColors.borderGray
-            contents: ["Atticus Steinmetz", "Sadie Crawford"]
+            model: userNames
         }
 
         // PIN Text Input Field
@@ -122,8 +122,11 @@ Components.LucerePage {
             buttonColor: AppColors.purple
             buttonText: "Login"
             onClicked: {
-                loginButtonPressed()
-                // login.login(nameSelect.currentText, pinTxtField.text);
+                if (dataManager.AuthenticateUser(nameSelect.currentText, pinTxtField.text)) {
+                    loginButtonPressed()
+                } else {
+                    console.log("Placeholder: Failed Login") // TODO: Dialog popup
+                }
             }
         }
     }

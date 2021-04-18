@@ -10,6 +10,15 @@ from model.classes.DataManager import DataManager
 
 import sys
 
+"""
+Dummy Data Login Information
+Name          PIN
+----------------------------
+Jonah       | 1234
+Ciprian     | 1234
+guest       | (blank)
+"""
+
 # Define shutdown for cleanup
 def shutdown():
     del globals()["engine"]
@@ -24,15 +33,18 @@ if __name__ == '__main__':
 
     dataManager = DataManager(scanModel, captureModel)
     dataManager.LoadTrials()
+    users = dataManager.FetchUsers()
 
     engine = QQmlApplicationEngine()
-    engine.load(QUrl('resources/qml/components/MainWindow.qml'))
 
     # Define context properties
     ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', scanModel)
     ctx.setContextProperty('captureModel', captureModel.imageList)
     ctx.setContextProperty('dataManager', dataManager)
+    ctx.setContextProperty('userNames', users)
+
+    engine.load(QUrl('resources/qml/components/MainWindow.qml'))
 
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())

@@ -115,7 +115,7 @@ class DataManager(QObject):
             transaction.commit()
             connection.close()
 
-    # Add Data
+    # Delete Data
     @pyqtSlot(int)
     def DeleteTrial(self, count):
         # Create connection
@@ -128,6 +128,38 @@ class DataManager(QObject):
         for i in range(count):
             os.remove(temp_path+str(i)+'.jpg') # Delete image
         
-        # Commits added scan and closes connection
-        transaction.commit()
+        # Closes connection
         connection.close()
+
+    # Fetch Users
+    @pyqtSlot()
+    def FetchUsers(self):
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        names = []
+        for index in root.users:
+            names.append(root.users[index].name)
+        
+        # Closes connection
+        connection.close()
+        return names
+
+    # Authenticate User
+    @pyqtSlot(str, str, result=bool)
+    def AuthenticateUser(self, name, password):
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        for index in root.users:
+            if root.users[index].name == name and (str(root.users[index].pin) == password or
+                (root.users[index].pin is None and password == '')): # Authenticated
+                    # Closes connection
+                    connection.close()
+                    return True
+        
+        # Closes connection
+        connection.close()
+        return False

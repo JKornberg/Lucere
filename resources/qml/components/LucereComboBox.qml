@@ -11,8 +11,8 @@ ComboBox {
     property string borderColor: "#000000"
     property var contents: ["item1", "item2", "item3"]
 
-    implicitWidth: 226
-    implicitHeight: 38
+    width: 226
+    height: 38
     model: contents
 
     // Selection text
@@ -38,12 +38,32 @@ ComboBox {
 
     // Dropdown contents
     delegate: ItemDelegate {
-        width: parent.width
+        width: combo.width
         contentItem: Text {
             text: modelData
             font.family: "Segoe UI"
             font.pixelSize: 16
             color: optionColor
+        }
+    }
+
+    popup: Popup {
+        width: combo.width
+        height: combo.height * 3
+        y: combo.height
+        padding: 0
+
+        contentItem: ListView {
+            height: combo.height
+            model: combo.delegateModel
+            clip: true
+        }
+
+        background: Rectangle {
+            width: parent.width
+            height: parent.height
+            color: "white"
+            border.color: borderColor
         }
     }
 }
