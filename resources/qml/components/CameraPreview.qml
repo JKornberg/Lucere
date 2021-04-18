@@ -10,6 +10,8 @@ Rectangle {
     property real contrast: 0.0
     property real sharpness: 0.0
     property int iso: 100
+    property alias imgCapture: camera.imageCapture
+    property alias resolution: camera.viewfinder.resolution
 
     id: wrapper
     implicitWidth: 690

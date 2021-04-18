@@ -32,6 +32,7 @@ if __name__ == '__main__':
     ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', scanModel)
     ctx.setContextProperty('captureModel', captureModel.imageList)
+    ctx.setContextProperty('dataManager', dataManager)
 
     engine.quit.connect(app.quit)
     sys.exit(app.exec_())

@@ -11,6 +11,7 @@ Window {
     property int globalCompareIndex: -1
     property bool authenticated: false
     property bool admin: false // change to be dependent on user logging in
+    property int userId: 0
 
     id: mainWindow
     title: qsTr("Lucere Labs")

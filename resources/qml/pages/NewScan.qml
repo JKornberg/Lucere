@@ -7,6 +7,17 @@ import "../views" as Views
 import "../styles/AppColors.js" as AppColors
 
 StackView {
+    // Define custom properties
+    property alias shutterSpeed: cameraPreview.shutterSpeed
+    property alias duration: slider.scanRunTime
+    property alias interval: slider.captureIntervalValue
+    property alias count: slider.numberOfScansValue
+    property alias brightness: slider.brightnessValue
+    property alias contrast: slider.contrastValue
+    property alias sharpness: slider.sharpnessValue
+    property alias iso: cameraPreview.iso
+    property alias resolution: cameraPreview.resolution
+
     id: newScanStack
     width: 730
     height: 480
@@ -126,6 +137,8 @@ StackView {
                 Timer {
                     interval: 1000; running: true; repeat: true
                     onTriggered: {
+                        cameraPreview.imgCapture.captureToLocation((captureCounter-1)+'.jpg')
+
                         if(captureCounter == captureCount && intervalCounter == 0) {
                             stop()
                             timerComplete()
@@ -133,7 +146,6 @@ StackView {
                         else if(intervalCounter == 0) {
                             captureCounter += 1
                             intervalCounter = resetIntervalCounter
-                            // Take captures
                             restart()
                         }
                         else {

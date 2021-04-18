@@ -37,6 +37,14 @@ Components.LucerePage {
         width: 180
         buttonText: "Save & Analyze"
         buttonColor: AppColors.purple
+
+        onClicked: {
+            dataManager.AddTrial(userId, newScanStack.shutterSpeed, newScanStack.duration, newScanStack.interval,
+                                    newScanStack.count, newScanStack.brightness, newScanStack.contrast,
+                                    newScanStack.sharpness, newScanStack.iso, newScanStack.resolution)
+            newScanStack.pop()
+            discardButtonPressed()
+        }
     }
 
     Controls.LucereButton {
