@@ -163,3 +163,20 @@ class DataManager(QObject):
         # Closes connection
         connection.close()
         return False
+
+    # Fetch User Id
+    @pyqtSlot(str, result=int)
+    def FetchUserId(self, name):
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        for index in root.users:
+            if root.users[index].name == name:
+                    # Closes connection
+                    connection.close()
+                    return root.users[index].userId
+        
+        # Closes connection
+        connection.close()
+        return -1

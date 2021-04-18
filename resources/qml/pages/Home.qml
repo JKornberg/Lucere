@@ -30,7 +30,7 @@ Components.LucerePage {
         y: 160
         anchors.horizontalCenter: parent.horizontalCenter
         height: 32
-        text: "Welcome, " + "Atticus Steinmetz"
+        text: "Welcome, " + userName
         font.family: "Segoe UI"
         font.weight: Font.Light
         font.pixelSize: 24

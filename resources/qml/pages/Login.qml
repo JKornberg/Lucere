@@ -123,9 +123,11 @@ Components.LucerePage {
             buttonText: "Login"
             onClicked: {
                 if (dataManager.AuthenticateUser(nameSelect.currentText, pinTxtField.text)) {
-                    loginButtonPressed()
+                    mainWindow.userId = dataManager.FetchUserId(name);
+                    mainWindow.userName = nameSelect.currentText;
+                    loginButtonPressed();
                 } else {
-                    console.log("Placeholder: Failed Login") // TODO: Dialog popup
+                    console.log("Placeholder: Failed Login"); // TODO: Dialog popup
                 }
             }
         }
