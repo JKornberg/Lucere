@@ -55,6 +55,7 @@ Components.LucerePage {
         buttonColor: AppColors.lightGray
 
         onClicked: {
+            dataManager.DeleteTrial(newScanStack.count)
             newScanStack.pop()
             discardButtonPressed()
         }

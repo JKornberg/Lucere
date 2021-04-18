@@ -72,42 +72,61 @@ class DataManager(QObject):
         # Move pictures from temporary folder to the user data directory
         temp_path = '/home/sadie/Pictures/' # TODO: change on raspberry pi
         trial_path = 'data/user'+str(user_id)+'/trial'+str(trial_id)+'/scan' # Gets trial path
-        os.mkdir('model/classes/data/user'+str(user_id)+'/trial'+str(trial_id)) # Makes trial's directory
-        paths = []
-        for i in range(count):
-            paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
+        try:
+            os.mkdir('model/classes/data/user'+str(user_id)+'/trial'+str(trial_id)) # Makes trial's directory
+        except FileExistsError:
+            paths = []
+            for i in range(count):
+                paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
+                
+                os.rename((temp_path+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
             
-            os.rename((temp_path+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
-        
-        # Adds scan to QML Model
-        scan = {
-            'id': trial_id,
-            'date': datetime.fromtimestamp(date).strftime("%m/%d/%Y"),
-            'wavelength': 600, # TODO: Replace placeholders
-            'user': root.users[user_id].name,
-            'detected': True, # TODO: Replace placeholders
-            'capture count': count,
-            'capture interval': interval,
-            'shutter speed': shutter_speed,
-            'capture duration': duration,
-            'brightness': brightness,
-            'contrast': contrast,
-            'sharpness': sharpness,
-            'iso': iso,
-            'notes': 'No notes.',
-            'path': paths
-        }
-        self.scanModel.scanList.append(scan)
-        self.captureModel.add(paths)
+            # Adds scan to QML Model
+            scan = {
+                'id': trial_id,
+                'date': datetime.fromtimestamp(date).strftime("%m/%d/%Y"),
+                'wavelength': 600, # TODO: Replace placeholders
+                'user': root.users[user_id].name,
+                'detected': True, # TODO: Replace placeholders
+                'capture count': count,
+                'capture interval': interval,
+                'shutter speed': shutter_speed,
+                'capture duration': duration,
+                'brightness': brightness,
+                'contrast': contrast,
+                'sharpness': sharpness,
+                'iso': iso,
+                'notes': 'No notes.',
+                'path': paths
+            }
+            self.scanModel.scanList.append(scan)
+            self.captureModel.add(paths)
 
-        # Creates Trial object
-        result = Result(1, 600, 0) # TODO: Replace placeholders
-        capture_details = CaptureDetails(shutter_speed, duration, interval, count)
-        camera_details = CameraDetails(shutter_speed, 0, brightness, contrast, sharpness, 0, 0, iso, 'Default', resolution)
-        trial = Trial(trial_id, user_id, date, paths, 'No notes.', result, capture_details, camera_details)
+            # Creates Trial object
+            result = Result(1, 600, 0) # TODO: Replace placeholders
+            capture_details = CaptureDetails(shutter_speed, duration, interval, count)
+            camera_details = CameraDetails(shutter_speed, 0, brightness, contrast, sharpness, 0, 0, iso, 'Default', resolution)
+            trial = Trial(trial_id, user_id, date, paths, 'No notes.', result, capture_details, camera_details)
 
-        # Adds scan to ZODB database
-        root.trials.insert(trial_id, trial)
+            # Adds scan to ZODB database
+            root.trials.insert(trial_id, trial)
+            
+            # Commits added scan and closes connection
+            transaction.commit()
+            connection.close()
+
+    # Add Data
+    @pyqtSlot(int)
+    def DeleteTrial(self, count):
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        trial_id = len(root.trials.keys()) # Get trial ID
+
+        temp_path = '/home/sadie/Pictures/' # TODO: change on raspberry pi
+        for i in range(count):
+            os.remove(temp_path+str(i)+'.jpg') # Delete image
         
         # Commits added scan and closes connection
         transaction.commit()
