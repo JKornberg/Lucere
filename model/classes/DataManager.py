@@ -71,49 +71,56 @@ class DataManager(QObject):
 
         # Move pictures from temporary folder to the user data directory
         temp_path = '/home/sadie/Pictures/' # TODO: change on raspberry pi
+        try:
+            os.mkdir('model/classes/data/user'+str(user_id)) # Makes user's directory
+        except FileExistsError:
+            pass
+
         trial_path = 'data/user'+str(user_id)+'/trial'+str(trial_id)+'/scan' # Gets trial path
         try:
             os.mkdir('model/classes/data/user'+str(user_id)+'/trial'+str(trial_id)) # Makes trial's directory
         except FileExistsError:
-            paths = []
-            for i in range(count):
-                paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
-                
-                os.rename((temp_path+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
-            
-            # Adds scan to QML Model
-            scan = {
-                'id': trial_id,
-                'date': datetime.fromtimestamp(date).strftime("%m/%d/%Y"),
-                'wavelength': 600, # TODO: Replace placeholders
-                'user': root.users[user_id].name,
-                'detected': True, # TODO: Replace placeholders
-                'capture count': count,
-                'capture interval': interval,
-                'shutter speed': shutter_speed,
-                'capture duration': duration,
-                'brightness': brightness,
-                'contrast': contrast,
-                'sharpness': sharpness,
-                'iso': iso,
-                'notes': 'No notes.',
-                'path': paths
-            }
-            self.scanModel.scanList.append(scan)
-            self.captureModel.add(paths)
+            pass
 
-            # Creates Trial object
-            result = Result(1, 600, 0) # TODO: Replace placeholders
-            capture_details = CaptureDetails(shutter_speed, duration, interval, count)
-            camera_details = CameraDetails(shutter_speed, 0, brightness, contrast, sharpness, 0, 0, iso, 'Default', resolution)
-            trial = Trial(trial_id, user_id, date, paths, 'No notes.', result, capture_details, camera_details)
-
-            # Adds scan to ZODB database
-            root.trials.insert(trial_id, trial)
+        paths = []
+        for i in range(count):
+            paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
             
-            # Commits added scan and closes connection
-            transaction.commit()
-            connection.close()
+            os.rename((temp_path+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
+        
+        # Adds scan to QML Model
+        scan = {
+            'id': trial_id,
+            'date': datetime.fromtimestamp(date).strftime("%m/%d/%Y"),
+            'wavelength': 600, # TODO: Replace placeholders
+            'user': root.users[user_id].name,
+            'detected': True, # TODO: Replace placeholders
+            'capture count': count,
+            'capture interval': interval,
+            'shutter speed': shutter_speed,
+            'capture duration': duration,
+            'brightness': brightness,
+            'contrast': contrast,
+            'sharpness': sharpness,
+            'iso': iso,
+            'notes': 'No notes.',
+            'path': paths
+        }
+        self.scanModel.scanList.append(scan)
+        self.captureModel.add(paths)
+
+        # Creates Trial object
+        result = Result(1, 600, 0) # TODO: Replace placeholders
+        capture_details = CaptureDetails(shutter_speed, duration, interval, count)
+        camera_details = CameraDetails(shutter_speed, 0, brightness, contrast, sharpness, 0, 0, iso, 'Default', resolution)
+        trial = Trial(trial_id, user_id, date, paths, 'No notes.', result, capture_details, camera_details)
+
+        # Adds scan to ZODB database
+        root.trials.insert(trial_id, trial)
+        
+        # Commits added scan and closes connection
+        transaction.commit()
+        connection.close()
 
     # Delete Data
     @pyqtSlot(int)
@@ -173,9 +180,10 @@ class DataManager(QObject):
 
         for index in root.users:
             if root.users[index].name == name:
-                    # Closes connection
-                    connection.close()
-                    return root.users[index].userId
+                id = root.users[index].userId
+                # Closes connection
+                connection.close()
+                return id
         
         # Closes connection
         connection.close()

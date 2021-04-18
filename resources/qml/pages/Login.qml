@@ -123,7 +123,7 @@ Components.LucerePage {
             buttonText: "Login"
             onClicked: {
                 if (dataManager.AuthenticateUser(nameSelect.currentText, pinTxtField.text)) {
-                    mainWindow.userId = dataManager.FetchUserId(name);
+                    mainWindow.userId = dataManager.FetchUserId(nameSelect.currentText);
                     mainWindow.userName = nameSelect.currentText;
                     loginButtonPressed();
                 } else {
