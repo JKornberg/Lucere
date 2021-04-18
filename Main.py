@@ -27,18 +27,20 @@ if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
     app.aboutToQuit.connect(shutdown)
 
+    engine = QQmlApplicationEngine()
+
+    # Define context
+    ctx = engine.rootContext()
+
     # Instantiate Data Models
     scanModel = ScanModel()
     captureModel = CaptureModel()
 
-    dataManager = DataManager(scanModel, captureModel)
+    dataManager = DataManager(scanModel, captureModel, ctx)
     dataManager.LoadTrials()
     users = dataManager.FetchUsers()
 
-    engine = QQmlApplicationEngine()
-
     # Define context properties
-    ctx = engine.rootContext()
     ctx.setContextProperty('scanModel', scanModel)
     ctx.setContextProperty('captureModel', captureModel.imageList)
     ctx.setContextProperty('dataManager', dataManager)
