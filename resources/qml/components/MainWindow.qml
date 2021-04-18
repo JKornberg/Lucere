@@ -87,6 +87,11 @@ Window {
                 pageLoader.asynchronous = true
             }
 
+            onAnalysisButtonPressed: {
+                pageLoader.source = "../pages/Analysis.qml"
+                pageLoader.asynchronous = true
+            }
+
             onOptionsButtonPressed: {
                 pageLoader.source = "../pages/CaptureOptions.qml"
                 pageLoader.asynchronous = true
