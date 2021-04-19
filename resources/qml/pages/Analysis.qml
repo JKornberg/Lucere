@@ -28,6 +28,7 @@ StackView {
             id: scanSelect
             
             onSelectButtonPressed: {
+                console.log(globalAnalysisIndex)
                 slider.x == 530
                 sliderMouseArea.visible = true
             }
@@ -55,7 +56,8 @@ StackView {
             id: slider
 
             onRunButtonPressed: {
-                analysisStack.push("AnalysisResults.qml")
+                dataManager.startAnalysis(globalIndex, scanSelect.analysisModel.get(globalAnalysisIndex).name)
+                //analysisStack.push("AnalysisResults.qml")
             }
         }
     }

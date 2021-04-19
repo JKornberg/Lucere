@@ -12,15 +12,13 @@ from datetime import timezone
 import math
 import transaction
 
-from model.classes.QML_ScanModel import ScanModel
-from model.classes.QML_CaptureModel import CaptureModel
-
 class DataManager(QObject):
-    def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
+    def __init__(self, scanModel, captureModel, captureModelTemp, scanAnalysis ,ctx, picturePath):
         super().__init__()
         self.scanModel = scanModel
         self.captureModel = captureModel
         self.captureModelTemp = captureModelTemp
+        self.scanAnalysis = scanAnalysis
         self.ctx = ctx
         self.picturePath = picturePath
 
@@ -215,3 +213,19 @@ class DataManager(QObject):
         # Closes connection
         connection.close()
         return -1
+
+    # Analysis Algorithms
+    @pyqtSlot(int, str)
+    def startAnalysis(self, scanIndex, algName):
+        if(algName == "blob"):
+            print("Blob Selected")
+        elif(algName == "dog"):
+            print("Diff of Blobs Selected")
+        elif(algName == "rgb2hsv"):
+            print("RGB to HSV Selected")
+        elif(algName == "ridge"):
+            print("Ridge Selected")
+        elif(algName == "segmentation"):
+            print("Segmentation Selected")
+        else:
+            print("No algorithm name defined!")

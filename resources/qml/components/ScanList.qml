@@ -47,14 +47,11 @@ Rectangle {
                 anchors.fill: parent
                 onClicked: {
                     scanListView.currentIndex = model.index
-                    globalCompareIndex = scanListView.currentIndex
+                    globalIndex = scanModel.get(scanListView.currentIndex)["id"]
+                    globalCompareIndex = scanModel.get(scanListView.currentIndex)["id"]
                 }
             }
         }
-    }
-
-    Component.onCompleted: {
-        globalCompareIndex = scanListView.currentIndex
     }
 
     ListView {

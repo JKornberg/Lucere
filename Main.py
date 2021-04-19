@@ -8,6 +8,7 @@ from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
 from model.classes.DataManager import DataManager
 from model.classes.QML_CaptureModelTemp import CaptureModelTemp
+from model.classes.Analysis import Analysis
 
 import sys
 
@@ -37,8 +38,9 @@ if __name__ == '__main__':
     scanModel = ScanModel()
     captureModel = CaptureModel()
     captureModelTemp = CaptureModelTemp()
+    scanAnalysis = Analysis()
 
-    dataManager = DataManager(scanModel, captureModel, captureModelTemp, ctx, '/home/bubu/Pictures/') # TODO: change on raspberry pi
+    dataManager = DataManager(scanModel, captureModel, captureModelTemp, scanAnalysis, ctx, '/home/bubu/Pictures/') # TODO: change on raspberry pi
     dataManager.LoadTrials()
     users = dataManager.FetchUsers()
 

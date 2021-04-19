@@ -3,33 +3,33 @@ import QtQuick 2.8
 ListModel {
     id: analysisModel
     ListElement {
+        name: "blob"
         iconUrl: "../../icons/analysis-blob.svg"
         title: "Blob Detection"
         description: "Runs three algorithms bright on dark or dark on bright regions in an image."
     }
     ListElement {
+        name: "dog"
         iconUrl: "../../icons/analysis-gaussians.svg"
-        title: "Diff. of Gaussians"
+        title: "Diff. of Blobs"
         description: "Used to denoise images while at the same time reducing low-frequency artifacts such a uneven illumination."
     }
     ListElement {
+        name: "rgb2hsv"
         iconUrl: "../../icons/analysis-checkerboard.svg"
-        title: "Checkerboard"
-        description: "Identify and/or change adjacent values in an image based on their similarity to an initial seed point."
+        title: "RGB to HSV"
+        description: "illustrates how RGB to HSV (Hue, Saturation, Value) can be used to facilitate segmentation processes."
     }
     ListElement {
+        name: "ridge"
         iconUrl: "../../icons/analysis-segmentfinding.svg"
-        title: "Segment Finding"
-        description: "Runs segmentation algorithm over a raw image to detect and count nuclei."
+        title: "Ridge Find"
+        description: "Solves a regression model where the loss function is the linear least squares function"
     }
     ListElement {
+        name: "segmentation"
         iconUrl: "../../icons/analysis-contour.svg"
-        title: "Contour Finding"
-        description: "Uses a marching squares method to find constant valued contours in an image."
-    }
-    ListElement {
-        iconUrl: "../../icons/analysis-localmaxima.svg"
-        title: "Local Maxima"
-        description: "Detect local maxima in a scanned image. Generated based on noise level."
+        title: "Segmentation"
+        description: "Construct a region boundary RAG and returns average value of coresponding pixels."
     }
 }

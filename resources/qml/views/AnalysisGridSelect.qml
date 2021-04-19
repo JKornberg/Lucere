@@ -9,6 +9,7 @@ Rectangle {
     // Signals
     signal selectButtonPressed
     property alias analysisGridSelect: analysisGridSelect
+    property alias analysisModel: analysisModel
 
     id: wrapper
     implicitWidth: 700
@@ -85,6 +86,7 @@ Rectangle {
                     Controls.LucereButtonSelect {
                         // lucereSelectButton.checked: index == 0
                         lucereSelectButton.onClicked: {
+                            globalAnalysisIndex = index
                             slider.x = 530
                             selectButtonPressed()
                         }
@@ -93,10 +95,13 @@ Rectangle {
             }
         }
     }
+    Models.AnalysisModel {
+        id: analysisModel
+    }
 
     GridView {
         id: analysisGridSelect
-        model: Models.AnalysisModel {}
+        model: analysisModel
         delegate: analysisDelegate
         anchors.fill: parent
         cellWidth: 233
