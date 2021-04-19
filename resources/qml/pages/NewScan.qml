@@ -150,16 +150,17 @@ StackView {
                 Timer {
                     interval: 1000; running: true; repeat: true
                     onTriggered: {
-                        cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
-                        dataManager.addTempCaptures(captureCounter - 1)
-
                         if(captureCounter == captureCount && intervalCounter == 0) {
+                            cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
+                            dataManager.addTempCaptures(captureCounter - 1)
                             stop()
                             timerComplete()
                         }
                         else if(intervalCounter == 0) {
                             captureCounter += 1
                             intervalCounter = resetIntervalCounter
+                            cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
+                            dataManager.addTempCaptures(captureCounter - 1)
                             restart()
                         }
                         else {
@@ -169,6 +170,7 @@ StackView {
                 }
 
                 onTimerComplete: {
+                    newScanStack.push("CaptureComplete.qml")
                     timeLoader.sourceComponent = undefined
                     cancelButton.visible = false
                     captureButton.visible = true
