@@ -19,6 +19,8 @@ StackView {
     property alias iso: cameraPreview.iso
     property alias resolution: cameraPreview.resolution
     property alias scanTimerComp: scanTimerComponent
+    property bool captureTimerComplete: false
+    signal captureComplete
 
     id: newScanStack
     width: 730
@@ -50,6 +52,7 @@ StackView {
             camera.imageCapture {
                 onImageSaved: {
                     console.log("Imaged saved")
+                    captureTimerComplete ? captureComplete() : undefined
                 }
             }
         }
@@ -154,6 +157,7 @@ StackView {
                             cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
                             dataManager.addTempCaptures(captureCounter - 1)
                             stop()
+                            captureTimerComplete = true
                             timerComplete()
                         }
                         else if(intervalCounter == 0) {
@@ -170,7 +174,6 @@ StackView {
                 }
 
                 onTimerComplete: {
-                    newScanStack.push("CaptureComplete.qml")
                     timeLoader.sourceComponent = undefined
                     cancelButton.visible = false
                     captureButton.visible = true
@@ -184,5 +187,9 @@ StackView {
         Loader {
             id: timeLoader
         }
+    }
+
+    onCaptureComplete: {
+        newScanStack.push("CaptureComplete.qml")
     }
 }
