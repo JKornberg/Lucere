@@ -56,6 +56,7 @@ Components.LucerePage {
 
         onClicked: {
             dataManager.DeleteTrial(newScanStack.count)
+            dataManager.clear()
             newScanStack.pop()
             discardButtonPressed()
         }
