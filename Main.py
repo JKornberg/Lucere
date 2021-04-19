@@ -38,7 +38,7 @@ if __name__ == '__main__':
     captureModel = CaptureModel()
     captureModelTemp = CaptureModelTemp()
 
-    dataManager = DataManager(scanModel, captureModel, captureModelTemp, ctx)
+    dataManager = DataManager(scanModel, captureModel, captureModelTemp, ctx, '/home/bubu/Pictures/') # TODO: change on raspberry pi
     dataManager.LoadTrials()
     users = dataManager.FetchUsers()
 

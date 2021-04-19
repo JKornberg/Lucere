@@ -190,6 +190,7 @@ StackView {
     }
 
     onCaptureComplete: {
+        newScanStack.captureTimerComplete = false
         newScanStack.push("CaptureComplete.qml")
     }
 }

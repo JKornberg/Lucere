@@ -16,12 +16,13 @@ from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
 
 class DataManager(QObject):
-    def __init__(self, scanModel, captureModel, captureModelTemp, ctx):
+    def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
         super().__init__()
         self.scanModel = scanModel
         self.captureModel = captureModel
         self.captureModelTemp = captureModelTemp
         self.ctx = ctx
+        self.picturePath = picturePath
 
         # Append classes folder to PATH
         sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -66,10 +67,17 @@ class DataManager(QObject):
     def addTempCaptures(self, i):
 
         # Populate array
-        temp_path = '/home/bubu/Pictures/'
-        
-        self.captureModelTemp.tempCaptures.append(temp_path+str(i)+'.jpg') # Adds image path to list
+        self.captureModelTemp.tempCaptures.append(self.picturePath+str(i)+'.jpg') # Adds image path to list
         print(self.captureModelTemp.tempCaptures)
+
+        # Update context model
+        self.ctx.setContextProperty('captureModelTemp', self.captureModelTemp.tempCaptures)
+
+    # Clear Capture Model Temp of temp images
+    @pyqtSlot()
+    def clear(self):
+        # Clear array
+        self.captureModelTemp.tempCaptures.clear()
 
         # Update context model
         self.ctx.setContextProperty('captureModelTemp', self.captureModelTemp.tempCaptures)
@@ -85,7 +93,6 @@ class DataManager(QObject):
         trial_id = len(root.trials.keys()) # Get trial ID
 
         # Move pictures from temporary folder to the user data directory
-        temp_path = '/home/bubu/Pictures/' # TODO: change on raspberry pi
         try:
             os.mkdir('model/classes/data/user'+str(user_id)) # Makes user's directory
         except FileExistsError:
@@ -101,7 +108,7 @@ class DataManager(QObject):
         for i in range(count):
             paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
             
-            os.rename((temp_path+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
+            os.rename((self.picturePath+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
         
         # Adds scan to QML Model
         scan = {
@@ -149,9 +156,8 @@ class DataManager(QObject):
 
         trial_id = len(root.trials.keys()) # Get trial ID
 
-        temp_path = '/home/bubu/Pictures/' # TODO: change on raspberry pi
         for i in range(count):
-            os.remove(temp_path+str(i)+'.jpg') # Delete image
+            os.remove(self.picturePath+str(i)+'.jpg') # Delete image
         
         # Closes connection
         connection.close()
