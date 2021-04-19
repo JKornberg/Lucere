@@ -157,10 +157,10 @@ StackView {
                             timerComplete()
                         }
                         else if(intervalCounter == 0) {
-                            captureCounter += 1
                             intervalCounter = resetIntervalCounter
                             cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
                             dataManager.addTempCaptures(captureCounter - 1)
+                            captureCounter += 1
                             restart()
                         }
                         else {
