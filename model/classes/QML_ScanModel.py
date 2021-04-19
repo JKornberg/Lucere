@@ -46,9 +46,6 @@ class ScanModel(QAbstractListModel):
 
         self.scanList = []
 
-        # Default sort by date
-        self.sortBy('date')
-
     # List Sorting
     @pyqtSlot(str)
     def sortBy(self, sortAttribute):

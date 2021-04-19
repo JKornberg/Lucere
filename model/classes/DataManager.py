@@ -57,6 +57,9 @@ class DataManager(QObject):
             }
             self.scanModel.scanList.append(scan)
             self.captureModel.imageList.append(trial.scanPaths)
+
+            # Default sort by date
+            self.scanModel.sortBy('date')
         
         # Close connection
         connection.close()
