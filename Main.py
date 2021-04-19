@@ -7,6 +7,7 @@ from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlCo
 from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
 from model.classes.DataManager import DataManager
+from model.classes.QML_CaptureModelTemp import CaptureModelTemp
 
 import sys
 
@@ -35,14 +36,16 @@ if __name__ == '__main__':
     # Instantiate Data Models
     scanModel = ScanModel()
     captureModel = CaptureModel()
+    captureModelTemp = CaptureModelTemp()
 
-    dataManager = DataManager(scanModel, captureModel, ctx)
+    dataManager = DataManager(scanModel, captureModel, captureModelTemp, ctx)
     dataManager.LoadTrials()
     users = dataManager.FetchUsers()
 
     # Define context properties
     ctx.setContextProperty('scanModel', scanModel)
     ctx.setContextProperty('captureModel', captureModel.imageList)
+    ctx.setContextProperty('captureModelTemp', captureModelTemp.tempCaptures)
     ctx.setContextProperty('dataManager', dataManager)
     ctx.setContextProperty('userNames', users)
 

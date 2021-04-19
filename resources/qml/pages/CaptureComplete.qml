@@ -19,7 +19,7 @@ Components.LucerePage {
         text: "Capture Complete"
     }
 
-    Components.ScanReview {
+    Components.ScanReviewTemp {
         id: scanReview
         x: 20
         y: 60

@@ -5,6 +5,7 @@ import "../components" as Components
 import "../controls" as Controls
 import "../views" as Views
 import "../styles/AppColors.js" as AppColors
+import "../models"
 
 StackView {
     // Define custom properties
@@ -17,6 +18,7 @@ StackView {
     property alias sharpness: slider.sharpnessValue
     property alias iso: cameraPreview.iso
     property alias resolution: cameraPreview.resolution
+    property alias scanTimerComp: scanTimerComponent
 
     id: newScanStack
     width: 730
@@ -44,6 +46,12 @@ StackView {
             contrast: slider.contrastValue * 0.01
             sharpness: slider.sharpnessValue * 0.01
             iso: slider.isoValue
+
+            camera.imageCapture {
+                onImageSaved: {
+                    console.log("Imaged saved")
+                }
+            }
         }
 
         Components.InfoLine {
@@ -120,6 +128,11 @@ StackView {
             id: slider
         }
 
+        // Instantiate capture model
+        TempCaptureModel {
+            id: tempCaptureModel
+        }
+
         Component {
             id: scanTimerComponent
 
@@ -137,7 +150,8 @@ StackView {
                 Timer {
                     interval: 1000; running: true; repeat: true
                     onTriggered: {
-                        cameraPreview.imgCapture.captureToLocation((captureCounter-1)+'.jpg')
+                        cameraPreview.camera.imageCapture.captureToLocation((captureCounter - 1) + '.jpg')
+                        dataManager.addTempCaptures(captureCounter - 1)
 
                         if(captureCounter == captureCount && intervalCounter == 0) {
                             stop()
@@ -155,7 +169,6 @@ StackView {
                 }
 
                 onTimerComplete: {
-                    newScanStack.push("CaptureComplete.qml")
                     timeLoader.sourceComponent = undefined
                     cancelButton.visible = false
                     captureButton.visible = true

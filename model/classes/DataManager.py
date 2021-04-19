@@ -16,10 +16,11 @@ from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
 
 class DataManager(QObject):
-    def __init__(self, scanModel, captureModel, ctx):
+    def __init__(self, scanModel, captureModel, captureModelTemp, ctx):
         super().__init__()
         self.scanModel = scanModel
         self.captureModel = captureModel
+        self.captureModelTemp = captureModelTemp
         self.ctx = ctx
 
         # Append classes folder to PATH
@@ -59,6 +60,19 @@ class DataManager(QObject):
         
         # Close connection
         connection.close()
+
+    # Populate Capture Model Temp with temp images
+    @pyqtSlot(int)
+    def addTempCaptures(self, i):
+
+        # Populate array
+        temp_path = '/home/bubu/Pictures/'
+        
+        self.captureModelTemp.tempCaptures.append(temp_path+str(i)+'.jpg') # Adds image path to list
+        print(self.captureModelTemp.tempCaptures)
+
+        # Update context model
+        self.ctx.setContextProperty('captureModelTemp', self.captureModelTemp.tempCaptures)
 
     # Add Data
     @pyqtSlot(int, int, int, int, int, int, int, int, int, str)

@@ -10,8 +10,9 @@ Rectangle {
     property real contrast: 0.0
     property real sharpness: 0.0
     property int iso: 100
-    property alias imgCapture: camera.imageCapture
+    property alias camera: camera
     property alias resolution: camera.viewfinder.resolution
+    signal imgSaved
 
     id: wrapper
     implicitWidth: 690
@@ -37,13 +38,6 @@ Rectangle {
             imageProcessing.contrast: contrast
             imageProcessing.sharpeningLevel: sharpness
             exposure.manualIso: iso
-
-            // Show the preview in an Image
-            imageCapture {
-                onImageCaptured: {
-                    preview.source = preview
-                }
-            }
         }
 
         // Receive focus and capture key events when visible
