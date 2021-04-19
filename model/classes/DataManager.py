@@ -228,16 +228,21 @@ class DataManager(QObject):
 
         # Run given analysis
         if(algName == "blob"):
-            scanAnalysis.runPlotBlob(root.trials[scanIndex].scanPaths)
-            # print(root.trials[scanIndex].scanPaths)
             print("Blob Selected")
+            scanAnalysis.runPlotBlob(root.trials[scanIndex].scanPaths)
         elif(algName == "dog"):
             print("Diff of Blobs Selected")
+            scanAnalysis.runPlotDog(root.trials[scanIndex].scanPaths)
         elif(algName == "rgb2hsv"):
             print("RGB to HSV Selected")
+            scanAnalysis.runPlotRgb2Hsv(root.trials[scanIndex].scanPaths)
         elif(algName == "ridge"):
             print("Ridge Selected")
+            scanAnalysis.runPlotRidge(root.trials[scanIndex].scanPaths)
         elif(algName == "segmentation"):
             print("Segmentation Selected")
+            scanAnalysis.runPlotSegmentation(root.trials[scanIndex].scanPaths)
         else:
             print("No algorithm name defined!")
+
+        # Join main thread and die

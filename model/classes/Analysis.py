@@ -3,25 +3,31 @@
 import numpy as np
 from math import sqrt
 import matplotlib.pyplot as plt
-
 from skimage import data, io, color, segmentation, filters
 from skimage.feature import blob_dog, blob_log, blob_doh
 from skimage.future import graph
 from skimage.color import rgb2gray, rgb2hsv
 from skimage.data import gravel
 from skimage.filters import difference_of_gaussians, window, meijering, sato, frangi, hessian
-
 from scipy.fftpack import fftn, fftshift
-
 import tempfile
+import threading
 
 class Analysis:
     def __init__(self):
         pass
     
+    def threaded(fn):
+        def wrapper(*args, **kwargs):
+            thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
+            thread.start()
+            return thread
+        return wrapper
+    
+    @threaded
     def runPlotBlob(self, imagePathList = []):
         scanPaths = "model/classes/"
-        print(imagePathList)
+
         for i in range(len(imagePathList)):
             image = io.imread(scanPaths + imagePathList[i])
             image_gray = rgb2gray(image)
@@ -57,9 +63,11 @@ class Analysis:
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
     
+    @threaded
     def runPlotDog(self, imagePathList):
-        for index in len(imagePathList):
-            image = io.imread(imagePathList[index])
+        scanPaths = "model/classes/"
+        for i in range(len(imagePathList)):
+            image = io.imread(scanPaths + imagePathList[i])
             wimage = image * window('hann', image.shape)  # window image to improve FFT
             filtered_image = difference_of_gaussians(image, 1, 12)
             filtered_wimage = filtered_image * window('hann', image.shape)
@@ -72,11 +80,13 @@ class Analysis:
             ax[2].imshow(np.log(fim_f_mag), cmap='magma')
             plt.style.use('dark_background')
             plt.tight_layout()
-            plt.savefig(tempfile.gettempdir() + "/" + index + "_analysis.jpg")
+            plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
 
+    @threaded
     def runPlotRgb2Hsv(self, imagePathList):
-        for index in len(imagePathList):
-            image = io.imread(imagePathList[index])
+        scanPaths = "model/classes/"
+        for i in range(len(imagePathList)):
+            image = io.imread(scanPaths + imagePathList[i])
             rgb_img = image
             hsv_img = rgb2hsv(rgb_img)
             hue_img = hsv_img[:, :, 0]
@@ -91,15 +101,17 @@ class Analysis:
             ax2.axis('off')
 
             fig.tight_layout()
-            plt.savefig(tempfile.gettempdir() + "/" + index + "_analysis.jpg")
+            plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
 
+    @threaded
     def runPlotRidge(self, imagePathList):
-        for index in len(imagePathList):
+        scanPaths = "model/classes/"
+        for i in range(len(imagePathList)):
             def identity(image, **kwargs):
                 """Return the original image, ignoring any kwargs."""
                 return image
 
-            image = io.imread(imagePathList[index])
+            image = io.imread(scanPaths + imagePathList[i])
             cmap = plt.cm.gray
 
             kwargs = {'sigmas': [1], 'mode': 'reflect'}
@@ -117,15 +129,16 @@ class Analysis:
 
             plt.style.use('dark_background')
             plt.tight_layout()
-            plt.savefig(tempfile.gettempdir() + "/" + index + "_analysis.jpg")
+            plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
 
-        
+    @threaded    
     def runPlotSegmentation(self, imagePathList):
-        for index in len(imagePathList):
-            image = io.imread(imagePathList[index])
+        scanPaths = "model/classes/"
+        for i in range(len(imagePathList)):
+            image = io.imread(scanPaths + imagePathList[i])
             gimg = color.rgb2gray(image)
 
-            labels = segmentation.slic(img, compactness=30, n_segments=800, start_label=1)
+            labels = segmentation.slic(image, compactness=30, n_segments=800, start_label=1)
             edges = filters.sobel(gimg)
             edges_rgb = color.gray2rgb(edges)
 
@@ -135,4 +148,4 @@ class Analysis:
 
             plt.colorbar(lc, fraction=0.03)
             plt.tight_layout()
-            plt.savefig(tempfile.gettempdir() + "/" + index + "_analysis.jpg")
+            plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
