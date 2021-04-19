@@ -5,7 +5,6 @@ import "../components" as Components
 import "../controls" as Controls
 import "../views" as Views
 import "../styles/AppColors.js" as AppColors
-import "../models"
 
 StackView {
     // Define custom properties
@@ -129,11 +128,6 @@ StackView {
         // Slider
         Views.CaptureOptions {
             id: slider
-        }
-
-        // Instantiate capture model
-        TempCaptureModel {
-            id: tempCaptureModel
         }
 
         Component {

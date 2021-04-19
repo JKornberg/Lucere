@@ -19,9 +19,11 @@ class Analysis:
     def __init__(self):
         pass
     
-    def runPlotBlob(self, imagePathList):
-        for index in len(imagePathList):
-            image = io.imread(imagePathList[index])
+    def runPlotBlob(self, imagePathList = []):
+        scanPaths = "model/classes/"
+        print(imagePathList)
+        for i in range(len(imagePathList)):
+            image = io.imread(scanPaths + imagePathList[i])
             image_gray = rgb2gray(image)
 
             blobs_log = blob_log(image_gray, max_sigma=30, num_sigma=10, threshold=.1)
@@ -53,7 +55,7 @@ class Analysis:
                 ax[idx].set_axis_off()
 
             plt.tight_layout()
-            plt.savefig(tempfile.gettempdir() + "/" + index + "_analysis.jpg")
+            plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
     
     def runPlotDog(self, imagePathList):
         for index in len(imagePathList):

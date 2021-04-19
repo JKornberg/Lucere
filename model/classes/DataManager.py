@@ -12,16 +12,18 @@ from datetime import timezone
 import math
 import transaction
 
+# Import Analysis Class
+from model.classes.Analysis import Analysis
+
 class DataManager(QObject):
-    def __init__(self, scanModel, captureModel, captureModelTemp, scanAnalysis ,ctx, picturePath):
+    def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
         super().__init__()
         self.scanModel = scanModel
         self.captureModel = captureModel
         self.captureModelTemp = captureModelTemp
-        self.scanAnalysis = scanAnalysis
         self.ctx = ctx
         self.picturePath = picturePath
-
+    
         # Append classes folder to PATH
         sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
@@ -217,7 +219,17 @@ class DataManager(QObject):
     # Analysis Algorithms
     @pyqtSlot(int, str)
     def startAnalysis(self, scanIndex, algName):
+        # Instantiate Class
+        scanAnalysis = Analysis()
+
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        # Run given analysis
         if(algName == "blob"):
+            scanAnalysis.runPlotBlob(root.trials[scanIndex].scanPaths)
+            # print(root.trials[scanIndex].scanPaths)
             print("Blob Selected")
         elif(algName == "dog"):
             print("Diff of Blobs Selected")

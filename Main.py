@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QUrl, QObject, pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QGuiApplication
+from PyQt5.QtWidgets import QApplication
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import QQmlEngine, QQmlComponent, QQmlApplicationEngine, QQmlContext
 
@@ -8,7 +9,6 @@ from model.classes.QML_ScanModel import ScanModel
 from model.classes.QML_CaptureModel import CaptureModel
 from model.classes.DataManager import DataManager
 from model.classes.QML_CaptureModelTemp import CaptureModelTemp
-from model.classes.Analysis import Analysis
 
 import sys
 
@@ -26,7 +26,7 @@ def shutdown():
     del globals()["engine"]
 
 if __name__ == '__main__':
-    app = QGuiApplication(sys.argv)
+    app = QApplication(sys.argv)
     app.aboutToQuit.connect(shutdown)
 
     engine = QQmlApplicationEngine()
@@ -38,9 +38,8 @@ if __name__ == '__main__':
     scanModel = ScanModel()
     captureModel = CaptureModel()
     captureModelTemp = CaptureModelTemp()
-    scanAnalysis = Analysis()
 
-    dataManager = DataManager(scanModel, captureModel, captureModelTemp, scanAnalysis, ctx, '/home/bubu/Pictures/') # TODO: change on raspberry pi
+    dataManager = DataManager(scanModel, captureModel, captureModelTemp, ctx, '/home/bubu/Pictures/') # TODO: change on raspberry pi
     dataManager.LoadTrials()
     users = dataManager.FetchUsers()
 
