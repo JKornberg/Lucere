@@ -17,6 +17,7 @@ from model.classes.Analysis import Analysis
 
 class DataManager(QObject):
     signal = pyqtSignal(object)
+
     def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
         super().__init__()
         self.scanModel = scanModel
@@ -25,6 +26,9 @@ class DataManager(QObject):
         self.ctx = ctx
         self.picturePath = picturePath
         self.analysisArray = []
+
+        # Push empty array analysis to QML
+        self.ctx.setContextProperty('analysisModel', self.analysisArray)
     
         # Append classes folder to PATH
         sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -243,7 +247,7 @@ class DataManager(QObject):
         connection.close()
         return -1
 
-    # Update Analysis
+    # Update Analysis array and notify QML
     def update(self, arr):
         self.ctx.setContextProperty('analysisModel', arr)
 

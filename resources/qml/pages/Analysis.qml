@@ -21,6 +21,7 @@ StackView {
         clip: true
 
         Components.PageTitle {
+            id: pageTitle
             text: "Analysis Algorithms"
         }
 
@@ -36,6 +37,7 @@ StackView {
         }
 
         Components.InfoLine {
+            id: infoLine
             x: 20
             y: parent.height - 45
             notice: "Select an analysis algorithm to run against a scan."
@@ -56,6 +58,9 @@ StackView {
 
             onRunButtonPressed: {
                 dataManager.startAnalysis(scanIdListIndex, scanSelect.analysisModel.get(gridCurrentIndex).name)
+                scanSelect.visible = false
+                progressLoader.sourceComponent = progressComponent
+                infoLine.notice = "Analysis in progress..."
             }
         }
     }
@@ -63,8 +68,25 @@ StackView {
     Connections {
         target: dataManager
         function onSignal() {
-            console.log("Signal received!")
             analysisStack.push("AnalysisResults.qml")
+            progressLoader.sourceComponent = undefined
+            scanSelect.visible = true
+            infoLine.notice = "Select analysis algorithm to run against a scan."
         }
+    }
+
+    // Progress Component
+    Component {
+        id: progressComponent
+        Components.Progress {
+            id: progress
+            title: "Running <b>" + scanSelect.analysisModel.get(gridCurrentIndex).title + "</b>"
+            message: "Please wait for analysis to complete!"
+        }
+    }
+
+    // Progress Loader
+    Loader {
+        id: progressLoader
     }
 }

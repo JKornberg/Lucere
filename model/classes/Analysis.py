@@ -54,7 +54,7 @@ class Analysis(QObject):
 
             fig, axes = plt.subplots(1, 2, figsize=(16, 9), sharex=True, sharey=True)
             ax = axes.ravel()
-            plt.style.use('dark_background')
+            plt.style.use('seaborn-pastel')
 
             for idx, (blobs, color, title) in enumerate(sequence):
                 # ax[idx].set_title(title)
@@ -87,7 +87,7 @@ class Analysis(QObject):
             ax[0].imshow(image, cmap='gray')
             ax[1].imshow(filtered_image, cmap='gray')
             ax[2].imshow(np.log(fim_f_mag), cmap='magma')
-            plt.style.use('dark_background')
+            plt.style.use('seaborn-pastel')
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
             self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
@@ -106,7 +106,7 @@ class Analysis(QObject):
             value_img = hsv_img[:, :, 2]
 
             fig, (ax1, ax2) = plt.subplots(ncols=2, figsize=(16, 9))
-            plt.style.use('dark_background')
+            plt.style.use('seaborn-pastel')
 
             ax1.imshow(hue_img, cmap='hsv')
             ax1.axis('off')
@@ -144,7 +144,7 @@ class Analysis(QObject):
                     axes[i, j].set_xticks([])
                     axes[i, j].set_yticks([])
 
-            plt.style.use('dark_background')
+            plt.style.use('seaborn-pastel')
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
             self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
