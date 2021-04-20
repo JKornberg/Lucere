@@ -57,10 +57,7 @@ Rectangle {
     ListView {
         id: scanListView
         width: parent.width
-        height: parent.height
-
-        
-        
+        height: parent.height        
         model: scanModel
         delegate: scanDelegate
         focus: true
@@ -68,6 +65,11 @@ Rectangle {
 
         highlight: Rectangle {
             color: AppColors.red
+        }
+
+        Component.onCompleted: {
+            listCurrentIndex = currentIndex
+            scanIdListIndex = scanModel.get(currentIndex)["id"]
         }
     }
 }
