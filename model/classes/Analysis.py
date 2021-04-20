@@ -1,4 +1,5 @@
 # Analysis Lucere class
+from PyQt5.QtCore import QObject, pyqtSignal, QThread
 
 import numpy as np
 from math import sqrt
@@ -13,11 +14,12 @@ from scipy.fftpack import fftn, fftshift
 import tempfile
 import threading
 
-class Analysis:
+class Analysis(QObject):
     resultImageArray = []
+    sig = pyqtSignal(object)
 
     def __init__(self):
-        pass
+        super().__init__()
     
     def threaded(fn):
         def wrapper(*args, **kwargs):
@@ -137,8 +139,9 @@ class Analysis:
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
 
     @threaded
-    def runPlotSegmentation(self, imagePathList):
+    def runPlotSegmentation(self, imagePathList, dataManager):
         scanPaths = "model/classes/"
+        self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
             image = io.imread(scanPaths + imagePathList[i])
@@ -157,4 +160,6 @@ class Analysis:
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
             self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
         
-        return self.resultImageArray
+        # dataManager.analysisArray = self.resultImageArray
+        self.sig.emit(self.resultImageArray)
+        # dataManager.signal.emit()

@@ -97,7 +97,7 @@ StackView {
 
         Dialogs.Confirmation {
             header.text: "Action Required"
-            body.text: "Are you sure you want to delete this can? This action <b>cannot</b> be undone."
+            body.text: "Are you sure you want to delete <b>scan  " + scanIdGridIndex + "</b>? This action cannot be undone."
 
             onNoButtonPressed: {
                 confirmationLoader.sourceComponent = undefined
@@ -105,7 +105,7 @@ StackView {
             }
 
             onYesButtonPressed: {
-                scanModel.removeScan(globalIndex)
+                scanModel.removeScan(gridCurrentIndex)
                 confirmationLoader.sourceComponent = undefined
                 scanGridView.interactive = true
             }

@@ -27,10 +27,6 @@ StackView {
 
             // Set data model
             scanGridSelect.model: scanModel
-            
-            onSelectButtonPressed: {
-                // Present list of scans
-            }
             x: 20
             y: 60
         }
@@ -50,7 +46,7 @@ StackView {
 
             onClicked: {
                 scanSelected()
-                scanModel.exportScan(globalIndex)
+                scanModel.exportScan(scanIdGridIndex)
             }
         }
     }

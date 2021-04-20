@@ -36,43 +36,43 @@ Rectangle {
                 text: "Capture Details:"
             }
             Text {
-                text: "Number of Captures: " + scanModel.get(globalIndex)["capture count"]
+                text: "Number of Captures: " + scanModel.get(gridCurrentIndex)["capture count"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Capture Interval: " + scanModel.get(globalIndex)["capture interval"]
+                text: "Capture Interval: " + scanModel.get(gridCurrentIndex)["capture interval"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Shutter Speed: " + scanModel.get(globalIndex)["shutter speed"]
+                text: "Shutter Speed: " + scanModel.get(gridCurrentIndex)["shutter speed"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Brightness: " + scanModel.get(globalIndex)["brightness"]
+                text: "Brightness: " + scanModel.get(gridCurrentIndex)["brightness"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Contrast: " + scanModel.get(globalIndex)["contrast"]
+                text: "Contrast: " + scanModel.get(gridCurrentIndex)["contrast"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "Sharpness: " + scanModel.get(globalIndex)["sharpness"]
+                text: "Sharpness: " + scanModel.get(gridCurrentIndex)["sharpness"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
             }
             Text {
-                text: "ISO: " + scanModel.get(globalIndex)["iso"]
+                text: "ISO: " + scanModel.get(gridCurrentIndex)["iso"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"               
@@ -86,31 +86,31 @@ Rectangle {
                 text: "Scan Details:"
             }
             Text {
-                text: "ID: " + scanModel.get(globalIndex)["id"]
+                text: "ID: " + scanModel.get(gridCurrentIndex)["id"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Date: " + scanModel.get(globalIndex)["date"]
+                text: "Date: " + scanModel.get(gridCurrentIndex)["date"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "User: " + scanModel.get(globalIndex)["user"]
+                text: "User: " + scanModel.get(gridCurrentIndex)["user"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Light Detected: " + scanModel.get(globalIndex)["detected"]
+                text: "Light Detected: " + scanModel.get(gridCurrentIndex)["detected"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
             }
             Text {
-                text: "Wavelength: " + scanModel.get(globalIndex)["wavelength"]
+                text: "Wavelength: " + scanModel.get(gridCurrentIndex)["wavelength"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "white"
@@ -126,7 +126,7 @@ Rectangle {
             TextEdit {
                 width: 160
                 bottomPadding: 10
-                text: scanModel.get(globalIndex)["notes"]
+                text: scanModel.get(gridCurrentIndex)["notes"]
                 font.family: "Segoe UI"
                 font.pixelSize: 14
                 color: "#F8E4A3"

@@ -114,7 +114,9 @@ Rectangle {
                     buttonColor: AppColors.lightGray
 
                     onClicked: {
-                        globalIndex = index
+                        scanGridView.currentIndex = index
+                        gridCurrentIndex = scanGridView.currentIndex
+                        scanIdGridIndex = scanModel.get(scanGridView.currentIndex)["id"]
                         viewButtonPressed()
                     }
                 }
@@ -154,13 +156,18 @@ Rectangle {
                     y: height
 
                     deleteButton.onActivated: {
+                        scanGridView.currentIndex = index
+                        gridCurrentIndex = scanGridView.currentIndex
+                        scanIdGridIndex = scanModel.get(scanGridView.currentIndex)["id"]
                         contextMenu.y = 50
-                        globalIndex = index
                         deleteButtonPressed()
                     }
 
                     compareButton.onClicked: {
-                        globalIndex = index
+                        scanGridView.currentIndex = index
+                        gridCurrentIndex = scanGridView.currentIndex
+                        scanIdGridIndex = scanModel.get(scanGridView.currentIndex)["id"]
+
                         compareSlider.x = 530
                         sliderMouseArea.visible = true
                         contextMenu.y = 50

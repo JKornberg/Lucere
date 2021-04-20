@@ -16,6 +16,7 @@ import transaction
 from model.classes.Analysis import Analysis
 
 class DataManager(QObject):
+    signal = pyqtSignal(object)
     def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
         super().__init__()
         self.scanModel = scanModel
@@ -23,6 +24,7 @@ class DataManager(QObject):
         self.captureModelTemp = captureModelTemp
         self.ctx = ctx
         self.picturePath = picturePath
+        self.analysisArray = []
     
         # Append classes folder to PATH
         sys.path.append(os.path.dirname(os.path.realpath(__file__)))
@@ -216,11 +218,17 @@ class DataManager(QObject):
         connection.close()
         return -1
 
+    # Update Analysis
+    def update(self, arr):
+        self.ctx.setContextProperty('analysisModel', arr)
+
     # Analysis Algorithms
     @pyqtSlot(int, str)
     def startAnalysis(self, scanIndex, algName):
         # Instantiate Class
         scanAnalysis = Analysis()
+        scanAnalysis.sig = self.signal
+        scanAnalysis.sig.connect(self.update)
 
         # Create connection
         connection = self.db.open()
@@ -241,7 +249,7 @@ class DataManager(QObject):
             scanAnalysis.runPlotRidge(root.trials[scanIndex].scanPaths)
         elif(algName == "segmentation"):
             print("Segmentation Selected")
-            scanAnalysis.runPlotSegmentation(root.trials[scanIndex].scanPaths)
+            scanAnalysis.runPlotSegmentation(root.trials[scanIndex].scanPaths, self)
         else:
             print("No algorithm name defined!")
 

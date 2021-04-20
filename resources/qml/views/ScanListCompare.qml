@@ -45,7 +45,6 @@ Rectangle {
         buttonColor: AppColors.red
 
         onClicked: {
-            console.log(globalIndex)
             slider.x = 730
             sliderMouseArea.visible = false
             pickCompareButtonPressed()

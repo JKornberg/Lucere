@@ -22,7 +22,7 @@ Rectangle {
 
             Repeater {
                 id: repeater
-                model: captureModel[scanIdGridIndex]
+                model: captureModel[scanImageIndex]
                 delegate: Image {
                     source: "../../../model/classes/" + modelData
                     fillMode: Image.PreserveAspectCrop

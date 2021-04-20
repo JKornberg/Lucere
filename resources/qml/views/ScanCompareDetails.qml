@@ -4,7 +4,8 @@ import "../styles/AppColors.js" as AppColors
 
 Rectangle {
     // Properties
-    property int scanIndex: -1
+    property int scanImageIndex: -1
+    property int scanDetailsIndex: -1
 
     id: wrapper
     implicitWidth: 340
@@ -13,7 +14,7 @@ Rectangle {
     // Capture Swipe View
     Row {
         bottomPadding: 10
-        Components.ScanReview {
+        Components.ScanCompareReview {
             id: scanReview
             width: 340
             height: 240
@@ -38,28 +39,28 @@ Rectangle {
             }
 
             Text {
-                text: "ID: " + scanModel.get(scanIndex)["id"]
+                text: "ID: " + scanModel.get(scanDetailsIndex)["id"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "Date: " + scanModel.get(scanIndex)["date"]
+                text: "Date: " + scanModel.get(scanDetailsIndex)["date"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "User: " + scanModel.get(scanIndex)["user"]
+                text: "User: " + scanModel.get(scanDetailsIndex)["user"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "Light Detected: " + scanModel.get(scanIndex)["detected"]
+                text: "Light Detected: " + scanModel.get(scanDetailsIndex)["detected"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
@@ -80,28 +81,28 @@ Rectangle {
             }
 
             Text {
-                text: "Wavelength: " + scanModel.get(scanIndex)["wavelength"]
+                text: "Wavelength: " + scanModel.get(scanDetailsIndex)["wavelength"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "Shutter Speed: " + scanModel.get(scanIndex)["shutter speed"]
+                text: "Shutter Speed: " + scanModel.get(scanDetailsIndex)["shutter speed"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "Capture Duration: " + scanModel.get(scanIndex)["wavelength"]
+                text: "Capture Duration: " + scanModel.get(scanDetailsIndex)["wavelength"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray
             }
 
             Text {
-                text: "Capture Interval: " + scanModel.get(scanIndex)["capture duration"]
+                text: "Capture Interval: " + scanModel.get(scanDetailsIndex)["capture duration"]
                 font.family: "Segoe UI"
                 font.pixelSize: 12
                 color: AppColors.lightGray

@@ -46,9 +46,9 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    scanListView.currentIndex = model.index
-                    globalIndex = scanModel.get(scanListView.currentIndex)["id"]
-                    globalCompareIndex = scanModel.get(scanListView.currentIndex)["id"]
+                    scanListView.currentIndex = index
+                    listCurrentIndex = scanListView.currentIndex
+                    scanIdListIndex = scanModel.get(scanListView.currentIndex)["id"]
                 }
             }
         }
@@ -58,6 +58,8 @@ Rectangle {
         id: scanListView
         width: parent.width
         height: parent.height
+
+        
         
         model: scanModel
         delegate: scanDelegate

@@ -57,8 +57,16 @@ StackView {
 
             onRunButtonPressed: {
                 dataManager.startAnalysis(globalIndex, scanSelect.analysisModel.get(globalAnalysisIndex).name)
-                analysisStack.push("AnalysisResults.qml")
+                // move this to signal analysisStack.push("AnalysisResults.qml")
             }
+        }
+    }
+
+    Connections {
+        target: dataManager
+        function onSignal() {
+            console.log("Signal received!")
+            analysisStack.push("AnalysisResults.qml")
         }
     }
 }

@@ -7,8 +7,10 @@ import "../pages" as Pages
 
 Window {
     // Define global properties
-    property int globalIndex: -1
-    property int globalCompareIndex: -1
+    property int gridCurrentIndex:-1
+    property int scanIdGridIndex: -1
+    property int listCurrentIndex: -1
+    property int scanIdListIndex: -1
     property int globalAnalysisIndex: -1
     property bool authenticated: false // TODO: admin
     property bool admin: false // TODO: change to be dependent on user logging in
@@ -107,7 +109,7 @@ Window {
             onExportButtonPressed: {
                 pageLoader.source = "../pages/ScanExport.qml"
                 pageLoader.asynchronous = true
-                globalIndex = 0
+                scanIdGridIndex = 0
             }
 
             onExitButtonPressed: {
