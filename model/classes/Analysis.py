@@ -15,12 +15,13 @@ import tempfile
 import threading
 
 class Analysis(QObject):
+    scanPaths = "model/classes/"
     resultImageArray = []
-    sig = pyqtSignal(object)
+    analysisDone = pyqtSignal(object)
 
     def __init__(self):
         super().__init__()
-    
+
     def threaded(fn):
         def wrapper(*args, **kwargs):
             thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
@@ -30,10 +31,10 @@ class Analysis(QObject):
     
     @threaded
     def runPlotBlob(self, imagePathList = []):
-        scanPaths = "model/classes/"
+        self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
-            image = io.imread(scanPaths + imagePathList[i])
+            image = io.imread(self.scanPaths + imagePathList[i])
             image_gray = rgb2gray(image)
 
             blobs_log = blob_log(image_gray, max_sigma=30, num_sigma=10, threshold=.1)
@@ -66,13 +67,16 @@ class Analysis(QObject):
 
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+            self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+        
+        self.analysisDone.emit(self.resultImageArray)
     
     @threaded
     def runPlotDog(self, imagePathList):
-        scanPaths = "model/classes/"
+        self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
-            image = io.imread(scanPaths + imagePathList[i])
+            image = io.imread(self.scanPaths + imagePathList[i])
             wimage = image * window('hann', image.shape)  # window image to improve FFT
             filtered_image = difference_of_gaussians(image, 1, 12)
             filtered_wimage = filtered_image * window('hann', image.shape)
@@ -86,13 +90,16 @@ class Analysis(QObject):
             plt.style.use('dark_background')
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+            self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+        
+        self.analysisDone.emit(self.resultImageArray)
 
     @threaded
     def runPlotRgb2Hsv(self, imagePathList):
-        scanPaths = "model/classes/"
+        self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
-            image = io.imread(scanPaths + imagePathList[i])
+            image = io.imread(self.scanPaths + imagePathList[i])
             rgb_img = image
             hsv_img = rgb2hsv(rgb_img)
             hue_img = hsv_img[:, :, 0]
@@ -108,17 +115,20 @@ class Analysis(QObject):
 
             fig.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+            self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+        
+        self.analysisDone.emit(self.resultImageArray)
 
     @threaded
     def runPlotRidge(self, imagePathList):
-        scanPaths = "model/classes/"
+        self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
             def identity(image, **kwargs):
                 """Return the original image, ignoring any kwargs."""
                 return image
 
-            image = io.imread(scanPaths + imagePathList[i])
+            image = io.imread(self.scanPaths + imagePathList[i])
             cmap = plt.cm.gray
 
             kwargs = {'sigmas': [1], 'mode': 'reflect'}
@@ -137,14 +147,16 @@ class Analysis(QObject):
             plt.style.use('dark_background')
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+            self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+        
+        self.analysisDone.emit(self.resultImageArray)
 
     @threaded
-    def runPlotSegmentation(self, imagePathList, dataManager):
-        scanPaths = "model/classes/"
+    def runPlotSegmentation(self, imagePathList):
         self.resultImageArray.clear()
 
         for i in range(len(imagePathList)):
-            image = io.imread(scanPaths + imagePathList[i])
+            image = io.imread(self.scanPaths + imagePathList[i])
             gimg = color.rgb2gray(image)
 
             labels = segmentation.slic(image, compactness=30, n_segments=800, start_label=1)
@@ -160,6 +172,4 @@ class Analysis(QObject):
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
             self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
         
-        # dataManager.analysisArray = self.resultImageArray
-        self.sig.emit(self.resultImageArray)
-        # dataManager.signal.emit()
+        self.analysisDone.emit(self.resultImageArray)

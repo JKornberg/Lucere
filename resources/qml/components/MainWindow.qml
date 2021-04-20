@@ -11,7 +11,6 @@ Window {
     property int scanIdGridIndex: -1
     property int listCurrentIndex: -1
     property int scanIdListIndex: -1
-    property int globalAnalysisIndex: -1
     property bool authenticated: false // TODO: admin
     property bool admin: false // TODO: change to be dependent on user logging in
     property int userId: 0

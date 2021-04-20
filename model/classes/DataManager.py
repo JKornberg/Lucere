@@ -227,8 +227,8 @@ class DataManager(QObject):
     def startAnalysis(self, scanIndex, algName):
         # Instantiate Class
         scanAnalysis = Analysis()
-        scanAnalysis.sig = self.signal
-        scanAnalysis.sig.connect(self.update)
+        scanAnalysis.analysisDone = self.signal
+        scanAnalysis.analysisDone.connect(self.update)
 
         # Create connection
         connection = self.db.open()
@@ -249,7 +249,7 @@ class DataManager(QObject):
             scanAnalysis.runPlotRidge(root.trials[scanIndex].scanPaths)
         elif(algName == "segmentation"):
             print("Segmentation Selected")
-            scanAnalysis.runPlotSegmentation(root.trials[scanIndex].scanPaths, self)
+            scanAnalysis.runPlotSegmentation(root.trials[scanIndex].scanPaths)
         else:
             print("No algorithm name defined!")
 

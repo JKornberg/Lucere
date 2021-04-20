@@ -86,7 +86,7 @@ Rectangle {
                     Controls.LucereButtonSelect {
                         // lucereSelectButton.checked: index == 0
                         lucereSelectButton.onClicked: {
-                            globalAnalysisIndex = index
+                            gridCurrentIndex = index
                             slider.x = 530
                             selectButtonPressed()
                         }
