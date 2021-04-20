@@ -14,6 +14,8 @@ import tempfile
 import threading
 
 class Analysis:
+    resultImageArray = []
+
     def __init__(self):
         pass
     
@@ -66,6 +68,7 @@ class Analysis:
     @threaded
     def runPlotDog(self, imagePathList):
         scanPaths = "model/classes/"
+
         for i in range(len(imagePathList)):
             image = io.imread(scanPaths + imagePathList[i])
             wimage = image * window('hann', image.shape)  # window image to improve FFT
@@ -85,6 +88,7 @@ class Analysis:
     @threaded
     def runPlotRgb2Hsv(self, imagePathList):
         scanPaths = "model/classes/"
+
         for i in range(len(imagePathList)):
             image = io.imread(scanPaths + imagePathList[i])
             rgb_img = image
@@ -106,6 +110,7 @@ class Analysis:
     @threaded
     def runPlotRidge(self, imagePathList):
         scanPaths = "model/classes/"
+
         for i in range(len(imagePathList)):
             def identity(image, **kwargs):
                 """Return the original image, ignoring any kwargs."""
@@ -131,9 +136,10 @@ class Analysis:
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
 
-    @threaded    
+    @threaded
     def runPlotSegmentation(self, imagePathList):
         scanPaths = "model/classes/"
+
         for i in range(len(imagePathList)):
             image = io.imread(scanPaths + imagePathList[i])
             gimg = color.rgb2gray(image)
@@ -149,3 +155,6 @@ class Analysis:
             plt.colorbar(lc, fraction=0.03)
             plt.tight_layout()
             plt.savefig(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+            self.resultImageArray.append(tempfile.gettempdir() + "/" + str(i) + "_analysis.jpg")
+        
+        return self.resultImageArray

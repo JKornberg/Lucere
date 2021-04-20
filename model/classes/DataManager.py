@@ -12,7 +12,7 @@ from datetime import timezone
 import math
 import transaction
 
-# Import Analysis Class
+# Import Analysis Classes
 from model.classes.Analysis import Analysis
 
 class DataManager(QObject):
@@ -245,4 +245,3 @@ class DataManager(QObject):
         else:
             print("No algorithm name defined!")
 
-        # Join main thread and die

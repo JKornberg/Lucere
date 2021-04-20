@@ -57,7 +57,7 @@ StackView {
 
             onRunButtonPressed: {
                 dataManager.startAnalysis(globalIndex, scanSelect.analysisModel.get(globalAnalysisIndex).name)
-                //analysisStack.push("AnalysisResults.qml")
+                analysisStack.push("AnalysisResults.qml")
             }
         }
     }

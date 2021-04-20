@@ -22,9 +22,9 @@ Rectangle {
 
             Repeater {
                 id: repeater
-                model: 1 //captureModel[globalIndex]
+                model: analysisModel
                 delegate: Image {
-                    source: '../../../../Play/scikit/segmentation_analysis.png' //view //"../../../model/classes/" + modelData
+                    source: modelData
                     fillMode: Image.PreserveAspectCrop
                     Component.onCompleted: {
                         busyIndicator.running = false
