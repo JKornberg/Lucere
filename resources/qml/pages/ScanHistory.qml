@@ -10,6 +10,7 @@ import "../styles/AppColors.js" as AppColors
 StackView {
     // Properties
     property alias scanGridView: scanView.scanGridView
+    property int indexOnDelete: 0
 
     id: historyStack
     width: 730
@@ -39,6 +40,7 @@ StackView {
 
             onDeleteButtonPressed: {
                 confirmationLoader.sourceComponent = confirmationComponent
+                indexOnDelete = scanModel.get(gridCurrentIndex)["id"]
                 scanGridView.interactive = false
             }
         }
@@ -106,6 +108,7 @@ StackView {
 
             onYesButtonPressed: {
                 scanModel.removeScan(gridCurrentIndex)
+                dataManager.DeleteScan(indexOnDelete)
                 confirmationLoader.sourceComponent = undefined
                 scanGridView.interactive = true
             }

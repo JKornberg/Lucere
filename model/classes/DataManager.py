@@ -167,6 +167,31 @@ class DataManager(QObject):
         # Closes connection
         connection.close()
 
+ # Delete Scan Data
+    @pyqtSlot(int)
+    def DeleteScan(self, index):
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        # gets path information
+        t = root.trials[index]
+        paths = t.scanPaths
+        folder_path = './model/classes/' + paths[0][0:paths[0].rfind('/')]
+        
+        # deletes all scans associated with trial
+        for f in os.listdir(folder_path):
+            os.remove(os.path.join(folder_path, f)) # Delete all images in folder
+        os.rmdir(folder_path)
+
+        # delete from the database
+        del root.trials[index]
+
+        transaction.commit()
+
+        # Closes connection
+        connection.close()    
+
     # Fetch Users
     @pyqtSlot()
     def FetchUsers(self):
