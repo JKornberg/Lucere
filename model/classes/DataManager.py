@@ -67,8 +67,8 @@ class DataManager(QObject):
             self.scanModel.add(scan)
             self.captureModel.imageList.append(trial.scanPaths)
 
-            # Default sort by date
-            self.scanModel.sortBy('date')
+            # Default sort by id
+            self.scanModel.sortBy('id')
         
         # Close connection
         connection.close()
@@ -78,6 +78,8 @@ class DataManager(QObject):
     def addTempCaptures(self, i):
 
         # Populate array
+        # Clear array
+        self.captureModelTemp.tempCaptures.clear()
         self.captureModelTemp.tempCaptures.append(self.picturePath+str(i)+'.jpg') # Adds image path to list
         print(self.captureModelTemp.tempCaptures)
 
@@ -180,7 +182,7 @@ class DataManager(QObject):
         root = connection.root()
 
         # Update wavelength and detected data
-        root.trials[trial_id].result.detected = result.detected
+        root.trials[trial_id].result = result
 
         self.scanModel.scanList[trial_id]["wavelength"] = result.wavelength
         self.scanModel.scanList[trial_id]["detected"] = str(result.detected)
@@ -189,6 +191,8 @@ class DataManager(QObject):
         transaction.commit()
         connection.close()
 
+        # Update context model
+        self.scanModel.sortBy("id")
         self.ctx.setContextProperty('scanModel', self.scanModel)
 
     # Delete Data
