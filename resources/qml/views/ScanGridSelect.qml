@@ -81,6 +81,7 @@ Rectangle {
                     Controls.LucereButtonSelect {
                         lucereSelectButton.checked: index == 0
                         lucereSelectButton.onClicked: {
+                            gridCurrentIndex = scanGridSelect.currentIndex
                             scanIdGridIndex = index
                             selectButtonPressed()
                         }
