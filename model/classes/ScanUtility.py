@@ -3,10 +3,26 @@ from skimage import data
 import skimage
 from skimage import io
 import math
-from most_common_color import mostCommonRGBfrom
-import Result
+from model.classes.most_common_color import mostCommonRGBfrom
+from model.classes.Result import Result
+import threading
+import time
 
-class ScanUtility:
+from PyQt5.QtCore import QObject, pyqtSignal
+
+class ScanUtility(QObject):
+    analysisComplete = pyqtSignal(object)
+
+    def __init__(self):
+        super().__init__()
+
+    def threaded(fn):
+        def wrapper(*args, **kwargs):
+            thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
+            thread.start()
+            return thread
+        return wrapper
+
     def getDetection(self,image):
         averages = (image[:,:,0].astype('float64') + image[:,:,1].astype('float64') ) /2 #Remove blue channel
         flat = averages.flatten()
@@ -25,14 +41,18 @@ class ScanUtility:
         wl =  self.rgbToNm(RGB[0], RGB[1], RGB[2], waveArray)
         return wl
 
-    def analyze(self,path):
-        image = io.imread(path)
+    @threaded
+    def analyze(self, trial_id, path):
+        # Delay
+        print("Sleeping for 3 seconds")
+        time.sleep(3)
+
+        image = io.imread('model/classes/' + path)
         value = self.getDetection(image)
         detected = value > 5 #Replace with threshhold based on data
         wavelength = self.getWavelength(image)
-        return Result(detected, wavelength, value)
-
-
+        print("Emitting signal...")
+        self.analysisComplete.emit((trial_id, Result(detected, wavelength, value)))
 
     def nmToRGB(self,wavelength):
         gamma = 0.80

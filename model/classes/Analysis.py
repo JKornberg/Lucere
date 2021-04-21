@@ -1,5 +1,5 @@
 # Analysis Lucere class
-from PyQt5.QtCore import QObject, pyqtSignal, QThread
+from PyQt5.QtCore import QObject, pyqtSignal
 
 import numpy as np
 from math import sqrt

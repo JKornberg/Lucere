@@ -14,9 +14,11 @@ import transaction
 
 # Import Analysis Classes
 from model.classes.Analysis import Analysis
+from model.classes.ScanUtility import ScanUtility
 
 class DataManager(QObject):
-    signal = pyqtSignal(object)
+    waveSignal = pyqtSignal(object)
+    analysisSignal = pyqtSignal(object)
 
     def __init__(self, scanModel, captureModel, captureModelTemp, ctx, picturePath):
         super().__init__()
@@ -50,7 +52,7 @@ class DataManager(QObject):
                 'date': datetime.fromtimestamp(trial.dateTime).strftime("%m/%d/%Y"),
                 'wavelength': trial.result.wavelength,
                 'user': root.users[trial.userId].name,
-                'detected': trial.result.detected,
+                'detected': str(trial.result.detected),
                 'capture count': math.ceil(trial.captureDetails.count),
                 'capture interval': trial.captureDetails.interval,
                 'shutter speed': trial.captureDetails.shutter_speed,
@@ -62,7 +64,7 @@ class DataManager(QObject):
                 'notes': trial.notes,
                 'path': trial.scanPaths
             }
-            self.scanModel.scanList.append(scan)
+            self.scanModel.add(scan)
             self.captureModel.imageList.append(trial.scanPaths)
 
             # Default sort by date
@@ -99,7 +101,13 @@ class DataManager(QObject):
         root = connection.root()
 
         date = datetime.now().astimezone(timezone.utc).timestamp() # Get current time in milliseconds
-        trial_id = len(root.trials.keys()) # Get trial ID
+
+        if(len(root.trials.keys()) == 0):
+            trial_id = 0
+        else:
+            trial_id = max(list(root.trials.keys())) + 1 # Create trial ID
+
+        print(trial_id)
 
         # Move pictures from temporary folder to the user data directory
         try:
@@ -117,15 +125,15 @@ class DataManager(QObject):
         for i in range(count):
             paths.append(trial_path+str(i)+'.jpg') # Adds image path to list
             
-            os.rename((self.picturePath+str(i)+'.jpg'), ('model/classes/'+paths[i])) # Moves scan from tmp folder
+            os.rename((self.picturePath+str(i)+'.jpg'), ('model/classes/' + paths[i])) # Moves scan from tmp folder
         
         # Adds scan to QML Model
         scan = {
             'id': trial_id,
             'date': datetime.fromtimestamp(date).strftime("%m/%d/%Y"),
-            'wavelength': 600, # TODO: Replace placeholders
+            'wavelength': 0, # TODO: Replace placeholders
             'user': root.users[user_id].name,
-            'detected': True, # TODO: Replace placeholders
+            'detected': False, # TODO: Replace placeholders
             'capture count': count,
             'capture interval': interval,
             'shutter speed': shutter_speed,
@@ -144,7 +152,7 @@ class DataManager(QObject):
         self.ctx.setContextProperty('captureModel', self.captureModel.imageList)
 
         # Creates Trial object
-        result = Result(1, 600, 0) # TODO: Replace placeholders
+        result = Result(0, 0, 0)
         capture_details = CaptureDetails(shutter_speed, duration, interval, count)
         camera_details = CameraDetails(shutter_speed, 0, brightness, contrast, sharpness, 0, 0, iso, 'Default', resolution)
         trial = Trial(trial_id, user_id, date, paths, 'No notes.', result, capture_details, camera_details)
@@ -155,6 +163,33 @@ class DataManager(QObject):
         # Commits added scan and closes connection
         transaction.commit()
         connection.close()
+
+        # Light and Wavelength Analysis
+        waveAnalysis = ScanUtility()
+        waveAnalysis.analysisComplete = self.waveSignal
+        waveAnalysis.analysisComplete.connect(self.updateWaveResult)
+        waveAnalysis.analyze(trial_id, paths[0])
+        
+
+    # Update Analysis array and notify QML
+    def updateWaveResult(self, resultTuple):
+        trial_id, result = resultTuple
+
+        # Create connection
+        connection = self.db.open()
+        root = connection.root()
+
+        # Update wavelength and detected data
+        root.trials[trial_id].result.detected = result.detected
+
+        self.scanModel.scanList[trial_id]["wavelength"] = result.wavelength
+        self.scanModel.scanList[trial_id]["detected"] = str(result.detected)
+
+        # Commits added scan and closes connection
+        transaction.commit()
+        connection.close()
+
+        self.ctx.setContextProperty('scanModel', self.scanModel)
 
     # Delete Data
     @pyqtSlot(int)
@@ -247,17 +282,13 @@ class DataManager(QObject):
         connection.close()
         return -1
 
-    # Update Analysis array and notify QML
-    def update(self, arr):
-        self.ctx.setContextProperty('analysisModel', arr)
-
     # Analysis Algorithms
     @pyqtSlot(int, str)
     def startAnalysis(self, scanIndex, algName):
         # Instantiate Class
         scanAnalysis = Analysis()
-        scanAnalysis.analysisDone = self.signal
-        scanAnalysis.analysisDone.connect(self.update)
+        scanAnalysis.analysisDone = self.analysisSignal
+        scanAnalysis.analysisDone.connect(self.updateAnalysisResult)
 
         # Create connection
         connection = self.db.open()
@@ -282,3 +313,6 @@ class DataManager(QObject):
         else:
             print("No algorithm name defined!")
 
+    # Update Analysis array and notify QML
+    def updateAnalysisResult(self, arr):
+        self.ctx.setContextProperty('analysisModel', arr)

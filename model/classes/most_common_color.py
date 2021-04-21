@@ -9,14 +9,16 @@ def mostCommonRGBfrom(image):
     img = Image.fromarray(image)
     width, height = img.size
 
+    print(width, height, img)
+
     # The RGB values we will "snap" to
     colors = [255, 252, 249, 246, 243, 240, 237, 234, 231, 228, 225, 222, 219, 216, 213, 210, 207, 204, 201, 198, 195, 192, 189, 185, 182, 179, 176, 173, 169, 166, 163, 160, 156, 153, 150, 146, 140, 130, 120, 110, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0]
 
     original_color_count = {}
     color_count = {}
     # Loop through every pixel in the image and modify it
-    for w in np.arange(width):
-        for h in np.arange(height):
+    for w in range(width):
+        for h in range(height):
             current_color = img.getpixel((w, h))
 
             if current_color in original_color_count:
@@ -82,5 +84,7 @@ def mostCommonRGBfrom(image):
     R = int(filtered_colors[0][0][0])
     G = int(filtered_colors[0][0][1])
     B = 0
+
+    print("Common color completed")
 
     return (R, G, B)

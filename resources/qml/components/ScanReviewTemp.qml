@@ -25,6 +25,7 @@ Rectangle {
                 model: captureModelTemp
                 delegate: Image {
                     source: modelData
+                    fillMode: Image.PreserveAspectCrop
                     Component.onCompleted: {
                         busyIndicator.running = false
                     }
