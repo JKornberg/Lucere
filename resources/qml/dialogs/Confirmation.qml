@@ -8,6 +8,8 @@ Rectangle {
     property alias body: body
     property alias messageBox: messageBox
     property alias messageAnimation: messageAnimation
+    property alias yesButtonText: yesButton.text
+    property alias noButtonText: noButton.text
 
     // Signals
     signal noButtonPressed

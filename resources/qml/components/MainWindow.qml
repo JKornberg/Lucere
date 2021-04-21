@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 import "../views" as Views
 import "../components" as Components
 import "../pages" as Pages
+import "../dialogs" as Dialogs
 
 Window {
     // Define global properties
@@ -131,6 +132,39 @@ Window {
                 // Do work at exit then close
                 mainWindow.close()
             }
+        }
+    }
+
+    // Create a message (popup) loader
+    Loader {
+        id: messageLoader
+        sourceComponent: undefined
+    }
+
+    Component {
+        id: messageComponent
+
+        Dialogs.Confirmation {
+            id: dialog
+            x: 70
+            header.text: "Analysis Result"
+            body.text: "New scan wavelength and light detection analysis complete."
+            yesButtonText: "OK"
+            noButtonText: "Cancel"
+
+            onNoButtonPressed: {
+                messageLoader.sourceComponent = undefined
+            }
+            onYesButtonPressed: {
+                messageLoader.sourceComponent = undefined
+            }
+        }
+    }
+
+    Connections {
+        target: dataManager
+        function onWaveSignal() {
+            messageLoader.sourceComponent = messageComponent
         }
     }
 }
