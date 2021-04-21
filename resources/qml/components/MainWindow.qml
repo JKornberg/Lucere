@@ -163,7 +163,7 @@ Window {
 
     Connections {
         target: dataManager
-        function onWaveSignal() {
+        onWaveSignal: {
             messageLoader.sourceComponent = messageComponent
         }
     }

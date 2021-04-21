@@ -67,7 +67,7 @@ StackView {
 
     Connections {
         target: dataManager
-        function onAnalysisSignal() {
+        onAnalysisSignal: {
             analysisStack.push("AnalysisResults.qml")
             progressLoader.sourceComponent = undefined
             scanSelect.visible = true
