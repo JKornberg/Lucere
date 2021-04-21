@@ -78,8 +78,6 @@ class DataManager(QObject):
     def addTempCaptures(self, i):
 
         # Populate array
-        # Clear array
-        self.captureModelTemp.tempCaptures.clear()
         self.captureModelTemp.tempCaptures.append(self.picturePath+str(i)+'.jpg') # Adds image path to list
         print(self.captureModelTemp.tempCaptures)
 
@@ -165,6 +163,9 @@ class DataManager(QObject):
         # Commits added scan and closes connection
         transaction.commit()
         connection.close()
+
+        # Clear temp image array
+        self.clear()
 
         # Light and Wavelength Analysis
         waveAnalysis = ScanUtility()

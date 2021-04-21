@@ -11,7 +11,7 @@ Rectangle {
     property real sharpness: 0.0
     property int iso: 100
     property alias camera: camera
-    property alias resolution: camera.viewfinder.resolution
+    property string resolution: "1920x1080" // Change to "1920x1080" for USB camera tests OR "952x480" for PI
     signal imgSaved
 
     id: wrapper
@@ -29,8 +29,7 @@ Rectangle {
             id: camera
 
             // Set resolution
-            // viewfinder.resolution: "952x480" // This if for Rpi
-            viewfinder.resolution: "1920x1080" // This is for USB cameras
+            viewfinder.resolution: resolution
 
             // Set Camera Controls
             exposure.manualShutterSpeed: shutterSpeed
